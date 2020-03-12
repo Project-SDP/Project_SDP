@@ -4,7 +4,7 @@
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
     $tmp='aaaa';
-    // echo $tmp;
+    echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
@@ -86,75 +86,18 @@
 		<div class="wrapper">
 			<div class="inner">
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
-				<form action="" method="post">
+				<form action="">
 					<h3> Bibik's Catering</h3>
-					<h3 style="font-size:5px;">Register Merchant</h3>
-					<div class="form-holder">
-						<span class="lnr lnr-user"></span>
-						<input type="text" class="form-control" placeholder="Nama" name="nama">
-					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-phone-handset"></span>
-						<input type="text" class="form-control" placeholder="Nomor Telepon" name="telp">
-					</div>
+					<h3 style="font-size:5px;">Login Merchant</h3>
 					<div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
 						<input type="text" class="form-control" placeholder="Email" name="email">
                     </div>
-                    <!-- <form method="post"> -->
-                    <label> Pilih provinsi </label>
-                    <select class="form-control select2" style="width: 100%;" name="provinsi">
-                    
-                    <?php 
-                    $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
-                    $select = -1; 
-                    foreach($listMerch as $merch) 
-                    {
-                        if($select == -1){
-                            echo "<option selected='selected' value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                            $select = 0;
-                        }else{
-                            echo "<option value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                        }
-                    }
-                    ?>
-                    <!-- </form> -->
-                  </select>
-                  
-                    <label> Pilih kota </label>
-                    <select class="form-control select2" style="width: 100%;">
-                    <?php 
-                    $listKota=mysqli_query($link,"SELECT * FROM kota");
-                    $select2 = -1;
-                    foreach($listKota as $kota) 
-                    {
-                        if($kota['id_provinsi'] == $tmp){
-                            if($select2 == -1){
-                                echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                                $select2 = 0;
-                            }else{
-                                echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                            }
-                        }
-                        
-                    }    
-                    ?>
-                  </select>
-                  <div class="form-holder" style="margin-top:20px;">
-						<span class="lnr lnr-home"></span>
-						<input type="text" class="form-control" placeholder="Alamat" name="alamat">
-					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Password" name="pass">
 					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-lock"></span>
-						<input type="password" class="form-control" placeholder="Confirm Password" name="cpass">
-					</div>
-                    <!-- <button name="reg" value="Daftar">Daftar</button> -->
-                    <input type="submit" name="reg" value="Daftar">
-                    <!-- <button name="reg" value="Daftar">Daftar</button> -->
+                    <button name="reg" value="Login">Login</button>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">

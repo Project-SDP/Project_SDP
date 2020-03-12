@@ -45,7 +45,7 @@ a {
   position: relative;
   width: 435px; }
 
-.image-1 {
+.image-1,.image-3 {
   position: absolute;
   bottom: -12px;
   left: -191px;
