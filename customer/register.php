@@ -17,7 +17,6 @@
         <div class="keterangan"></div>
 
 </div>
-<script src="jquery-min.js"></script>
 <script>
 function cekRegister(){
     var username=$('#nama_akun').val();
