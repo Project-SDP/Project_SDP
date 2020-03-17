@@ -1,71 +1,8 @@
 <?php
-    session_start();
-    require("conn.php");
-    $listUser=mysqli_query($link,"SELECT * FROM merchant");
-    $jumlah = 0;
-    $tmp='aaaa';
-    // echo $tmp;
-    foreach($listUser as $user) 
-    {
-        $jumlah++;
-    }    
-    // var_dump($user);
+    require_once("../../customer/connect.php");
+    $query="SELECT * from user";
+    $arr=mysqli_query($conn,$query);
     
-
-    if(isset($_POST['toLog'])){
-        header("location:login.php");
-    }
-    // if(isset($_POST['toHome'])){
-    //     header("location:home.php");
-    // }
-    if(isset($_POST['reg']))
-    {
-        $nama = $_POST['nama'];
-        $alamat = $_POST['alamat'];
-        $nohp = $_POST['telp'];
-        $usern = $_POST['user'];
-        $pass = $_POST['pass'];  
-        $cpass = $_POST['cpass'];  
-        $email = $_POST['email'];  
-        $cek = 0;
-    
-        foreach ($listUser as $user) {
-            if($user['notelp']==$nohp){
-                echo "<script>alert('No HP telah terdaftar')</script>";
-                break;
-            }
-            else if($user['username']==$usern){
-                echo "<script>alert('Username tidak tersedia')</script>";
-                break;
-            }
-            else
-            {
-                $cek++;
-            }
-        }
-
-
-        if($nama==""||$alamat==""||$nohp==""||$usern==""||
-        $pass==""||$cpass==""||$email=""){
-            echo "field tidak boleh kosong!";
-        }else if($pass!=$cpass){
-            echo "konfirmasi password tidak sesuai";            
-        }else if($cek==$jumlah)
-        {   
-            echo "haha";
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,username,pass) VALUES('$nama','$nama',0,'$alamat','$nohp','$usern','$pass')");
-            echo "sheyenk";
-            // header('location:login.php');
-        }
-        // else{
-        //     echo "username/no hp telah terdaftar";
-        // }
-    
-    }
-    if(isset($_POST['provinsi'])){
-        $tmp = $_POST['provinsi'];
-        echo "hoho";
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,26 +17,24 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-
 	<body>
-
 		<div class="wrapper">
 			<div class="inner">
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
 				<form action="" method="post">
 					<h3> Bibik's Catering</h3>
-					<h3 style="font-size:5px;">Register Merchant</h3>
+					<h3 style="font-size:5px;">Register User</h3>
 					<div class="form-holder">
 						<span class="lnr lnr-user"></span>
-						<input type="text" class="form-control" placeholder="Nama" name="nama">
+						<input type="text" name="inpNama" id="nama_akun" placeholder="Username">
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
-						<input type="text" class="form-control" placeholder="Nomor Telepon" name="telp">
+						<input type="text" name="inpNoHp" onkeyup="ceknohp()" id="nohp_akun" placeholder="Nomor Telepon"> <span class="cekhp"></span>
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
-						<input type="text" class="form-control" placeholder="Email" name="email">
+						<input type="text" name="inpEmail" id="email_akun" placeholder="Email">
                     </div>
                     <!-- <form method="post"> -->
                     <label> Pilih provinsi </label>
@@ -166,3 +101,73 @@
 		<script src="js/main.js"></script>
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
+<script>
+  function NumberOnly(evt){
+    var input= String.fromCharCode(evt.which);
+    if(!(/[0-9]/.test(input))){
+        evt.preventDefault();
+    }
+}
+
+function cekRegister(){
+    var username=$('#nama_akun').val();
+    var nohp=$('#nohp_akun').val();
+    var pass=$('#pass_akun').val();
+    var conpass=$('#conpass_akun').val();
+    var email=$('#email_akun').val();
+    var namadepan=$('#namadepan_akun').val();
+    var namabelakang=$('#namabelakang_akun').val();
+    var alamat=$('#alamat_akun').val();
+    $.ajax({
+        method: "post",
+        url: "check_regis.php",
+        data: {
+            username:username,
+            nohp:nohp,
+            pass:pass,
+            conpass:conpass,
+            email:email,
+            namadepan:namadepan,
+            namabelakang:namabelakang,
+            alamat:alamat
+        },
+        success: function (response) {
+            alert(response);
+        }
+    });
+}
+function ceknohp(no_hp){
+    $.ajax({
+        method: "post",
+        url: "ceknohp.php",
+        data: {
+            nohp_akun:$("#nohp_akun").val()
+        },
+        success: function (data) {
+            $(".cekhp").html(data); //nama span
+        }
+    });
+}
+function cekpass(){
+    $.ajax({
+        method: "post",
+        url: "cekpass.php",
+        data: {
+            pass_akun:$("#pass_akun").val(),
+            conpass_akun:$("#conpass_akun").val()
+        },
+        success: function (data) {
+            $(".cekpass").html(data); //nama span
+        }
+    });
+}
+function toLogin(){
+    $.ajax({
+        method: "post",
+        url: "login.php",
+        success: function (data) {
+            $(".kotak1").html(data);
+        }
+    }); 
+}
+</script>
