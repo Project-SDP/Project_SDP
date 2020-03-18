@@ -56,7 +56,7 @@
         {   
             mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota')");
             echo "Merchant sukses terdaftar";
-            // header('location:login.php');
+            header('location:login.php');
         }
         else{
             echo "email/nomor hp telah terdaftar";
@@ -143,9 +143,10 @@
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Password" name="pass" id="pass">
 					</div>
-					<div class="form-holder">
+                    <span style="top:620px;position:absolute;font-size:10px;">Password minimal 8 karakter</span>
+					<div class="form-holder"style="padding-top:20px;">
 						<span class="lnr lnr-lock"></span>
-						<input type="password" class="form-control" placeholder="Confirm Password" name="cpass" id="cpass"><span id="pesan2" style="left:320px;"></span>
+						<input type="password" class="form-control" placeholder="Konfirmasi Password" name="cpass" id="cpass"><span id="pesan2" style="left:320px;"></span>
 					</div>
                     <!-- <input type="submit" name="reg" value="Daftar"> -->
                     <button name ="reg">Daftar</button>

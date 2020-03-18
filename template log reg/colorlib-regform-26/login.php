@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['login'] = -1;
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
@@ -25,7 +26,9 @@
         foreach ($listUser as $user) {
             $cek++;
             if($user['email']==$email && $user['pass']==$pass){
-                echo "<script>alert('masuk')</script>";
+                // echo "<script>alert('masuk')</script>";
+                $_SESSION['login'] = $user['email'];
+                header('location:../../template%20web/vegefoods%20-%20Copy/mainpage.php');
                 break;
             }
         } 

@@ -5232,7 +5232,7 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #007bff !important; }
+  background-color: #accffe !important; }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
@@ -8485,7 +8485,7 @@ h1, h2, h3, h4, h5,
   background: #f7f6f2 !important; }
 
 .bg-primary {
-  background: #82ae46; }
+  background: #accffe; }
 
 .bg-secondary {
   background: #ffe6eb !important; }
@@ -9171,7 +9171,7 @@ textarea.form-control {
   visibility: hidden; }
 
 .bg-primary {
-  background: #82ae46 !important; }
+  background:#accffe!important; }
 
 .bg-black {
   background: #000000 !important; }

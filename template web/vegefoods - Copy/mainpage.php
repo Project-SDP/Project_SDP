@@ -1,3 +1,18 @@
+<?php
+    session_start();
+    $nama = "";
+    if(isset($_SESSION['login'])){
+        $nama = $_SESSION['login'];
+    }else{
+        $_SESSION['login'] = -1;  
+    }
+    
+    // echo $_SESSION['login'];
+    if(isset($_POST['logout'])){
+        $_SESSION['login'] = -1;  
+        header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,11 +107,36 @@
 
 	        </ul>
 	      </div>
-		</div>
-		<div class="btn" style="margin-right:100px;">
-			<a href="../../template%20log%20reg/colorlib-regform-26/index.php"><div class="button_right_02 new2019-05-16">Daftar</div></a>
-			<a href="../../template%20log%20reg/colorlib-regform-26/login.php"><div class="button_right_02 new2019-05-16">Masuk</div></a>
-		</div>
+        </div>
+        <?php
+        if($nama==-1){
+            echo"<div class='btn' style='margin-right:100px;'>";
+			echo"<a href='../../template%20log%20reg/colorlib-regform-26/index.php'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
+			echo"<a href='../../template%20log%20reg/colorlib-regform-26/login.php'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
+            echo"</div>";
+        }else{
+            ?>
+                <div class="container" style="margin-left:1700px; position:absolute;">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Hello ,<?php echo $nama; ?></a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">Profile</div>
+                        <form action="" method="post"></form>
+                        <a href="../../template%20log%20reg/colorlib-regform-26/login.php"><div class="panel-footer" >Keluar</div></a>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        <?php
+        }
+
+        ?>
 	  </nav>
     <!-- END nav -->
 
