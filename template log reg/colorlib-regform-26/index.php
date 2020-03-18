@@ -3,6 +3,10 @@
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
+    $tmp='aaaa';
+
+
+    // echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
@@ -85,7 +89,7 @@
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
 				<form action="" method="post">
 					<h3> Bibik's Catering</h3>
-					<h3 style="font-size:5px;">Register Merchant</h3>
+					<h3 style="font-size:10px;">Register Merchant</h3>
 					<div class="form-holder">
 						<span class="lnr lnr-user"></span>
 						<input type="text" class="form-control" placeholder="Nama" name="nama">
