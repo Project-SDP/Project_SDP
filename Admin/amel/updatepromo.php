@@ -18,7 +18,7 @@
     echo "</div>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Potongan</label>";
-    echo     "<input type='text' maxlength='13'  value='$query[potongan]' class='form-control' id='potongan' placeholder='Enter Potongan'>";
+    echo     "<input type='text' maxlength='13'  value='$query[potongan]' onkeypress='NumberOnly(event)' class='form-control' id='potongan' placeholder='Enter Potongan'>";
     echo "</div>";
     echo "<div class='card-footer'>";
     echo     "<button onclick='ubah(\"$query[id_promo]\")' class='btn btn-primary'>Update</button>";
@@ -45,5 +45,11 @@
             }
         });
     
+    }
+    function NumberOnly(evt){
+        var input= String.fromCharCode(evt.which);
+        if(!(/[0-9]/.test(input))){
+            evt.preventDefault();
+        }
     }
 </script>
