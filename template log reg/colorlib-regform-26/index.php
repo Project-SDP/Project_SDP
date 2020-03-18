@@ -123,11 +123,7 @@
                     $select2 = -1;
                     foreach($listKota as $kota) 
                     {
-<<<<<<< HEAD
                         if($kota['id_provinsi'] == 'PR001'){
-=======
-                        if($kota['id_provinsi'] ==  'PR001'){
->>>>>>> f1d78321af6da802d90acac306ac452f1fd11a5b
                             if($select2 == -1){
                                 echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
                                 $select2 = 0;
