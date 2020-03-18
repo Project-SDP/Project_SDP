@@ -16,6 +16,10 @@
     // if(isset($_POST['toHome'])){
     //     header("location:home.php");
     // }
+
+
+
+
     if(isset($_POST['reg']))
     {
         $nama = $_POST['nama'];
@@ -116,3 +120,6 @@
 		<script src="js/main.js"></script>
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
+
+
+!
