@@ -3,13 +3,10 @@
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
-    $tmp='aaaa';
-    // echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
     }    
-    // var_dump($user);
     
 
     if(isset($_POST['toLog'])){
@@ -23,10 +20,12 @@
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
         $nohp = $_POST['telp'];
-        $usern = $_POST['user'];
+        // $usern = $_POST['user'];
         $pass = $_POST['pass'];  
         $cpass = $_POST['cpass'];  
-        $email = $_POST['email'];  
+        $mail = $_POST['email'];  
+        $provinsi = $_POST['prov'];
+        $kota = $_POST['kota'];
         $cek = 0;
     
         foreach ($listUser as $user) {
@@ -34,8 +33,8 @@
                 echo "<script>alert('No HP telah terdaftar')</script>";
                 break;
             }
-            else if($user['username']==$usern){
-                echo "<script>alert('Username tidak tersedia')</script>";
+            else if($user['email']==$nohp){
+                echo "<script>alert('Email telah terdaftar')</script>";
                 break;
             }
             else
@@ -45,26 +44,24 @@
         }
 
 
-        if($nama==""||$alamat==""||$nohp==""||$usern==""||
+        if($nama==""||$alamat==""||$nohp==""||
         $pass==""||$cpass==""||$email=""){
             echo "field tidak boleh kosong!";
         }else if($pass!=$cpass){
             echo "konfirmasi password tidak sesuai";            
-        }else if($cek==$jumlah)
+        }else if (strpos($mail,"@") == false){
+            echo "email anda tidak valid";
+        }
+        else if($cek==$jumlah)
         {   
-            echo "haha";
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,username,pass) VALUES('$nama','$nama',0,'$alamat','$nohp','$usern','$pass')");
-            echo "sheyenk";
+            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota')");
+            echo "Merchant sukses terdaftar";
             // header('location:login.php');
         }
-        // else{
-        //     echo "username/no hp telah terdaftar";
-        // }
+        else{
+            echo "email/nomor hp telah terdaftar";
+        }
     
-    }
-    if(isset($_POST['provinsi'])){
-        $tmp = $_POST['provinsi'];
-        echo "hoho";
     }
 ?>
 <!DOCTYPE html>
@@ -95,15 +92,14 @@
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
-						<input type="text" class="form-control" placeholder="Nomor Telepon" name="telp">
+						<input type="number" class="form-control" placeholder="Nomor Telepon" name="telp"><span id="pesan" style="left:320px;"></span>
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
-						<input type="text" class="form-control" placeholder="Email" name="email">
+						<input type="text" class="form-control" placeholder="Email" name="email"><span id="pesan3" style="left:320px;"></span>
                     </div>
-                    <!-- <form method="post"> -->
                     <label> Pilih provinsi </label>
-                    <select class="form-control select2" style="width: 100%;" name="provinsi">
+                    <select class="form-control select2" style="width: 100%;" onchange="refreshKota()" name="prov" id="prov">
                     
                     <?php 
                     $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
@@ -118,17 +114,20 @@
                         }
                     }
                     ?>
-                    <!-- </form> -->
                   </select>
                   
                     <label> Pilih kota </label>
-                    <select class="form-control select2" style="width: 100%;">
+                    <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
                     <?php 
                     $listKota=mysqli_query($link,"SELECT * FROM kota");
                     $select2 = -1;
                     foreach($listKota as $kota) 
                     {
-                        if($kota['id_provinsi'] == $tmp){
+<<<<<<< HEAD
+                        if($kota['id_provinsi'] == 'PR001'){
+=======
+                        if($kota['id_provinsi'] ==  'PR001'){
+>>>>>>> f1d78321af6da802d90acac306ac452f1fd11a5b
                             if($select2 == -1){
                                 echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
                                 $select2 = 0;
@@ -146,15 +145,14 @@
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
-						<input type="password" class="form-control" placeholder="Password" name="pass">
+						<input type="password" class="form-control" placeholder="Password" name="pass" id="pass">
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
-						<input type="password" class="form-control" placeholder="Confirm Password" name="cpass">
+						<input type="password" class="form-control" placeholder="Confirm Password" name="cpass" id="cpass"><span id="pesan2" style="left:320px;"></span>
 					</div>
-                    <!-- <button name="reg" value="Daftar">Daftar</button> -->
-                    <input type="submit" name="reg" value="Daftar">
-                    <!-- <button name="reg" value="Daftar">Daftar</button> -->
+                    <!-- <input type="submit" name="reg" value="Daftar"> -->
+                    <button name ="reg">Daftar</button>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">
@@ -166,3 +164,53 @@
 		<script src="js/main.js"></script>
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
+<script>
+     function refreshKota(){
+        prov = $("#prov").val();
+        $.ajax({
+            method:"post",
+            url: "kota.php",
+            data: {
+                prov:prov
+            },
+            success: function (data) {
+                $("#kota").html(data);
+            }
+        });
+     }
+     $('#cpass').keyup(function(){
+        pass = $("#pass").val();
+        cpass = $("#cpass").val();
+        setTimeout(function(){
+            $.ajax({
+                method:"post",
+                url: "cekPass.php",
+                data: {
+                    pass:pass,
+                    cpass:cpass
+                },
+                success: function (data) {
+                    $("#pesan2").html(data);
+
+                }
+            });
+        },1000);
+    });
+    
+     $("input[name=email]").keyup(function(){
+        email = $("input[name=email]").val();
+        setTimeout(function(){
+            $.ajax({
+                method:"post",
+                url: "cekEmail.php",
+                data: {
+                    email:email
+                },
+                success: function (data) {
+                    $("#pesan3").html(data);
+
+                }
+            });
+        },1000);
+    });
+</script>

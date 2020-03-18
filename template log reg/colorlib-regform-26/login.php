@@ -3,8 +3,6 @@
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
-    $tmp='aaaa';
-    echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
@@ -18,53 +16,23 @@
     // if(isset($_POST['toHome'])){
     //     header("location:home.php");
     // }
-    if(isset($_POST['reg']))
+    if(isset($_POST['login']))
     {
-        $nama = $_POST['nama'];
-        $alamat = $_POST['alamat'];
-        $nohp = $_POST['telp'];
-        $usern = $_POST['user'];
-        $pass = $_POST['pass'];  
-        $cpass = $_POST['cpass'];  
-        $email = $_POST['email'];  
         $cek = 0;
+        $pass = $_POST['pass'];   
+        $email = $_POST['email']; 
     
         foreach ($listUser as $user) {
-            if($user['notelp']==$nohp){
-                echo "<script>alert('No HP telah terdaftar')</script>";
+            $cek++;
+            if($user['email']==$email && $user['pass']==$pass){
+                echo "<script>alert('masuk')</script>";
                 break;
             }
-            else if($user['username']==$usern){
-                echo "<script>alert('Username tidak tersedia')</script>";
-                break;
-            }
-            else
-            {
-                $cek++;
-            }
+        } 
+        
+        if($cek==$jumlah){
+            echo "<script>alert('password salah')</script>";
         }
-
-
-        if($nama==""||$alamat==""||$nohp==""||$usern==""||
-        $pass==""||$cpass==""||$email=""){
-            echo "field tidak boleh kosong!";
-        }else if($pass!=$cpass){
-            echo "konfirmasi password tidak sesuai";            
-        }else if($cek==$jumlah)
-        {   
-            echo "haha";
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,username,pass) VALUES('$nama','$nama',0,'$alamat','$nohp','$usern','$pass')");
-            echo "sheyenk";
-            // header('location:login.php');
-        }
-        // else{
-        //     echo "username/no hp telah terdaftar";
-        // }
-    
-    }
-    if(isset($_POST['provinsi'])){
-        $tmp = $_POST['provinsi'];
-        echo "hoho";
     }
 ?>
 <!DOCTYPE html>
@@ -86,7 +54,7 @@
 		<div class="wrapper">
 			<div class="inner">
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
-				<form action="">
+				<form action="" method="post">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:5px;">Login Merchant</h3>
 					<div class="form-holder">
@@ -97,7 +65,7 @@
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Password" name="pass">
 					</div>
-                    <button name="reg" value="Login">Login</button>
+                    <button name="login">Login</button>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">

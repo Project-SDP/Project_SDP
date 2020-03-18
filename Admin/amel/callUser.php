@@ -25,7 +25,7 @@
     function blok(id){
         $.ajax({
             method: "post",
-            url: "blok.php",
+            url: "masteruserakun.php",
             data: {
                 id_akun:id
             },
