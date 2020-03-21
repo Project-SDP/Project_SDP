@@ -56,22 +56,34 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Username</th>
-                  <th>Nama Lengkap</th>
-                  <th>Alamat</th>
-                  <th>Status</th>
+                  <th>Nama Kategori</th>
+                  
+                  <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id ='akun'>
-                
-                
+                <tbody id ='kategori'>
                 </tbody>
-                
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
+          <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit Kategori</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="card-body" id="ubah">
+                 
+                </div>
+                <!-- /.card-body -->
+
+                
+            </div>
+            <!-- /.card -->
+
+        </div>
         </div>
         <!-- /.col -->
       </div>
@@ -111,16 +123,17 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  pangillUser();
- function pangillUser(){
+  pangillKategori();
+ function pangillKategori(){
   $.ajax({
    method: "post",
-   url: "User/Blok/callUser.php",
+   url: "Kategori/AmbilTableKategori.php",
    success: function (response) {
-     $("#akun").html(response);
+     $("#kategori").html(response);
    }
  });
  }
+
 </script>
 </body>
 </html>

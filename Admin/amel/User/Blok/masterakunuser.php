@@ -1,5 +1,5 @@
 <?php
-    require_once("../../customer/connect.php");
+    require_once("../../connect.php");
     $id=$_POST["id_akun"];
     ECHO $id;
     $query="SELECT status from user where id_akun='$id'";
