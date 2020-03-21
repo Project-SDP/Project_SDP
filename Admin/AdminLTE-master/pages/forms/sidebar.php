@@ -208,21 +208,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Edit Pengguna
+                Edit
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/addMerchant.php" class="nav-link">
+                <a href="addMerchant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Merchant</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="menu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Tambah Admin</p>
+                  <p>Tambah Menu</p>
                 </a>
               </li>
               <li class="nav-item">

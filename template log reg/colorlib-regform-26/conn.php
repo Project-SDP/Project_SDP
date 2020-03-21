@@ -2,7 +2,7 @@
     $_SESSION['status'] = 0;
 
     
-    $link = mysqli_connect("localhost","root","","proyeksdp");
+    $link = mysqli_connect("localhost","root","","dbmerchant");
     if(!$link){
         echo "tidak dapat membaca DB";
         die();

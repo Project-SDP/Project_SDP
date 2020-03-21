@@ -215,7 +215,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah User</h1>
+            <h1>Tambah Menu</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -236,7 +236,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Merchant</h3>
+                <h3 class="card-title">Menu baru</h3>
               </div>
               <!-- form start -->
               <form role="form" action="#" method="post">
@@ -246,99 +246,21 @@
                     <input type="nama" class="form-control" placeholder="Masukkan nama" name="nama">
                   </div>
                   <div class="form-group">
-                  <label>Provinsi</label>
-                  <select class="form-control select2" style="width: 100%;"  onchange="refreshKota()" name="prov" id="prov"> 
-                    <!-- <option selected="selected" name="aceh">Aceh</option>
-                    <option>Bengkulu</option>
-                    <option>Jambi</option>
-                    <option>Kepulauan Bangka Belitung</option>
-                    <option>Kepulauan Riau</option>
-                    <option>Lampung</option>
-                    <option>Riau</option>
-                    <option>Sumatera Barat</option>
-                    <option>Sumatera Selatan</option>
-                    <option>Sumatera Utara</option>
-                    <option>Banten</option>
-                    <option>Gorontalo</option>
-                    <option>Jakarta</option>
-                    <option>Jawa Barat</option>
-                    <option>Jawa Tengah</option>
-                    <option>Jawa Timur</option>
-                    <option>Kalimantan Barat</option>
-                    <option>Kalimantan Selatan</option>
-                    <option>Kalimantan Tengah</option>
-                    <option>Kalimantan Timur</option>
-                    <option>Kalimantan Utara</option>
-                    <option>Maluku</option>
-                    <option>Maluku Utara</option>
-                    <option>Bali</option>
-                    <option>Nusa Tenggara Barat</option>
-                    <option>Nusa Tenggara Timur</option>
-                    <option>Papua</option>
-                    <option>Papua Barat</option>
-                    <option>Sulawesi Barat</option>
-                    <option>Sulawesi Selatan</option>
-                    <option>Sulawesi Tengah</option>
-                    <option>Sulawesi Tenggara</option>
-                    <option>Sulawesi Utara</option>
-                    <option>Yogyakarta</option> -->
-                    
-                    <?php 
-                    $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
-                    $select = -1; 
-                    foreach($listMerch as $merch) 
-                    {
-                        if($select == -1){
-                            echo "<option selected='selected' value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                            $select = 0;
-                        }else{
-                            echo "<option value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                        }
-                    }
-                    ?>
-                  </select>
+                    <label for="exampleInputEmail1">Harga</label><br>
+                    <input type="text" class="form-control"  placeholder="Rp." name="harga">
                   </div>
                   <div class="form-group">
-                  <label>Kota</label>
-                  <select class="form-control select2" style="width: 100%;" name="kota" id="kota"> 
-                    <?php 
-                    $listKota=mysqli_query($link,"SELECT * FROM kota");
-                    $select2 = -1;
-                    foreach($listKota as $kota) 
-                    {
-                        if($kota['id_provinsi'] == 'PR001'){
-                            if($select2 == -1){
-                                echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                                $select2 = 0;
-                            }else{
-                                echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                            }
-                        }
-                        
-                    }    
-                    ?>
-                  </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Alamat</label>
-                    <input type="text" class="form-control"  placeholder="Masukkan alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">No telp</label>
-                    <input type="tel" class="form-control" placeholder="Masukkan no telepon" name="telp">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Masukkan email" name="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password" name="pass">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan konfirmasi password" name="cpass">
-                  </div>
+                    <label for="exampleInputEmail1">Status</label><br>
+                    <div class="bootstrap-switch-null bootstrap-switch-undefined bootstrap-switch-undefined bootstrap-switch-undefined bootstrap-switch-undefined bootstrap-switch-undefined bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-focused bootstrap-switch-animate" style="width: 115.969px;">
+                    <div class="bootstrap-switch-container" style="width: 171px; margin-left: 0px;">
+                    <span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 57px;">ON</span>
+                    <span class="bootstrap-switch-label" style="width: 57px;">&nbsp;</span>
+                    <span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 57px;">OFF</span>
+                    <input type="checkbox" name="my-checkbox" checked="" data-bootstrap-switch="">
+                    </div>
+                 </div>
+                </div>
+                  
 
 
                 <div class="card-footer">
