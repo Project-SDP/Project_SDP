@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>RegistrationForm_v10 by Colorlib</title>
+		<title>Registrasi</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- LINEARICONS -->
@@ -30,9 +30,9 @@
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
-                <div class="kotak">
+                <div class="kotak card" style="Padding: 10% ; border-radius:5% ; margin-top:5%">
 					<h3> Bibik's Catering</h3>
-					<h3 style="font-size:5px;">Register User</h3>
+					<h3 style="font-size:15px;">Register User</h3>
                     <div class="form-holder">
 						<span class="lnr lnr-user"></span>
                         <input type="text" id="namadepan_akun" class="form-control" placeholder="Nama Depan" name="inpNamaDepan">
@@ -97,7 +97,7 @@
                     <!-- <button name="reg" value="Daftar">Daftar</button> -->
 
 				<img src="../../template log reg/colorlib-regform-26/images/image-2.png" alt="" class="image-2">
-			</div>
+			    </div>
 		</div>
 		
 		<script src="jquery-min.js"></script>
@@ -136,17 +136,19 @@ function ajaxKota(){
     });
 }
 function cekRegister(){
-    var username=$('#nama_akun').val();
-    var nohp=$('#nohp_akun').val();
-    var pass=$('#pass_akun').val();
-    var conpass=$('#conpass_akun').val();
-    var email=$('#email_akun').val();
-    var namadepan=$('#namadepan_akun').val();
-    var namabelakang=$('#namabelakang_akun').val();
-    var kota=$('#kota').val();
-    var alamat=$('#alamat_akun').val();
-    if(ValidateEmail(email)){
-        $.ajax({
+    let  username=$('#nama_akun').val();
+    let  nohp=$('#nohp_akun').val();
+    let  pass=$('#pass_akun').val();
+    let  conpass=$('#conpass_akun').val();
+    let  email=$('#email_akun').val();
+    let  namadepan=$('#namadepan_akun').val();
+    let  namabelakang=$('#namabelakang_akun').val();
+    let  kota=$('#kota').val();
+    let  alamat=$('#alamat_akun').val();
+
+    let validasiEmail = ValidateEmail(email);
+
+            $.ajax({
             method: "post",
             url: "User/Register/check_Regis.php",
             data: {
@@ -158,15 +160,14 @@ function cekRegister(){
                 namadepan:namadepan,
                 namabelakang:namabelakang,
                 alamat:alamat,
+                valEmail:validasiEmail,
                 kota:kota
             },
             success: function (response) {
                 alert(response);
             }
         });
-    }else{
-        alert("format email salah");
-    }
+  
 }
 // function ceknohp(no_hp){
 //     $.ajax({
