@@ -1,5 +1,5 @@
 <?php
-    require_once("../../customer/connect.php");
+    require_once("../../connect.php");
         $dtUser=$_POST["username"];
         $dtNoHp=$_POST["nohp"];
         $dtPass=$_POST["pass"];
@@ -11,7 +11,7 @@
         $dtAlamat=$_POST["alamat"];
         $id=mysqli_fetch_assoc(mysqli_query($conn,"SELECT concat('C',lpad(nvl(max(substr(id_akun,2,4)),0)+1,4,'0')) as id from user"));
         if($dtUser!="" && $dtPass!=""&& $dtConPass!="" && $dtNoHp!=""){
-            $query="select * from user";
+            $query="SELECT * from user";
             $cekakun=mysqli_query($conn,$query);
             $ada=false;
             while($baris=mysqli_fetch_assoc($cekakun)){

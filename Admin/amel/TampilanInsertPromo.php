@@ -247,15 +247,15 @@ function NumberOnly(evt){
 function insert(){
     $.ajax({
         method: "post",
-        url: "insert.php",
+        url: "Promo/insert.php",
         data: {
             edkode_promo:$("#kode_promo").val(),
             eddeskripsi_promo:$("#deskripsi_promo").val(),
             edtanggal_awal:$("#tanggal_awal").val(),
             edpotongan:$("#potongan").val()
         },
-        success: function (response) {
-            
+        success: function (response) {   
+          alert(response);
         }
     });
 }

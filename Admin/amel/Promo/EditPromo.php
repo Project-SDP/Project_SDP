@@ -1,8 +1,8 @@
 <?php
-    require_once("../AdminLTE-master/pages/forms/conn.php");
+    require_once("../connect.php");
     $id=$_POST["id"];
     $query="SELECT * from promo where id_promo='$id'";
-    $query=mysqli_query($link,$query);
+    $query=mysqli_query($conn,$query);
     $query=mysqli_fetch_assoc($query);
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Kode Promo :</label>";
@@ -32,7 +32,7 @@
         var potongan=$("#potongan").val();
         $.ajax({
             method: "post",
-            url: "updatepromo2.php",
+            url: "Promo/UpdatePromo.php",
             data: {
                 judul_promo:judul_promo,
                 deskripsi:deskripsi,

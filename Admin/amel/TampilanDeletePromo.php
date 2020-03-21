@@ -71,7 +71,7 @@
           <!-- /.card -->
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Pegawai</h3>
+                <h3 class="card-title">Edit Promo</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -128,7 +128,7 @@
  function pangillPromo(){
   $.ajax({
    method: "post",
-   url: "ambilpromo2.php",
+   url: "Promo/AmbilTablePromo.php",
    success: function (response) {
      $("#promo").html(response);
    }

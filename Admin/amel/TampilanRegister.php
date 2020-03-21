@@ -1,10 +1,19 @@
 <?php
-    require_once("../../customer/connect.php");
+    require_once("connect.php");
     $query="SELECT * from user";
     $arr=mysqli_query($conn,$query);
     
 ?>
 <!DOCTYPE html>
+<style>
+    .kotak{
+        width: 100%;
+        position: relative;
+        z-index: 9;
+        padding: 77px 61px 66px;
+        background: #fff;
+    }
+</style>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -21,7 +30,7 @@
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
-				
+                <div class="kotak">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:5px;">Register User</h3>
                     <div class="form-holder">
@@ -62,7 +71,7 @@
                             }
                         }
                     ?>
-                    <!-- </form> -->
+                    </div>
                   </select>
                     <label> Pilih kota </label>
                     <select class="form-control select2" id='kota' style="width: 100%;">
@@ -117,7 +126,7 @@ function ajaxKota(){
     
     $.ajax({
         method: "post",
-        url: "ajaxKota.php",
+        url: "Wilayah/ajaxKota.php",
         data: {
             daerah:$("#provinsi").val()
         },
@@ -139,7 +148,7 @@ function cekRegister(){
     if(ValidateEmail(email)){
         $.ajax({
             method: "post",
-            url: "check_Regis.php",
+            url: "User/Register/check_Regis.php",
             data: {
                 username:username,
                 nohp:nohp,
@@ -187,7 +196,7 @@ function cekRegister(){
 function toLogin(){
     $.ajax({
         method: "post",
-        url: "login.php",
+        url: "User/Login/loginuser.php",
         success: function (data) {
             $(".kotak1").html(data);
         }
