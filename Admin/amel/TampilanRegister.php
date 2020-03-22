@@ -26,6 +26,7 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/css/style.css">
         <script src="jquery-min.js"></script>
+       
 
        <script>
             $(document).ready(function(){
@@ -79,7 +80,7 @@
             <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
 
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar/Masuk sebagai Merchant  </button> 
+            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar sebagai Merchant  </button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
