@@ -24,12 +24,13 @@
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
         $nohp = $_POST['telp'];
-        // $usern = $_POST['user'];
         $pass = $_POST['pass'];  
         $cpass = $_POST['cpass'];  
         $mail = $_POST['email'];  
         $provinsi = $_POST['prov'];
         $kota = $_POST['kota'];
+        $halal = $_POST['my-checkbox'];
+
         $cek = 0;
     
         foreach ($listUser as $user) {
@@ -58,7 +59,7 @@
         }
         else if($cek==$jumlah)
         {   
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota')");
+            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal')");
             echo "Merchant sukses terdaftar";
             header('location:login.php');
         }
@@ -152,7 +153,12 @@
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Konfirmasi Password" name="cpass" id="cpass"><span id="pesan2" style="left:320px;"></span>
 					</div>
-                    <!-- <input type="submit" name="reg" value="Daftar"> -->
+					<div class="form-holder"style="padding-top:20px;">
+                    <label>Apakah makanan yang anda sajikan HALAL?</label><br>
+                    <input type="checkbox" name="my-checkbox" value='1'> Ya
+                    <input type="checkbox" name="my-checkbox" value='0'> Tidak
+					</div>
+
                     <button name ="reg">Daftar</button>
 
 				</form>

@@ -220,7 +220,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="menu.php" class="nav-link">
+                <a href="addMenu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Menu</p>
                 </a>
@@ -243,21 +243,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Lihat data
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="../../editMerchant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Data Merchant</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="../../editMenu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Data Menu</p>
                 </a>
               </li>
               <li class="nav-item">
