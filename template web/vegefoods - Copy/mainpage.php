@@ -16,9 +16,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <title>Bibik's Katering</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <script src="js/jquery.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -41,9 +42,9 @@
     
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <style>
+	<link rel="stylesheet" href="css/style.css">  
+	
+	<style>
 	.button_right_02 {
 		float: right;
 		font-size: 12px;
@@ -58,6 +59,50 @@
 		line-height: 1;
 	}
   </style>
+
+	<script>
+
+		function Exit(){
+			$.ajax({
+				method: "post",
+				url: "/ProyekSDP/Project_SDP/control.php",
+				data: {
+           			 control:'exit'
+        		},
+				success: function (data) {
+					window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+				}
+			}); 
+
+		}
+
+
+	</script>
+
+	<?php
+		require('C:\xampp\htdocs\ProyekSDP\Project_SDP\template log reg\colorlib-regform-26\conn.php');
+		if(isset($_SESSION['loggedUser'])){
+			$id = $_SESSION['loggedUser'];
+			$nama = $_SESSION['loggedUser'];
+			
+			$users =mysqli_query($link,"select * from user");
+			foreach($users as $user){
+				if ($id == $user['id_akun']){
+					$nama = $user['nama_depan'];
+				}
+			}
+
+		}else{
+			$nama = '-1';
+		}
+
+
+	?>
+
+
+
+  </head>
+
   <body class="goto-here">
 		<div class="py-1" style="background:#99ccff;">
     	<div class="container">
@@ -79,65 +124,88 @@
 			    </div>
 		    </div>
 		  </div>
-    </div>
+	</div>
+	
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" >
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html" style="color:black;font-size:30px;">Bibik's Catering</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+		<div class="container" >
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Nasi Kotak</a>
-              	<a class="dropdown-item" href="wishlist.html">Snacks Box</a>
-                <a class="dropdown-item" href="product-single.html">Tumpeng</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Review</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+					<a class="navbar-brand" href="mainpage.php" style="color:black;font-size:30px;">Bibik's Catering</a>
+				
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="oi oi-menu"></span> Menu
+					</button>
 
-	        </ul>
-	      </div>
-        </div>
-        <?php
-        if($nama==-1){
-            echo"<div class='btn' style='margin-right:100px;'>";
-			echo"<a href='../../template%20log%20reg/colorlib-regform-26/index.php'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
-			echo"<a href='../../template%20log%20reg/colorlib-regform-26/login.php'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
-            echo"</div>";
-        }else{
-            ?>
-                <div class="container" style="margin-left:1700px; position:absolute;">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse1">Hello ,<?php echo $nama; ?></a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">Profile</div>
-                        <form action="" method="post"></form>
-                        <a href="../../template%20log%20reg/colorlib-regform-26/login.php"><div class="panel-footer" >Keluar</div></a>
-                        </form>
-                    </div>
-                    </div>
-                </div>
-                </div>
-        <?php
-        }
+					<div class="collapse navbar-collapse" id="ftco-nav">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item active"><a href="mainpage.php" class="nav-link">Home</a></li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+								<div class="dropdown-menu" aria-labelledby="dropdown04">
+									<a class="dropdown-item" href="shop.html">Nasi Kotak</a>
+									<a class="dropdown-item" href="wishlist.html">Snacks Box</a>
+									<a class="dropdown-item" href="product-single.html">Tumpeng</a>
+									<a class="dropdown-item" href="cart.html">Cart</a>
+									<a class="dropdown-item" href="checkout.html">Checkout</a>
+								</div>
+							</li>
+							<li class="nav-item ">
+								<a href="about.html" class="nav-link">Restaurant</a>
+							</li>
+							<li class="nav-item">
+								<a href="blog.html" class="nav-link">Review</a>
+							</li>
+							<li class="nav-item">
+								<a href="contact.html" class="nav-link">Contact</a>
+							</li>
+							<li class="nav-item cta cta-colored">
+								<a href="cart.html" class="nav-link"><i class="icon-shopping_cart"></i>[<?php echo "X";?>]</a>
+							</li>
+						</ul>
+					</div>
 
-        ?>
-	  </nav>
+		
+			
+			
+		</div>
+		<div class="container" style="width: 100px">
+		</div>
+		<div class="container" style="">   <!-- Profile-->
+		   <?php
+
+
+			 
+			   if($nama==-1){
+				   echo"<div class='btn' style='margin-right:100px;'>";
+				   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=register'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
+				   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=login'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
+				   echo"</div>";
+			   }else{
+				   ?>
+						   <div class="panel-group">
+							   <div class="panel panel-default">
+								   <div class="panel-heading">
+									   
+									   <h4 class="panel-title">
+										   <a data-toggle="collapse" href="#collapse1" class="icon-menu"></a>
+										   <a data-toggle="collapse" href="#collapse1">Hello ,<?php echo $nama; ?></a>
+									   </h4>
+								   </div>
+								   <div id="collapse1" class="panel-collapse collapse">
+									   <form action="" method="post"></form>
+										   <!-- Buat Keluar ini di hapus ae Session e  -->
+										   <a href=""><div class="panel-footer" onclick="" >Profil</div></a>
+										   <div class="panel-footer" onclick="Exit()" >Keluar</div>
+									   </form>
+								   </div>
+							   </div>
+						   </div>
+					   
+			   <?php
+			   }
+			   ?>
+		</div>
+		
+	</nav>
     <!-- END nav -->
 
     <section id="home-section" class="hero">
@@ -744,7 +812,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
+
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

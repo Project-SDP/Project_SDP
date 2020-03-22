@@ -1,5 +1,5 @@
 <?php
-    require_once("../../customer/connect.php");
+    require_once("../../connect.php");
     $query="SELECT * from user";
     $arr=mysqli_query($conn,$query);
     foreach ($arr as $key => $value) 
@@ -25,7 +25,7 @@
     function blok(id){
         $.ajax({
             method: "post",
-            url: "masteruserakun.php",
+            url: "User/Blok/masterakunuser.php",
             data: {
                 id_akun:id
             },

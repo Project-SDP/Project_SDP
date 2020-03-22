@@ -56,35 +56,22 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Kode Promo</th>
-                  <th>Periode</th>
-                  <th>Potongan</th>
-                  <th>Action</th>
+                  <th>Username</th>
+                  <th>Nama Lengkap</th>
+                  <th>Alamat</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
-                <tbody id ='promo'>
+                <tbody id ='akun'>
+                
+                
                 </tbody>
+                
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-          <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Edit Pegawai</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-                <div class="card-body" id="ubah">
-                 
-                </div>
-                <!-- /.card-body -->
-
-                
-            </div>
-            <!-- /.card -->
-
-        </div>
         </div>
         <!-- /.col -->
       </div>
@@ -124,17 +111,16 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  pangillPromo();
- function pangillPromo(){
+  pangillUser();
+ function pangillUser(){
   $.ajax({
    method: "post",
-   url: "ambilpromo2.php",
+   url: "User/Blok/callUser.php",
    success: function (response) {
-     $("#promo").html(response);
+     $("#akun").html(response);
    }
  });
  }
-
 </script>
 </body>
 </html>

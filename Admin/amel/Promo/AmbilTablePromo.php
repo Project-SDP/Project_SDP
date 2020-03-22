@@ -1,7 +1,7 @@
 <?php
-    include("../AdminLTE-master/pages/forms/conn.php");
+    include("../connect.php");
     $query="SELECT * from promo";
-    $arr_query=mysqli_query($link,$query);
+    $arr_query=mysqli_query($conn,$query);
     foreach ($arr_query as $key => $value) {
         echo"<tr onclick='editpromo(\"$value[id_promo]\")'>";
         echo"<td>$value[judul_promo]</td>";
@@ -24,7 +24,7 @@
     function banned(id){
         $.ajax({
             method: "post",
-            url: "disablepromo3.php",
+            url: "Promo/DisableTablePromo.php",
             data: {
                 id:id
             },
@@ -36,12 +36,11 @@
     function editpromo(id){
         $.ajax({
             method: "post",
-            url: "updatepromo.php",
+            url: "Promo/EditPromo.php",
             data: {
                 id:id
             },
             success: function (response) {
-                
                 $("#ubah").html(response);
             }
         });

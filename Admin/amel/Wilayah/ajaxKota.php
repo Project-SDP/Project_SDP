@@ -1,5 +1,5 @@
 <?php
-    require_once("../../customer/connect.php");
+    require_once("../connect.php");
     $kodeDaerah=$_POST["daerah"];
     $query_kota=mysqli_query($conn,"SELECT * from kota where id_provinsi='$kodeDaerah'");
     
