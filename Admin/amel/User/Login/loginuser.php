@@ -1,11 +1,14 @@
 <div class="kotak1">
     <h1>Login</h1>
     <div class="kotak2">
+
         Username : <input type="text" name="nama_akun" id="nama_akun" ><br>
         Nomer Hp : <input type="text" name="nohp_akun" id="nohp_akun" onkeyup="ceklognohp()"> <span class="ceklognohp"></span><br>
         Password : <input type="text" name="pass_akun" id="pass_akun"><br>
         <input type="submit" value="Menuju Halaman Register" name="btnRegister"  onclick="toRegister()">
         <button class="btnLogin" type="submit" onclick="ceklogin()">Login</button>
+
+        <button class="btnLogin" type="submit" onclick="toRegister()">Register</button>
         <span class="ceklogpass"></span>
     </div>
 </div>
@@ -42,12 +45,13 @@
     }
     
     function toRegister(){
-        clearTimeout(timerout);
+       
+        alert();
         $.ajax({
             method: "post",
-            url: "register.php",
+            url: ".php",
             success: function (data) {
-                $(".kotak1").html(data);
+                $(".kotak").html(data);
             }
         }); 
     }

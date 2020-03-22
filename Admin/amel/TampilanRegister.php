@@ -25,82 +25,49 @@
 		
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/css/style.css">
+        <script src="jquery-min.js"></script>
+
+       <script>
+            $(document).ready(function(){
+                $.ajax({
+                    method: "post",
+                    url: "registerHTML.php",
+                    success: function (data) {
+                        $(".kotak").html(data);
+                    }
+                }); 
+            });
+
+
+            function toMerchant(){
+                alert();
+                //belom
+            }
+        </script>
+
+
 	</head>
 	<body>
+    
+        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
+            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar/Masuk sebagai Merchant  </button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
-                <div class="kotak card" style="Padding: 10% ; border-radius:5% ; margin-top:5%">
-					<h3> Bibik's Catering</h3>
-					<h3 style="font-size:15px;">Register User</h3>
-                    <div class="form-holder">
-						<span class="lnr lnr-user"></span>
-                        <input type="text" id="namadepan_akun" class="form-control" placeholder="Nama Depan" name="inpNamaDepan">
-					</div>
-                    <div class="form-holder">
-						<span class="lnr lnr-user"></span>
-                        <input type="text" id="namabelakang_akun" class="form-control" placeholder="Nama Belakang" name="inpNamaBelakang">
-					</div>
-                    <div class="form-holder">
-						<span class="lnr lnr-phone-handset"></span>
-                        <input type="text" id="nohp_akun" maxlength='13' onkeypress="NumberOnly(event)" class="form-control" placeholder="Nomor Telepon" name="inpNoHp">
-                        <span class="cekhp"></span>
-						
-					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-user"></span>
-                        <input type="text" id="nama_akun" class="form-control" placeholder="Username" name="inpNama">
-					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-envelope"></span>
-						<input type="text" name="inpEmail" id="email_akun" placeholder="Email" class="form-control">
-                    </div>
-                    <label> Pilih provinsi </label>
-                    <select class="form-control select2" style="width: 100%;" id="provinsi"  onchange="ajaxKota()">
+                
+                
+                <div class="kotak card" style="Padding: 10% ; border-radius:5% ; margin-top:5%;box-shadow:10px 10px lightgray">
                     
-                    <?php 
-                        $listMerch=mysqli_query($conn,"SELECT * FROM provinsi");
-                        $select = -1; 
-                        foreach($listMerch as $merch) 
-                        {
-                            if($select == -1){
-                                echo "<option selected='selected' value=".$merch["id_provinsi"].">".$merch["nama_provinsi"]."</option>";
-                                $select = 0;
-                            }else{
-                                echo "<option value=".$merch["id_provinsi"].">".$merch["nama_provinsi"]."</option>";
-                            }
-                        }
-                    ?>
-                    </div>
-                  </select>
-                    <label> Pilih kota </label>
-                    <select class="form-control select2" id='kota' style="width: 100%;">
-                   
-                    </select>
-                  <div class="form-holder" style="margin-top:20px;">
-						<span class="lnr lnr-home"></span>
-						<input type="text" class="form-control" placeholder="Alamat" name="inpAlamat" id="alamat_akun">
-					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-lock"></span>
-						<input type="text" class="form-control" onmousedown="showpassword('pass_akun')" onmouseup="hidepassword('pass_akun')" placeholder="Password" name="inpPass" id="pass_akun">
-					</div>
-					<div class="form-holder">
-						<span class="lnr lnr-lock"></span>
-						<input type="text" class="form-control" onmousedown="showpassword('conpass_akun')" onmouseup="hidepassword('conpass_akun')" id="conpass_akun"  placeholder="Confirm Password" name="inpConPass"> <span class="cekpass"></span>
-					</div>
+                <!-- Kodingan Tampilan nde sini ,
+                Tak Bikin ajax Tak pindah nde loginHTML , register HTML   -->
 
 
-
-                    <button onclick='cekRegister()' class='btn btn-block bg-gradient-secondary btn-lg'>Daftar</button>
-                    <!-- <input type="submit" name="reg" value="Daftar" font-size:100px> -->
-                    <!-- <button name="reg" value="Daftar">Daftar</button> -->
-
-				<img src="../../template log reg/colorlib-regform-26/images/image-2.png" alt="" class="image-2">
 			    </div>
-		</div>
+
+
+		     </div>
+             </div>  
 		
-		<script src="jquery-min.js"></script>
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
 <script>
@@ -197,10 +164,17 @@ function cekRegister(){
 function toLogin(){
     $.ajax({
         method: "post",
-        url: "User/Login/loginuser.php",
+        url: "loginHTML.php",
         success: function (data) {
-            $(".kotak1").html(data);
+            $(".kotak").html(data);
         }
     }); 
 }
+
+
+
+    
+
+</script>
+
 </script>
