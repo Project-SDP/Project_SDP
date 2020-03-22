@@ -40,7 +40,12 @@
                 pass:$("#inpPass").val()
             },
             success: function (data) {
-                alert(data);
+                if(data=='Login Gagal'){
+                        alert(data);;
+                }else{
+                        toHome();
+                }
+                
             }
         });
     }

@@ -27,9 +27,8 @@
         if($idTemp!= ''){
             $_SESSION['loggedUser']=$idTemp;
             // tunggu halaman login tok
-            echo $idTemp;
         }else {
-        echo "Login Gagal";
+             echo "Login Gagal";
         }
 
 ?>

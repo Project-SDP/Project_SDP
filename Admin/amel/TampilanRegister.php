@@ -29,16 +29,40 @@
 
        <script>
             $(document).ready(function(){
-                $.ajax({
-                    method: "post",
-                    url: "registerHTML.php",
-                    success: function (data) {
-                        $(".kotak").html(data);
-                    }
-                }); 
+                let temp = $("#tempHalaman").val();
+
+                if(temp=='register'){
+                    $.ajax({
+                        method: "post",
+                        url: "registerHTML.php",
+                        success: function (data) {
+                            $(".kotak").html(data);
+                        }
+                    }); 
+                }else if (cekRegister=='login'){
+                    $.ajax({
+                        method: "post",
+                        url: "loginHTML.php",
+                        success: function (data) {
+                            $(".kotak").html(data);
+                        }
+                    }); 
+                }else{
+                    $.ajax({
+                        method: "post",
+                        url: "loginHTML.php",
+                        success: function (data) {
+                            $(".kotak").html(data);
+                        }
+                    }); 
+                }
+
+
             });
 
-
+            function toHome(){
+                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+            }
             function toMerchant(){
                 alert();
                 //belom
@@ -48,7 +72,12 @@
 
 	</head>
 	<body>
-    
+            <button onclick="toHome()" style="width: 250px ; position:absolute;margin-left:20px ; background :violet">
+                <i class="lnr lnr-home"></i> 
+                 Bibik's Home 
+            </button>
+            <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
+
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
             width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar/Masuk sebagai Merchant  </button> 
 		<div class="wrapper">
