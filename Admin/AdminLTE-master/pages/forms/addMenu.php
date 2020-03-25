@@ -1,13 +1,30 @@
 <?php
   require("conn.php");
   if(isset($_POST['add'])){
-    $merchant = $_POST['merchant'];
+    $merchant = $_POST['merch'];
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
     $kategori = $_POST['kategori'];
     $status = $_POST['my-checkbox'];
     if($merchant!="" && $nama!=""&& $harga!=""){
-      mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('','$nama','$harga','$status','$kategori','$merchant')");
+      $listmenu = mysqli_query($link,"select * from menu");
+      $ctr = 0;
+      foreach($listmenu as $menu){
+        $ctr++;
+      }
+      $ctr2 = 0;
+      foreach($listmenu as $menu){
+        if($ctr2 < $ctr){
+          $ctr2++;
+          if($menu['nama_menu']==$nama && $menu['id_merchant']==$merchant){
+            echo "menu sudah terdaftar pada merchant ini!";
+            break;  
+          }
+        }else{
+          mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('','$nama','$harga','$status','$kategori','$merchant')");
+        }
+      }
+
     }else{
       alert("semua field harus terisi!");
     }
@@ -55,8 +72,21 @@
                 <!-- Date dd/mm/yyyy -->
                 <form role="form" action="#" method="post"> 
                 <div class="form-group">
-                    <label for="exampleInput">ID merchant</label>
-                    <input type="nama" class="form-control" placeholder="Masukkan ID merchant" name="merchant">
+                    <label for="exampleInput">Merchant</label>
+                    <!-- <input type="nama" class="form-control" placeholder="Masukkan ID merchant" name="merchant"> -->
+                    <select class='form-control select2' style='width: 100%;'  name='merch' id='merch'> ";
+                    <?php
+                    $listmerch=mysqli_query($link,"SELECT * FROM merchant");
+
+                    foreach($listmerch as $merch){
+                        if($merch['id']==$query['id_merchant']){
+                            echo "<option selected='selected' value=".$merch[id].">".$merch[id]." - ".$merch[nama]."</option>";
+                        }else{
+                            echo "<option value=".$merch[id].">".$merch[id]." - ".$merch[nama]."</option>";
+                        }
+                    }
+                    ?>
+                </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInput">Nama Menu</label>
@@ -75,10 +105,10 @@
                       foreach($listKat as $kat) 
                       {
                         if($select2 == -1){
-                            echo "<option selected='selected' name=".$kat[id_kategori].">".$kat[nama_kategori]."</option>";
+                            echo "<option selected='selected' value=".$kat[id_kategori].">".$kat[nama_kategori]."</option>";
                             $select2 = 0;
                         }else{
-                            echo "<option name=".$kat[id_kategori].">".$kat[nama_kategori]."</option>";
+                            echo "<option value=".$kat[id_kategori].">".$kat[nama_kategori]."</option>";
                         } 
                       }    
                       ?>

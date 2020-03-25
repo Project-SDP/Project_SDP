@@ -38,19 +38,21 @@
     echo"</select>";
     echo "</div>";
     echo "<div class='form-group'>";
-    echo     "<label for='exampleInputEmail1'>Kota</label>";
-    $tmp = "";
+    echo  "<label for='exampleInputEmail1'>Kota</label>";
+    echo"<select class='form-control select2' style='width: 100%;'  name='kota' id='kota'> ";
+    $select = -1; 
+    // $tmp = "";
+    $listkota=mysqli_query($link,"SELECT * FROM kota");
+
     foreach($listkota as $kota){
-        if($kota['id_provinsi']==$query['provinsi']){
-            $tmp = $kota['nama_kota'];
+        if($kota['id_provinsi']=='PR001'){
+            // $tmp = $kota['nama_kota'];
+            echo "<option selected='selected' value=".$kota[id_kota].">".$kota[nama_kota]."</option>";
         }
     }
-    echo     "<input type='text' value='$tmp' class='form-control' id='provinsi' placeholder='Masukkan provinsi'>";
+    echo"</select>";
     echo "</div>";
-    echo "<div class='form-group'>";
-    echo     "<label for='exampleInputEmail1'>Kota</label>";
-    echo     "<input type='text' value='$query[kota]' class='form-control' id='kota' placeholder='Masukkan kota'>";
-    echo "</div>";
+
     echo "<div class='card-footer'>";
     echo     "<button onclick='ubah(\"$query[id]\")' class='btn btn-primary'>Update</button>";
     echo "</div>";
@@ -61,8 +63,8 @@
         var alamat=$("#alamat").val();
         var notelp=$("#notelp").val();
         var email=$("#email").val();
-        var provinsi=$("#email").val();
-        var kota=$("#email").val();
+        var provinsi=$("#prov").val();
+        var kota=$("#kota").val();
         $.ajax({
             method: "post",
             url: "updateMerch2.php",
@@ -87,4 +89,17 @@
             evt.preventDefault();
         }
     }
+    function refreshKota(){
+        prov = $("#prov").val();
+        $.ajax({
+            method:"post",
+            url: "kota.php",
+            data: {
+                prov:prov
+            },
+            success: function (data) {
+                $("#kota").html(data);
+            }
+        });
+     }
 </script>
