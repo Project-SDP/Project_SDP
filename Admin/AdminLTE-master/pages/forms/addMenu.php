@@ -13,17 +13,21 @@
         $ctr++;
       }
       $ctr2 = 0;
-      foreach($listmenu as $menu){
-        if($ctr2 < $ctr){
-          $ctr2++;
+      // echo $ctr;
+      if($ctr>0){
+        foreach($listmenu as $menu){
           if($menu['nama_menu']==$nama && $menu['id_merchant']==$merchant){
             echo "menu sudah terdaftar pada merchant ini!";
             break;  
-          }
-        }else{
+          }else{$ctr2++;}
+        }
+        if($ctr2==$ctr){
           mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('','$nama','$harga','$status','$kategori','$merchant')");
         }
-      }
+      }else{
+          mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('','$nama','$harga','$status','$kategori','$merchant')");
+    }
+      
 
     }else{
       alert("semua field harus terisi!");
