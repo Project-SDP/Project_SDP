@@ -58,7 +58,8 @@
                 <tr>
                   <th>Kode Promo</th>
                   <th>Periode</th>
-                  <th>Potongan</th>
+                  <th>Tanggal Awal</th>
+                  <th>Tanggal Akhir</th>
                   <th>Action</th>
                 </tr>
                 </thead>

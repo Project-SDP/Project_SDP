@@ -5,7 +5,8 @@
     foreach ($arr_query as $key => $value) {
         echo"<tr onclick='editpromo(\"$value[id_promo]\")'>";
         echo"<td>$value[judul_promo]</td>";
-        echo"<td>$value[periode]</td>";
+        echo"<td>$value[tanggal_awal]</td>";
+        echo"<td>$value[tanggal_akhir]</td>";
         echo"<td>$value[potongan]</td>";
         if($value["status"]=="1"){
             echo "<td>";

@@ -13,8 +13,12 @@
     echo     "<input type='text' class='form-control' id='deskripsi'value='$query[deskripsi]' placeholder='Enter Deskripsi'>";
     echo "</div>";
     echo "<div class='form-group'>";
-    echo     "<label for='exampleInputEmail1'>Periode</label>";
-    echo     "<input type='date' class='form-control' id='periode' value='$query[periode]' placeholder='Enter Periode'>";
+    echo     "<label for='exampleInputEmail1'>Tanggal Awal</label>";
+    echo     "<input type='date' class='form-control' id='tanggal_awal' value='$query[tanggal_awal]' placeholder='Enter Tanggal Awal'>";
+    echo "</div>";
+    echo "<div class='form-group'>";
+    echo     "<label for='exampleInputEmail1'>Tanggal Akhir</label>";
+    echo     "<input type='date' class='form-control' id='tanggal_akhir' value='$query[tanggal_akhir]' placeholder='Enter Tanggal Akhir'>";
     echo "</div>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Potongan</label>";
@@ -28,7 +32,8 @@
     function ubah(id){
         var judul_promo=$("#judul_promo").val();
         var deskripsi=$("#deskripsi").val();
-        var periode=$("#periode").val();
+        var tanggal_awal=$("#tanggal_awal").val();
+        var tanggal_akhir=$("#tanggal_akhir").val();
         var potongan=$("#potongan").val();
         $.ajax({
             method: "post",
@@ -36,12 +41,14 @@
             data: {
                 judul_promo:judul_promo,
                 deskripsi:deskripsi,
-                periode:periode,
+                tanggal_awal:tanggal_awal,
+                tanggal_akhir:tanggal_akhir,
                 potongan:potongan,
                 id:id
             },
             success: function (response) {
                 pangillPromo();
+                alert(response);
             }
         });
     

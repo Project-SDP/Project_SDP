@@ -178,8 +178,8 @@
               <!-- form start -->
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInput">Kode Promo</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Kode Promo" id="kode_promo">
+                    <label for="exampleInput">Nama Promo</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Promo" id="kode_promo">
                   </div>
                   
                   <div class="form-group">
@@ -188,7 +188,11 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Awal</label>
-                    <input type="date" class="form-control" placeholder="Masukkan Tanggal" id="tanggal_awal">
+                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Awal" id="tanggal_awal">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Tanggal Akhir</label>
+                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Akhir" id="tanggal_akhir">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Potongan</label>
@@ -252,6 +256,7 @@ function insert(){
             edkode_promo:$("#kode_promo").val(),
             eddeskripsi_promo:$("#deskripsi_promo").val(),
             edtanggal_awal:$("#tanggal_awal").val(),
+            edtanggal_akhir:$("#tanggal_akhir").val(),
             edpotongan:$("#potongan").val()
         },
         success: function (response) {   
