@@ -1,12 +1,10 @@
 <?php
     session_start();
     require("conn.php");
+    require_once('mailer2/class.phpmailer.php');
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
-    $tmp='aaaa';
 
-
-    // echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
@@ -15,6 +13,9 @@
 
     if(isset($_POST['toLog'])){
         header("location:login.php");
+    }
+    if(isset($_POST['verify'])){
+        header("location:verify.php");
     }
     // if(isset($_POST['toHome'])){
     //     header("location:home.php");
@@ -30,6 +31,7 @@
         $provinsi = $_POST['prov'];
         $kota = $_POST['kota'];
         $halal = $_POST['my-checkbox'];
+        $status = 1;
 
         $cek = 0;
     
@@ -59,12 +61,76 @@
         }
         else if($cek==$jumlah)
         {   
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal')");
-            echo "Merchant sukses terdaftar";
-            header('location:login.php');
+            $nama = $link->real_escape_string($nama);
+            $mail = $link->real_escape_string($mail);
+            $alamat = $link->real_escape_string($alamat);
+            $nohp = $link->real_escape_string($nohp);
+            $pass = $link->real_escape_string($pass);
+            $provinsi = $link->real_escape_string($provinsi);
+            $kota = $link->real_escape_string($kota);
+            $halal = $link->real_escape_string($halal);
+            $status = $link->real_escape_string($status);
+            $vkey = md5(time().$nama);
+            $pass = md5($pass);
+            echo $vkey;
+            $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal,status,vkey) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal',0,'$vkey')");
+            if($insert){
+                // $to = $email;
+                // $subject = "Email Verifikasi";
+                // $message = "<a href='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php?vkey=$vkey'>Registrasi Akun Merchant</a>";
+                // $headers = "From: bibikscatering@gmail.com \r\n";
+                // $headers .= "MIME-Version: 1.0"."\r\n";
+                // $headers .= "Content-type:text/html;charset-UTF-8"."\r\n"; 
+                // mail($to,$subject,$message,$headers);
+
+
+                
+		
+                //-----------------EMAIL-----------------
+                
+                $mail2             = new PHPMailer();
+                $address 		  = $mail;					
+                
+                $mail2->Subject    = "Testing Email";
+            
+                // $body			  = "<a href='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php?vkey=$vkey'>Register Account</a>";
+                $body = "<form action='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php' method='post'>";
+                $body.="<input type='hidden' name='vkey' value='$vkey'>";
+                $body.="<input type='submit' name='verify' value='Verifikasi Akun'>";
+                $body.="</form>";
+                
+                $mail2->IsSMTP(); // telling the class to use SMTP
+                $mail2->Host       = "mail.google.com"; // SMTP server
+                $mail2->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+                                                           // 1 = errors and messages
+                                                           // 2 = messages only
+                $mail2->SMTPAuth   = true;                  // enable SMTP authentication
+                $mail2->SMTPSecure = "tls";                 // sets the prefix to the servier
+                $mail2->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+                $mail2->Port       = 587;                   // set the SMTP port for the GMAIL server
+                $mail2->Username   = "bibikscatering@gmail.com";  // GMAIL username //nama email sendiri
+                $mail2->Password   = "projectsdp";     // GMAIL password //pass email sendiri
+            
+                $mail2->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+            
+                $mail2->MsgHTML($body);
+            
+                $mail2->AddAddress($address);
+            
+                //$mail->AddAttachment("result/".$file);      // attachment
+                
+            
+                if($mail2->Send()) {  
+                //   echo "[SEND TO:] " . $address . "<br>";
+                header("location:thankyou.php");
+                }
+
+            }
+            // echo "Merchant sukses terdaftar";
+            // header('location:login.php');
         }
         else{
-            echo "email/nomor hp telah terdaftar";
+            echo "gagal";
         }
     
     }
