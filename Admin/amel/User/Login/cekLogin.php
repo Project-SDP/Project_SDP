@@ -29,6 +29,7 @@
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok
+                echo "merchant";
             }else {
                  echo "Login Gagal";
             }
@@ -53,6 +54,7 @@
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok
+                echo "user";
             }else {
                  echo "Login Gagal";
             }

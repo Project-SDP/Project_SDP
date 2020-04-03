@@ -61,6 +61,9 @@
         }
         else if($cek==$jumlah)
         {   
+            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal')");
+            echo "<script>alert('Merchant Terdaftar')</script>";
+            header('location:http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login');
             $nama = $link->real_escape_string($nama);
             $mail = $link->real_escape_string($mail);
             $alamat = $link->real_escape_string($alamat);
@@ -149,7 +152,34 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
+    <script>
+
+            function toHome(){
+                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+            }
+
+            function toUser(){
+         
+                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=register";
+            }
+
+            function toLogin(){
+                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login";
+            }
+    </script>
+
+
 	<body>
+    <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
+
+    <button onclick="toHome()" style="width: 250px ; position:absolute;margin-left:20px ; background :violet">
+        <i class="lnr lnr-home"></i> 
+        Bibik's Home 
+    </button>
+    <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
+    width :auto ;padding:10px;border-radius: 8%" onclick="toUser()"> 
+    Daftar sebagai User  
+    </button> 
 
 		<div class="wrapper">
 			<div class="inner">
@@ -157,18 +187,22 @@
 				<form action="" method="post">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:10px;">Register Merchant</h3>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-user"></span>
 						<input type="text" class="form-control" placeholder="Nama" name="nama">
 					</div>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
 						<input type="number" class="form-control" placeholder="Nomor Telepon" name="telp"><span id="pesan" style="left:320px;"></span>
 					</div>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
 						<input type="text" class="form-control" placeholder="Email" name="email"><span id="pesan3" style="left:320px;"></span>
                     </div>
+                    
                     <label> Pilih provinsi </label>
                     <select class="form-control select2" style="width: 100%;" onchange="refreshKota()" name="prov" id="prov">
                     
@@ -226,6 +260,9 @@
 					</div>
 
                     <button name ="reg">Daftar</button>
+
+                    <button onclick='toLogin()' class='btn btn-block bg-gradient-secondary btn-lg'>Masuk</button>
+                    <h4 class="" style="text-align: center;"> Sudah Punya Akun ?? </h4>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">
