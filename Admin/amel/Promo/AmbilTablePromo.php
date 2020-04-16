@@ -1,6 +1,6 @@
 <?php
     include("../connect.php");
-    $query="SELECT * from promo";
+    $query="SELECT * from promo order by id_promo desc";
     $arr_query=mysqli_query($conn,$query);
     foreach ($arr_query as $key => $value) {
         echo"<tr onclick='editpromo(\"$value[id_promo]\")'>";

@@ -71,6 +71,8 @@
         },
         success: function (response) {
             kirim();
+            alert("sudah terkirim");
+            window.location.href = "loginuser.php"
         }
     });
     }

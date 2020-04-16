@@ -4,13 +4,19 @@
 	//-----------------EMAIL-----------------
 	
     $email=$_POST["kepada"];
-	$query=mysqli_fetch_assoc(mysqli_query($conn,"SELECT password from user where email='$email'"));
+	$query=mysqli_fetch_assoc(mysqli_query($conn,"SELECT password,nama_depan,nama_belakang from user where email='$email'"));
 	$mail             = new PHPMailer();
 	$address 		  = $_POST["kepada"];					
 	
 	$mail->Subject    = "Ganti Password ";
 
-	$body			  = 'Password Anda Adalah : '.$query["password"];
+	$body			  = 
+	'Dear '.$query["nama_depan"].$query["nama_belakang"].','."<br>".
+	'Password Anda Adalah : '.$query["password"]."<br>".
+	'Terima Kasih telah mendaftar di<b> <a style="color:red" href="http://localhost/Project_SDP/template%20web/tampilan_user/">bibikscatering.com</a></b>'."<br>".
+	'<i><a style="color:red" href="http://localhost/Project_SDP/template%20web/tampilan_user/">BibiksCatering.com</a> Mendukung UKM dan Local Catering</i>'."<br>".
+	'Layanan Live Chat : Senin - Jumat, Pk 08.00 - 17.00 WIB'."<br>".
+	'<h6>Harap jangan membalas e-mail ini, karena e-mail ini dikirimkan secara otomatis oleh sistem. </h6>';
 
 	$mail->IsSMTP(); // telling the class to use SMTP
 	$mail->Host       = "mail.google.com"; // SMTP server
