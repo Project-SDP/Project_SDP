@@ -53,8 +53,10 @@
             echo "konfirmasi password tidak sesuai";            
         }else if($cek==$jumlah)
         {   
-            // echo "haha";
-            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal,status) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal',1)");
+            
+            $jumlah= sprintf("%03d", $jumlah);
+            $id = "ME".$jumlah;
+            mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal,status) VALUES('$id','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal',1)");
             // echo "sheyenk";
             // header('location:login.php');
         }

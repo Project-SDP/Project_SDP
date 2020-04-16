@@ -52,10 +52,10 @@
                 <input type="text" id="inp" class="form-control" placeholder="Email / Username / No.HP" name="inpUserLog">
         </div>
         <div class="form-holder">
-                <span class="lnr lnr-eye" onmousedown="showpassword('idPassLog')" onmouseup="hidepassword('idPassLog')"></span>
-                <input type="password" id="inpPass" class="form-control"  placeholder="Password" name="inpNoHp">
+                <span class="lnr lnr-eye" onmousedown="showpassword('inpPass')" onmouseup="hidepassword('inpPass')"></span>
+                <input type="password" id="inpPass" class="form-control"  placeholder="Password" >
         </div>
-
+        <a href="User/Login/forget.php">Forget Password ?</a><br>
         <button class="btnLogin btn" type="submit" onclick="ceklogin()">Login</button>
 
         <button class="" type="submit" onclick="toRegister()">Register</button>
@@ -89,11 +89,14 @@
                 if(data=='Login Gagal'){
                         alert(data);;
                 }else{
-                        if(As=='Merchant'){
-                                alert("hi Merchant");
-                        }else{
+                        
+                        if(data=='user'){
                                 toHome(); //home e User
+                        }else{
+                                //to home merc
                         }
+                        
+                       
                 }
                 
             }

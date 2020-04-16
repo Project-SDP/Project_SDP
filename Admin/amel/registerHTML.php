@@ -27,9 +27,11 @@
     <label> Pilih provinsi </label>
     <select class="form-control select2" style="width: 100%;" id="provinsi"  onchange="ajaxKota()">
     
-    <?php 
-        $listMerch=mysqli_query($conn,"SELECT * FROM provinsi");
+    <?php
+        require_once("connect.php");
+        $listMerch= mysqli_query($conn,"SELECT * FROM provinsi");
         $select = -1; 
+
         foreach($listMerch as $merch) 
         {
             if($select == -1){

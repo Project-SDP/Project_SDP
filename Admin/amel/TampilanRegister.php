@@ -1,5 +1,5 @@
 <?php
-    require_once("connect.php");
+    require("connect.php");
     $query="SELECT * from user";
     $arr=mysqli_query($conn,$query);
     
@@ -37,6 +37,7 @@
                         method: "post",
                         url: "registerHTML.php",
                         success: function (data) {
+                            document.title = 'Register User';
                             $(".kotak").html(data);
                         }
                     }); 
@@ -45,6 +46,7 @@
                         method: "post",
                         url: "loginHTML.php",
                         success: function (data) {
+                            document.title = 'Login';
                             $(".kotak").html(data);
                         }
                     }); 
@@ -53,6 +55,7 @@
                         method: "post",
                         url: "loginHTML.php",
                         success: function (data) {
+                            document.title = 'Login';
                             $(".kotak").html(data);
                         }
                     }); 
@@ -65,22 +68,24 @@
                 window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
             }
             function toMerchant(){
-                alert();
-                //belom
+
+                window.location="http://localhost/ProyekSDP/Project_SDP/template%20log%20reg/colorlib-regform-26/index.php";
             }
         </script>
 
 
 	</head>
 	<body>
+            <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
+
             <button onclick="toHome()" style="width: 250px ; position:absolute;margin-left:20px ; background :violet">
                 <i class="lnr lnr-home"></i> 
                  Bibik's Home 
             </button>
-            <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
-
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar sebagai Merchant  </button> 
+            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> 
+            Daftar sebagai Merchant  
+        </button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
@@ -196,6 +201,7 @@ function toLogin(){
         method: "post",
         url: "loginHTML.php",
         success: function (data) {
+            document.title = 'Login';
             $(".kotak").html(data);
         }
     }); 

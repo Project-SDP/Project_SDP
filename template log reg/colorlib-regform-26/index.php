@@ -1,12 +1,10 @@
 <?php
     session_start();
     require("conn.php");
+    require_once('mailer2/class.phpmailer.php');
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
-    $tmp='aaaa';
 
-
-    // echo $tmp;
     foreach($listUser as $user) 
     {
         $jumlah++;
@@ -15,6 +13,9 @@
 
     if(isset($_POST['toLog'])){
         header("location:login.php");
+    }
+    if(isset($_POST['verify'])){
+        header("location:verify.php");
     }
     // if(isset($_POST['toHome'])){
     //     header("location:home.php");
@@ -30,6 +31,7 @@
         $provinsi = $_POST['prov'];
         $kota = $_POST['kota'];
         $halal = $_POST['my-checkbox'];
+        $status = 1;
 
         $cek = 0;
     
@@ -60,11 +62,78 @@
         else if($cek==$jumlah)
         {   
             mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal')");
-            echo "Merchant sukses terdaftar";
-            header('location:login.php');
+            echo "<script>alert('Merchant Terdaftar')</script>";
+            header('location:http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login');
+            $nama = $link->real_escape_string($nama);
+            $mail = $link->real_escape_string($mail);
+            $alamat = $link->real_escape_string($alamat);
+            $nohp = $link->real_escape_string($nohp);
+            $pass = $link->real_escape_string($pass);
+            $provinsi = $link->real_escape_string($provinsi);
+            $kota = $link->real_escape_string($kota);
+            $halal = $link->real_escape_string($halal);
+            $status = $link->real_escape_string($status);
+            $vkey = md5(time().$nama);
+            $pass = md5($pass);
+            echo $vkey;
+            $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal,status,vkey) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal',0,'$vkey')");
+            if($insert){
+                // $to = $email;
+                // $subject = "Email Verifikasi";
+                // $message = "<a href='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php?vkey=$vkey'>Registrasi Akun Merchant</a>";
+                // $headers = "From: bibikscatering@gmail.com \r\n";
+                // $headers .= "MIME-Version: 1.0"."\r\n";
+                // $headers .= "Content-type:text/html;charset-UTF-8"."\r\n"; 
+                // mail($to,$subject,$message,$headers);
+
+
+                
+		
+                //-----------------EMAIL-----------------
+                
+                $mail2             = new PHPMailer();
+                $address 		  = $mail;					
+                
+                $mail2->Subject    = "Testing Email";
+            
+                // $body			  = "<a href='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php?vkey=$vkey'>Register Account</a>";
+                $body = "<form action='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php' method='post'>";
+                $body.="<input type='hidden' name='vkey' value='$vkey'>";
+                $body.="<input type='submit' name='verify' value='Verifikasi Akun'>";
+                $body.="</form>";
+                
+                $mail2->IsSMTP(); // telling the class to use SMTP
+                $mail2->Host       = "mail.google.com"; // SMTP server
+                $mail2->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+                                                           // 1 = errors and messages
+                                                           // 2 = messages only
+                $mail2->SMTPAuth   = true;                  // enable SMTP authentication
+                $mail2->SMTPSecure = "tls";                 // sets the prefix to the servier
+                $mail2->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+                $mail2->Port       = 587;                   // set the SMTP port for the GMAIL server
+                $mail2->Username   = "bibikscatering@gmail.com";  // GMAIL username //nama email sendiri
+                $mail2->Password   = "projectsdp";     // GMAIL password //pass email sendiri
+            
+                $mail2->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+            
+                $mail2->MsgHTML($body);
+            
+                $mail2->AddAddress($address);
+            
+                //$mail->AddAttachment("result/".$file);      // attachment
+                
+            
+                if($mail2->Send()) {  
+                //   echo "[SEND TO:] " . $address . "<br>";
+                header("location:thankyou.php");
+                }
+
+            }
+            // echo "Merchant sukses terdaftar";
+            // header('location:login.php');
         }
         else{
-            echo "email/nomor hp telah terdaftar";
+            echo "gagal";
         }
     
     }
@@ -83,7 +152,34 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
+    <script>
+
+            function toHome(){
+                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+            }
+
+            function toUser(){
+         
+                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=register";
+            }
+
+            function toLogin(){
+                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login";
+            }
+    </script>
+
+
 	<body>
+    <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
+
+    <button onclick="toHome()" style="width: 250px ; position:absolute;margin-left:20px ; background :violet">
+        <i class="lnr lnr-home"></i> 
+        Bibik's Home 
+    </button>
+    <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
+    width :auto ;padding:10px;border-radius: 8%" onclick="toUser()"> 
+    Daftar sebagai User  
+    </button> 
 
 		<div class="wrapper">
 			<div class="inner">
@@ -91,18 +187,22 @@
 				<form action="" method="post">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:10px;">Register Merchant</h3>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-user"></span>
 						<input type="text" class="form-control" placeholder="Nama" name="nama">
 					</div>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
 						<input type="number" class="form-control" placeholder="Nomor Telepon" name="telp"><span id="pesan" style="left:320px;"></span>
 					</div>
-					<div class="form-holder">
+					
+                    <div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
 						<input type="text" class="form-control" placeholder="Email" name="email"><span id="pesan3" style="left:320px;"></span>
                     </div>
+                    
                     <label> Pilih provinsi </label>
                     <select class="form-control select2" style="width: 100%;" onchange="refreshKota()" name="prov" id="prov">
                     
@@ -160,6 +260,9 @@
 					</div>
 
                     <button name ="reg">Daftar</button>
+
+                    <button onclick='toLogin()' class='btn btn-block bg-gradient-secondary btn-lg'>Masuk</button>
+                    <h4 class="" style="text-align: center;"> Sudah Punya Akun ?? </h4>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">
