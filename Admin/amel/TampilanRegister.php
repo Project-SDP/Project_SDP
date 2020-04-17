@@ -21,10 +21,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- LINEARICONS -->
-		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/fonts/linearicons/style.css">
+		<link rel="stylesheet" href="../../template%20log%20reg/colorlib-regform-26/fonts/linearicons/style.css">
 		
 		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/css/style.css">
+		<link rel="stylesheet" href="../../template%20log%20reg/colorlib-regform-26/css/style.css">
         <script src="jquery-min.js"></script>
        
 
@@ -65,7 +65,7 @@
             });
 
             function toHome(){
-                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/tampilan_user/mainpage.php";
             }
             function toMerchant(){
 
@@ -167,10 +167,25 @@ function cekRegister(){
             },
             success: function (response) {
                 alert(response);
+
             }
         });
   
 }
+function kirim(){
+    let  email=$('#email_akun').val();
+        
+        $.ajax({
+        method: "post",
+        url: "kirim.php",
+        data:{
+            email:email
+        },
+        success: function (response) {
+           
+        }
+    });
+    }
 // function ceknohp(no_hp){
 //     $.ajax({
 //         method: "post",

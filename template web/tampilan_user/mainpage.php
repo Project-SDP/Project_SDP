@@ -70,6 +70,7 @@
            			 control:'exit'
         		},
 				success: function (data) {
+					window.location="../../template%20web/vegefoods%20-%20Copy/mainpage.php";
 					window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
 				}
 			}); 
@@ -80,7 +81,7 @@
 	</script>
 
 	<?php
-		require('C:\xampp\htdocs\ProyekSDP\Project_SDP\template log reg\colorlib-regform-26\conn.php');
+		require('../../template log reg\colorlib-regform-26\conn.php');
 		if(isset($_SESSION['loggedUser'])){
 			$id = $_SESSION['loggedUser'];
 			$nama = $_SESSION['loggedUser'];

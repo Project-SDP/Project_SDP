@@ -3,11 +3,10 @@
     require_once("../../connect.php");
     session_start();
     $_SESSION['loggedUser']='';
-    $pass = $_POST['inp'];
-    $user = $_POST['pass'];
+    $pass = $_POST['pass'];
+    $user = $_POST['inp'];
     $idTemp = '';
     $As = $_POST['As'];
-
     if ($As =='Merchant'){
         $res = mysqli_query($conn , "select * from merchant");
         while ($baris = mysqli_fetch_assoc($res)){
@@ -50,7 +49,6 @@
             }
     
         }
-            
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok

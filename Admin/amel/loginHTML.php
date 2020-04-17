@@ -61,8 +61,8 @@
         <button class="" type="submit" onclick="toRegister()">Register</button>
         <h4 style="text-align: center">Belum punya Akun???</h4>
         <span class="ceklogpass"></span>
-
-        <script>
+        <script src="jquery-min.js"></script>
+        <script> 
 
         function toRegister(){ 
                 $.ajax({
@@ -86,8 +86,8 @@
                 pass:$("#inpPass").val()
             },
             success: function (data) {
+                        alert(data);
                 if(data=='Login Gagal'){
-                        alert(data);;
                 }else{
                         
                         if(data=='user'){
