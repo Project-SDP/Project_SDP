@@ -34,7 +34,7 @@
             }
 
     }else{
-        $res = mysqli_query($conn , "select * from user");
+        $res = mysqli_query($conn , "SELECT * from user");
         while ($baris = mysqli_fetch_assoc($res)){
             if($baris["email"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['id_akun'];

@@ -33,23 +33,23 @@
                 let temp = $("#tempHalaman").val();
 
                 // if(temp=='register'){
+                    // $.ajax({
+                    //     method: "post",
+                    //     url: "registerHTML.php",
+                    //     success: function (data) {
+                    //         document.title = 'Register User';
+                    //         $(".kotak").html(data);
+                    //     }
+                    // }); 
+                // }else if (cekRegister=='login'){
                     $.ajax({
                         method: "post",
-                        url: "registerHTML.php",
+                        url: "loginHTML.php",
                         success: function (data) {
-                            document.title = 'Register User';
+                            document.title = 'Login';
                             $(".kotak").html(data);
                         }
                     }); 
-                // }else if (cekRegister=='login'){
-                //     $.ajax({
-                //         method: "post",
-                //         url: "loginHTML.php",
-                //         success: function (data) {
-                //             document.title = 'Login';
-                //             $(".kotak").html(data);
-                //         }
-                //     }); 
                 // }else{
                 //     $.ajax({
                 //         method: "post",

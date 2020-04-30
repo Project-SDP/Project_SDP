@@ -50,12 +50,13 @@
 	    		<div class="col-lg-12 d-block">
 		    		<div class="row d-flex">
 		    			<div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 98</span>
+						<img style='background-size: cover;width:20px;height:20px' src='../../gambar/image/iconwa.png' >
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+						    <a class="text" href='https://wa.me/6281249158809?text=Bibiks%20Catring%20Disini'>+081249158809</a>
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
+						    <span class="text">bibikscatering@gmail.com</span>
 					    </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
 						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
@@ -78,7 +79,7 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Nasi Kotak</a>
+              	<a class="dropdown-item" href="nasikotak.php">Nasi Kotak</a>
               	<a class="dropdown-item" href="wishlist.html">Snacks Box</a>
                 <a class="dropdown-item" href="product-single.html">Tumpeng</a>
                 <a class="dropdown-item" href="cart.html">Cart</a>
@@ -94,8 +95,9 @@
 	      </div>
 		</div>
 		<div class="btn" style="margin-right:100px;">
-			<a href="../../template%20log%20reg/colorlib-regform-26/index.php"><div class="button_right_02 new2019-05-16">Daftar</div></a>
-			<a href="../../template%20log%20reg/colorlib-regform-26/login.php"><div class="button_right_02 new2019-05-16">Masuk</div></a>
+		
+			<a href="../../Admin/amel/TampilanRegister.php"><div class="button_right_02 new2019-05-16">Daftar</div></a>
+			<a href="../../Admin/amel/TampilanLogin.php"><div class="button_right_02 new2019-05-16">Masuk</div></a>
 		</div>
 	  </nav>
     <!-- END nav -->
@@ -702,7 +704,19 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5eaa420810362a7578bda3cb/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>

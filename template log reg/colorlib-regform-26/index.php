@@ -63,7 +63,7 @@
         {   
             mysqli_query($link,"INSERT INTO merchant(id,nama,rating,alamat,notelp,pass,email,provinsi,kota,halal) VALUES('','$nama',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal')");
             echo "<script>alert('Merchant Terdaftar')</script>";
-            header('location:http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login');
+            header('location:http://localhost/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login');
             $nama = $link->real_escape_string($nama);
             $mail = $link->real_escape_string($mail);
             $alamat = $link->real_escape_string($alamat);
@@ -155,16 +155,16 @@
     <script>
 
             function toHome(){
-                window.location="http://localhost/ProyekSDP/Project_SDP/template%20web/vegefoods%20-%20Copy/mainpage.php";
+                window.location="http://localhost/Project_SDP/template%20web/tampilan_user/mainpage.php";
             }
 
             function toUser(){
          
-                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=register";
+                window.location="http://localhost/Project_SDP/Admin/amel/TampilanRegister.php?halaman=register";
             }
 
             function toLogin(){
-                window.location="http://localhost/ProyekSDP/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login";
+                window.location="http://localhost/Project_SDP/Admin/amel/TampilanRegister.php?halaman=login";
             }
     </script>
 
