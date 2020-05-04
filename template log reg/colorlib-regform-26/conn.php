@@ -1,5 +1,6 @@
 <?php
-    $_SESSION['status'] = 0;
+    session_start();
+    $_SESSION['status'] = -1;
 
     
     $link = mysqli_connect("localhost","root","","proyeksdp");

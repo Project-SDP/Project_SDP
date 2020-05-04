@@ -1,6 +1,4 @@
 <?php
-    session_start();
-    $_SESSION['login'] = -1;
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
@@ -11,24 +9,23 @@
     // var_dump($user);
     
 
-    if(isset($_POST['toLog'])){
-        header("location:login.php");
+
+    if(isset($_POST['reg'])){
+        header("location:index.php");
     }
-    // if(isset($_POST['toHome'])){
-    //     header("location:home.php");
-    // }
     if(isset($_POST['login']))
     {
         $cek = 0;
-        $pass = $_POST['pass'];   
-        $email = $_POST['email']; 
-    
+        $pass = $link->real_escape_string($_POST['pass']);  
+        $pass = substr(md5($pass),0,20); 
+        $email = $link->real_escape_string($_POST['email']);   
+        echo $pass;
         foreach ($listUser as $user) {
             $cek++;
             if($user['email']==$email && $user['pass']==$pass){
                 // echo "<script>alert('masuk')</script>";
-                $_SESSION['login'] = $user['email'];
-                header('location:../../template%20web/vegefoods%20-%20Copy/mainpage.php');
+                $_SESSION['status'] = $user['email'];
+                header('location:../../web%20merchant/index.php');
                 break;
             }
         } 
@@ -69,6 +66,7 @@
 						<input type="password" class="form-control" placeholder="Password" name="pass">
 					</div>
                     <button name="login">Login</button>
+                    <button name="reg">Daftar</button>
 
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">
