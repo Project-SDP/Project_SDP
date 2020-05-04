@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(isset($_GET["kategori"])){
+	$kategori=$_GET["kategori"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,9 +32,30 @@ session_start();
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+	
   </head>
   <body class="goto-here">
-		
+		<!-- <div class="py-1 bg-primary">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+ 1235 2355 98</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">youremail@email.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div> -->
 	<?php
 		include("navbar.php");
 		?>
@@ -71,81 +94,126 @@ session_start();
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Products</span></p>
+            <h1 class="mb-0 bread">Products</h1>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section ftco-cart">
-			<div class="container">
-				<div class="row">
-    			<div class="col-md-12 ftco-animate">
-    				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
-						      </tr>
-						    </thead>
-						    <tbody id="template">
-						      
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-md-10 mb-5 text-center">
+    				<ul class="product-category">
+    					<li><a id="semua"href="kategori.php?kategori=semua">All</a></li>
+    					<li><a id="NasiKotak"href="kategori.php?kategori=NasiKotak">Nasi Kotak</a></li>
+    					<li><a id="SnacksBox"href="kategori.php?kategori=SnacksBox">Snacks Box</a></li>
+    					<li><a id="Tumpeng"href="kategori.php?kategori=Tumpeng">Tumpeng</a></li>
+    					<li><a id="Prasmanan"href="kategori.php?kategori=Prasmanan">Prasmanan</a></li>
+    				</ul>
+    			</div>
+    		</div>
+    		<div class="row">
+				<?php
+					require_once("connect.php");
+					if($kategori=="semua"){
+						$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id");
+					}else{
+						$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id where me.kategori='$kategori'");
+					}
+					$ctr=0;
+					foreach ($query as $key => $value) {
+						$ctr++;
+						$harga="Rp " . number_format($value["harga_menu"],2,',','.');
+						$query_merchant=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from merchant where id='$value[id_merchant]'"));
+						$halal="";
+						if($query_merchant["Halal"]==1){
+							$halal="../../gambar/image/haram.png";
+						}
+						echo"<div class='col-md-6 col-lg-3 ftco-animate'>
+						";echo"	<div class='product'>
+						";echo"		<a href='product-single.php?id=$value[id_menu]' class='img-prod'><img style='background-size: cover;width:255px;height:180px'class='img-fluid' src='../../gambar/image/$value[gambar_menu]' alt='Colorlib Template'>
+						";echo"			
+						";echo"			<div class='overlay'></div>
+						";echo"		</a>
+						";echo"		<div class='text py-3 pb-4 px-3 text-center'>
+						";echo"			<h3><a href='#'>$value[nama_menu]</a><img style='background-size: cover;width:20px;height:20px' src='$halal' alt=''></h3>
+						";echo"			<div class='d-flex'>
+						";echo"				<div class='pricing'>
+						";echo"					<p class='price'><span class='price-sale'>$harga</span></p>
+						";echo"				</div>
+						";echo"			</div>
+						";echo"			<div class='bottom-area d-flex px-3'>
+						";echo"				<div class='m-auto d-flex'>
+						";echo"					<a href='#' class='add-to-cart d-flex justify-content-center align-items-center text-center'>
+						";echo"						<span><i class='ion-ios-menu'></i></span>
+						";echo"					</a>
+						";echo"					<a href='#' class='buy-now d-flex justify-content-center align-items-center mx-1'>
+						";echo"						<span><i class='ion-ios-cart'></i></span>
+						";echo"					</a>
+						";echo"					<a href='#' class='heart d-flex justify-content-center align-items-center '>
+						";echo"						<span><i class='ion-ios-heart'></i></span>
+						";echo"					</a>
+						";echo"				</div>
+						";echo"			</div>
+						";echo"		</div>
+						";echo"	</div>
+						";echo"</div>";
+					}
+				?>
+    			<!-- <div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+    						<span class="status">30%</span>
+    						<div class="overlay"></div>
+    					</a> buat diskon
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#">Bell Pepper</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    								<span><i class="ion-ios-menu"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart"></i></span>
+	    							</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+				</div> -->
 
-						    </tbody>
-						  </table>
-					  </div>
-    			</div>
-    		</div>
-    		<div class="row justify-content-end">
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Coupon Code</h3>
-    					<p>Enter your coupon code if you have one</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Coupon code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
-    			</div>
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Estimate shipping and tax</h3>
-    					<p>Enter your destination to get a shipping estimate</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Country</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">State/Province</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">Zip/Postal Code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-    			</div>
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3" id="tempatHarga">
-    					
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
-    		</div>
-			</div>
-		</section>
+                </div>
+    		<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+				<?php
+				$ctr=$ctr/10;
+
+				$ctr--;
+				for ($i=0; $i < $ctr; $i++) { 
+					$angka=$i+2;
+					echo"<li><a href='#'>$angka</a></li>";
+				}
+				?>
+              </ul>
+            </div>
+          </div>
+        </div>
+    	</div>
+    </section>
 
 		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
@@ -261,62 +329,11 @@ session_start();
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-
-  <script>
-		$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
     
   </body>
 </html>
-<script>
-	$.ajax({
-		method: "post",
-		url: "getCart.php",
-		
-		success: function (response) {
-			$("#template").html(response);
-			$.ajax({
-				method: "post",
-				url: "getHarga.php",
-				
-				success: function (response) {
-					$("#tempatHarga").html(response);
-				}
-			});
-		}
-	});
-	
+<script >
+	var ctr="<?=$kategori?>";
+
+	$("#"+ctr).addClass("active");
 </script>

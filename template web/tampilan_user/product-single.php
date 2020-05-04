@@ -29,28 +29,11 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-		    			<div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 98</span>
-					    </div>
-					    <div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
-					    </div>
-					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
-					    </div>
-				    </div>
-			    </div>
-		    </div>
-		  </div>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		
+	<?php
+		include("navbar.php");
+		?>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html">Vegefoods</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +61,7 @@
 	        </ul>
 	      </div>
 	    </div>
-	  </nav>
+	  </nav> -->
     <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
@@ -91,68 +74,65 @@
         </div>
       </div>
     </div>
-
     <section class="ftco-section">
     	<div class="container">
     		<div class="row">
-    			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/product-1.jpg" class="image-popup"><img src="images/product-1.jpg" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>Bell Pepper</h3>
-    				<div class="rating d-flex">
-							<p class="text-left mr-4">
-								<a href="#" class="mr-2">5.0</a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-							</p>
-							<p class="text-left mr-4">
-								<a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
-							</p>
-							<p class="text-left">
-								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-							</p>
-						</div>
-    				<p class="price"><span>$120.00</span></p>
-    				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.
-						</p>
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<div class="form-group d-flex">
-		              <div class="select-wrap">
-	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
-	                  </select>
-	                </div>
-		            </div>
-							</div>
-							<div class="w-100"></div>
-							<div class="input-group col-md-6 d-flex mb-3">
-	             	<span class="input-group-btn mr-2">
-	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-	                   <i class="ion-ios-remove"></i>
-	                	</button>
-	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-	             	<span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-	                     <i class="ion-ios-add"></i>
-	                 </button>
-	             	</span>
-	          	</div>
-	          	<div class="w-100"></div>
-	          	<div class="col-md-12">
-	          		<p style="color: #000;">600 kg available</p>
-	          	</div>
-          	</div>
-          	<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+    			
+				<?php
+				require_once("connect.php");
+				$query="SELECT * from menu where id_menu='$_GET[id]'";
+				$query=mysqli_query($conn,$query);
+				$value=mysqli_fetch_assoc($query);
+				
+				
+					$harga='Rp ' . number_format($value['harga_menu'],2,',','.');
+					echo"<div class='col-lg-6 mb-5 ftco-animate'>
+    				";echo"<a href='../../gambar/image/$value[gambar_menu]' class='image-popup'>
+					";echo"<img src='../../gambar/image/$value[gambar_menu]' class='img-fluid' alt='Colorlib Template'>
+					";echo"</a>
+					";echo"</div>
+					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
+    		";echo"		<h3>$value[nama_menu] </h3>
+
+    		";echo"		<p class='price'><span>$harga</span></p>
+    		";echo"		<p>$value[deskripsi_menu]</p>
+			";echo"			<div class='row mt-4'>
+			";echo"				<div class='col-md-6'>
+			";echo"					<div class='form-group d-flex'>
+		      ";echo"        <div class='select-wrap'>
+	          ";echo"        <div class='icon'><span class='ion-ios-arrow-down'></span></div>
+	          ";echo"        <select name='' id='' class='form-control'>
+	          ";echo"        	<option value=''>Small</option>
+	          ";echo"          <option value=''>Medium</option>
+	          ";echo"          <option value=''>Large</option>
+	          ";echo"          <option value=''>Extra Large</option>
+	          ";echo"        </select>
+	          ";echo"      </div>
+		      ";echo"      </div>
+			";echo"				</div>
+			";echo"				<div class='w-100'></div>
+			";echo"				<div class='input-group col-md-6 d-flex mb-3'>
+	          ";echo"   	<span class='input-group-btn mr-2'>
+	          ";echo"      	<button type='button' class='quantity-left-minus btn'  data-type='minus' data-field=''>
+	          ";echo"         <i class='ion-ios-remove'></i>
+	          ";echo"      	</button>
+	          ";echo"  		</span>
+	          ";echo"   	<input type='text' id='quantity' name='quantity' class='form-control input-number' value='1' min='1' max='100'>
+	          ";echo"   	<span class='input-group-btn ml-2'>
+	          ";echo"      	<button type='button' class='quantity-right-plus btn' data-type='plus' data-field=''>
+	          ";echo"           <i class='ion-ios-add'></i>
+	          ";echo"       </button>
+	          ";echo"   	</span>
+	          ";echo"	</div>
+	          ";echo"	<div class='w-100'></div>
+			  ";
+			  //echo"	<!-- <div class='col-md-12'>
+	          //";echo"		<p style='color: #000;'>600 kg available</p>
+	          //";echo"	</div> -->
+			  echo"</div>
+			  ";echo"	<p onclick='toCart(\"$value[id_menu]\")'><p  onclick='toCart(\"$value[id_menu]\")' class='btn btn-black py-3 px-5'>Add to Cart</p></p>";
+			  ?>
+          
     			</div>
     		</div>
     	</div>
@@ -441,3 +421,20 @@
     
   </body>
 </html>
+<script >
+function toCart(id){
+	var qty=$("#quantity").val();
+	$.ajax({
+		method: "post",
+		url: "addtocart.php",
+		data: {
+			id:id,
+			qty:qty
+		},
+		
+		success: function (response) {
+			alert("berhasil menambah ke dalam cart");
+		}
+	});
+}
+</script>
