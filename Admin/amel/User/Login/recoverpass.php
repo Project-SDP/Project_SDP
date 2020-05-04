@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Forgot Password</title>
+  <title>AdminLTE 3 | Recover Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,24 +26,41 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
-
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" id='email' placeholder="Email">
+      <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
+      <div class="input-group mb-3">
+          <input type="password" class="form-control" id="kode" placeholder="Kode Konfirmasi">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="password" placeholder="New Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="cpassword" placeholder="Confirm New Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="button" onclick='RandomPass()' class="btn btn-primary btn-block">Request new password</button>
+            <button onclick="lempar()"class="btn btn-primary btn-block">Change password</button>
           </div>
           <!-- /.col -->
         </div>
 
-     
+      <p class="mt-3 mb-1">
+        <a href="../../TampilanLogin.php">Login</a>
+      </p>
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -60,35 +77,22 @@
 </body>
 </html>
 <script>
-    function RandomPass(){
-        var kepada=$("#email").val();
-        
+    function lempar(){
         $.ajax({
         method: "post",
-        url: "randompass.php",
-        data:{
-            kepada:kepada
+        url: "recoverpass2.php",
+        data: {
+            password:$("#password").val(),
+            cpassword:$("#cpassword").val(),
+            konfirm:$("#kode").val()
         },
         success: function (response) {
-            kirim();
-            alert("sudah terkirim");
-            // window.location.href = "../../TampilanLogin.php"
+            if(response=="berhasil"){
+                window.location="../../TampilanLogin.php";
+            }else{
+                alert(response);
+            }
         }
     });
     }
-    function kirim(){
-        var kepada=$("#email").val();
-        
-        $.ajax({
-        method: "post",
-        url: "kirim.php",
-        data:{
-            kepada:kepada
-        },
-        success: function (response) {
-           
-        }
-    });
-    }
-
 </script>

@@ -68,3 +68,45 @@
     <!-- <button name="reg" value="Daftar">Daftar</button> -->
 
     <img src="../../template log reg/colorlib-regform-26/images/image-2.png" alt="" class="image-2">
+    <script>
+        
+function cekRegister(){
+    let  username=$('#nama_akun').val();
+    let  nohp=$('#nohp_akun').val();
+    let  pass=$('#pass_akun').val();
+    let  conpass=$('#conpass_akun').val();
+    let  email=$('#email_akun').val();
+    let  namadepan=$('#namadepan_akun').val();
+    let  namabelakang=$('#namabelakang_akun').val();
+    let  kota=$('#kota').val();
+    let  alamat=$('#alamat_akun').val();
+
+    let validasiEmail = ValidateEmail(email);
+    if(nohp.length==13){
+        $.ajax({
+            method: "post",
+            url: "User/Register/check_Regis.php",
+            data: {
+                username:username,
+                nohp:nohp,
+                pass:pass,
+                conpass:conpass,
+                email:email,
+                namadepan:namadepan,
+                namabelakang:namabelakang,
+                alamat:alamat,
+                valEmail:validasiEmail,
+                kota:kota
+            },
+            success: function (response) {
+                alert(response);
+
+            }
+        });
+    }else{
+        alert("nomor HP harus 13 digit ");
+    }
+    
+  
+}
+    </script>

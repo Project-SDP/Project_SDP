@@ -1,5 +1,5 @@
 <?php
-    require_once("connect.php");
+    require("connect.php");
     $query="SELECT * from user";
     $arr=mysqli_query($conn,$query);
     
@@ -21,10 +21,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- LINEARICONS -->
-		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/fonts/linearicons/style.css">
+		<link rel="stylesheet" href="../../template%20log%20reg/colorlib-regform-26/fonts/linearicons/style.css">
 		
 		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="../../template log reg/colorlib-regform-26/css/style.css">
+		<link rel="stylesheet" href="../../template%20log%20reg/colorlib-regform-26/css/style.css">
         <script src="jquery-min.js"></script>
        
 
@@ -33,30 +33,33 @@
                 let temp = $("#tempHalaman").val();
 
                 // if(temp=='register'){
-                    $.ajax({
-                        method: "post",
-                        url: "registerHTML.php",
-                        success: function (data) {
-                            $(".kotak").html(data);
-                        }
-                    }); 
-                }else if (cekRegister=='login'){
-                    $.ajax({
-                        method: "post",
-                        url: "loginHTML.php",
-                        success: function (data) {
-                            $(".kotak").html(data);
-                        }
-                    }); 
-                }else{
+                    // $.ajax({
+                    //     method: "post",
+                    //     url: "registerHTML.php",
+                    //     success: function (data) {
+                    //         document.title = 'Register User';
+                    //         $(".kotak").html(data);
+                    //     }
+                    // }); 
+                // }else if (cekRegister=='login'){
                     $.ajax({
                         method: "post",
                         url: "loginHTML.php",
                         success: function (data) {
+                            document.title = 'Login';
                             $(".kotak").html(data);
                         }
                     }); 
-                }
+                // }else{
+                //     $.ajax({
+                //         method: "post",
+                //         url: "loginHTML.php",
+                //         success: function (data) {
+                //             document.title = 'Login';
+                //             $(".kotak").html(data);
+                //         }
+                //     }); 
+                // }
 
 
             });
@@ -73,14 +76,16 @@
 
 	</head>
 	<body>
+            <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
+
             <button onclick="toHome()" style="width: 250px ; position:absolute;margin-left:20px ; background :violet">
                 <i class="lnr lnr-home"></i> 
                  Bibik's Home 
             </button>
-            <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
-
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar sebagai Merchant  </button> 
+            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> 
+            Daftar sebagai Merchant  
+        </button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
@@ -162,6 +167,7 @@ function cekRegister(){
             },
             success: function (response) {
                 alert(response);
+
             }
         });
     }else{
@@ -170,6 +176,20 @@ function cekRegister(){
     
   
 }
+function kirim(){
+    let  email=$('#email_akun').val();
+        
+        $.ajax({
+        method: "post",
+        url: "kirim.php",
+        data:{
+            email:email
+        },
+        success: function (response) {
+           
+        }
+    });
+    }
 // function ceknohp(no_hp){
 //     $.ajax({
 //         method: "post",
@@ -200,6 +220,7 @@ function toLogin(){
         method: "post",
         url: "loginHTML.php",
         success: function (data) {
+            document.title = 'Login';
             $(".kotak").html(data);
         }
     }); 
