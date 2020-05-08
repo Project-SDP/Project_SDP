@@ -44,7 +44,7 @@
 	            <div class="col-md-12 ftco-animate text-center">
 	              <h1 class="mb-2">Gausah bingung besok makan apa</h1>
 	              <h2 class="subheading mb-4">Pesan makananmu untuk sebulan ke depan</h2>
-	              <p><a href="#" class="btn btn-primary">Lihat menu</a></p>
+	              <p><a href="kategori.php?kategori=semua" class="btn btn-primary">Lihat menu</a></p>
 	            </div>
 
 	          </div>
@@ -59,7 +59,7 @@
 	            <div class="col-sm-12 ftco-animate text-center">
 	              <h1 class="mb-2">Mau hemat?</h1>
 	              <h2 class="subheading mb-4">Pesen bareng temen se-kantor!</h2>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	              <p><a href="kategori.php?kategori=semua" class="btn btn-primary">View Details</a></p>
 	            </div>
 
 	          </div>
@@ -129,7 +129,7 @@
 									<div class="text text-center">
 										<h2>Bibik's Catering</h2>
 										<p>Urusan perut? Serahkan pada Bibi!</p>
-										<p><a href="#" class="btn btn-primary">Pesan sekarang</a></p>
+										<p><a href="kategori.php?kategori=semua" class="btn btn-primary">Pesan sekarang</a></p>
 									</div>
 								</div>
 							</div>
@@ -168,130 +168,58 @@
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Featured Products</span>
+          	<span class="subheading"></span>
             <h2 class="mb-4">Our Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>Silahkan dipilih makanan favorit kalian</p>
           </div>
         </div>   		
     	</div>
     	<div class="container">
     		<div class="row">
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-    						<span class="status">30%</span>
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Bell Pepper</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
-		    					</div>
-	    					</div>
-	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Strawberry</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
-	    					<div class="overlay"></div>
-	    				</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Green Beans</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Purple Cabbage</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
+			<?php
+				require_once("connect.php");
+				$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id");
+				$ctr=0;
+					foreach ($query as $key => $value) {
+						$ctr++;
+						$harga="Rp " . number_format($value["harga_menu"],2,',','.');
+						$query_merchant=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from merchant where id='$value[id_merchant]'"));
+						$halal="";
+						if($query_merchant["Halal"]==1){
+							$halal="../../gambar/image/haram.png";
+						}
+						echo"<div class='col-md-6 col-lg-3 ftco-animate'>
+						";echo"	<div class='product'>
+						";echo"		<a href='product-single.php?id=$value[id_menu]' class='img-prod'><img style='background-size: cover;width:255px;height:180px'class='img-fluid' src='../../gambar/image/$value[gambar_menu]' alt='Colorlib Template'>
+						";echo"			
+						";echo"			<div class='overlay'></div>
+						";echo"		</a>
+						";echo"		<div class='text py-3 pb-4 px-3 text-center'>  
+						";echo"			<h3><a href='#'>$value[nama_menu]</a><img style='background-size:cover;width:20px;height:20px' src='$halal' onerror='this.onerror=null; this.src='Default.jpg'' alt=''></h3>
+						";echo"			<div class='d-flex'>
+						";echo"				<div class='pricing'>
+						";echo"					<p class='price'><span class='price-sale'>$harga</span></p>
+						";echo"				</div>
+						";echo"			</div>
+						";echo"			<div class='bottom-area d-flex px-3'>
+						";echo"				<div class='m-auto d-flex'>
+						";echo"					<a href='product-single.php?id=$value[id_menu]' class='add-to-cart d-flex justify-content-center align-items-center text-center'>
+						";echo"						<span><i class='ion-ios-menu'></i></span>
+						";echo"					</a>
+						";echo"					<a onclick='toCart(\"$value[id_menu]\")'class='buy-now d-flex justify-content-center align-items-center mx-1'>
+						";echo"						<span><i class='ion-ios-cart'></i></span>
+						";echo"					</a>
+						";echo"				</div>
+						";echo"			</div>
+						";echo"		</div>
+						";echo"	</div>
+						";echo"</div>";
+					}
+				?>
+    			
 
 
-    			<div class="col-md-6 col-lg-3 ftco-animate">
+    			<!-- <div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-5.jpg" alt="Colorlib Template">
     						<span class="status">30%</span>
@@ -319,91 +247,10 @@
     						</div>
     					</div>
     				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Brocolli</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-7.jpg" alt="Colorlib Template">
-	    					<div class="overlay"></div>
-	    				</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Carrots</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Fruit Juice</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
+    			</div> -->
+    			
+    			
+    			
     		</div>
     	</div>
     </section>
@@ -434,7 +281,7 @@
           <div class="col-md-7 heading-section ftco-animate text-center">
           	<span class="subheading">Testimony</span>
             <h2 class="mb-4">Our satisfied customer says</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+            <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p> -->
           </div>
         </div>
         <div class="row ftco-animate">

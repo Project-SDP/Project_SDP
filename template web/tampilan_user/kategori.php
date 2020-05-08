@@ -137,8 +137,8 @@ if(isset($_GET["kategori"])){
 						";echo"			
 						";echo"			<div class='overlay'></div>
 						";echo"		</a>
-						";echo"		<div class='text py-3 pb-4 px-3 text-center'>
-						";echo"			<h3><a href='#'>$value[nama_menu]</a><img style='background-size: cover;width:20px;height:20px' src='$halal' alt=''></h3>
+						";echo"		<div class='text py-3 pb-4 px-3 text-center'>  
+						";echo"			<h3><a href='#'>$value[nama_menu]</a><img style='background-size:cover;width:20px;height:20px' src='$halal' onerror='this.onerror=null; this.src='Default.jpg'' alt=''></h3>
 						";echo"			<div class='d-flex'>
 						";echo"				<div class='pricing'>
 						";echo"					<p class='price'><span class='price-sale'>$harga</span></p>
@@ -146,14 +146,11 @@ if(isset($_GET["kategori"])){
 						";echo"			</div>
 						";echo"			<div class='bottom-area d-flex px-3'>
 						";echo"				<div class='m-auto d-flex'>
-						";echo"					<a href='#' class='add-to-cart d-flex justify-content-center align-items-center text-center'>
+						";echo"					<a href='product-single.php?id=$value[id_menu]' class='add-to-cart d-flex justify-content-center align-items-center text-center'>
 						";echo"						<span><i class='ion-ios-menu'></i></span>
 						";echo"					</a>
-						";echo"					<a href='#' class='buy-now d-flex justify-content-center align-items-center mx-1'>
+						";echo"					<a onclick='toCart(\"$value[id_menu]\")'class='buy-now d-flex justify-content-center align-items-center mx-1'>
 						";echo"						<span><i class='ion-ios-cart'></i></span>
-						";echo"					</a>
-						";echo"					<a href='#' class='heart d-flex justify-content-center align-items-center '>
-						";echo"						<span><i class='ion-ios-heart'></i></span>
 						";echo"					</a>
 						";echo"				</div>
 						";echo"			</div>
@@ -336,4 +333,18 @@ if(isset($_GET["kategori"])){
 	var ctr="<?=$kategori?>";
 
 	$("#"+ctr).addClass("active");
+	function toCart(id){
+		var qty=1;
+		$.ajax({
+			method: "post",
+			url: "addtocart.php",
+			data: {
+				id:id,
+				qty:qty
+			},
+			success: function (response) {
+				alert("berhasil menambah ke dalam cart");
+			}
+		});
+	}
 </script>

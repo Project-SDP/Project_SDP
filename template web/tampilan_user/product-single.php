@@ -88,7 +88,7 @@
 					$harga='Rp ' . number_format($value['harga_menu'],2,',','.');
 					echo"<div class='col-lg-6 mb-5 ftco-animate'>
     				";echo"<a href='../../gambar/image/$value[gambar_menu]' class='image-popup'>
-					";echo"<img src='../../gambar/image/$value[gambar_menu]' class='img-fluid' alt='Colorlib Template'>
+					";echo"<img src='../../gambar/image/$value[gambar_menu]' class='img-fluid' alt=''>
 					";echo"</a>
 					";echo"</div>
 					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
@@ -431,7 +431,6 @@ function toCart(id){
 			id:id,
 			qty:qty
 		},
-		
 		success: function (response) {
 			alert("berhasil menambah ke dalam cart");
 		}

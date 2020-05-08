@@ -1,3 +1,18 @@
+<?php
+	session_start();
+	// session_destroy();
+	if(!isset($_SESSION["allfood"])){
+		$_SESSION["allfood"]="";
+		$_SESSION["tpromo"]="Rp 0,00";
+		$_SESSION["promo"]=0;
+		$_SESSION["ftotal"]="Rp 0,00";
+		$_SESSION["fgrandtotal"]="Rp 0,00";
+		$_SESSION["total"]=0;
+		$_SESSION["grandtotal"]=0;
+		$_SESSION["menu"]= array();
+		$_SESSION["ongkir"]=0;
+	}
+?>
 <style>
 	.button_right_02 {
 		float: right;
@@ -49,17 +64,19 @@
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="kategori.php?kategori=NasiKotak">Nasi Kotak</a>
-              	<a class="dropdown-item" href="kategori.php?kategori=Snacks">Snacks Box</a>
+              	<a class="dropdown-item" href="kategori.php?kategori=SnacksBox">Snacks Box</a>
                 <a class="dropdown-item" href="kategori.php?kategori=Tumpeng">Tumpeng</a>
                 <a class="dropdown-item" href="kategori.php?kategori=Prasmanan">Prasmanan</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
+                <a class="dropdown-item" href="cart.php">Cart</a>
+                <a class="dropdown-item" href="../Midtrans/trans/index.php" target="_blank">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Review</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item"><a href="about.php" class="nav-link">Restaurant</a></li>
+	          <li class="nav-item"><a href="blog.php" class="nav-link">Review</a></li>
+	        
+			  <li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
+			  	$allMenu=explode('||',$_SESSION['allfood']);
+    			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>
 
 	        </ul>
 	      </div>
@@ -71,3 +88,5 @@
 		</div>
 	  </nav>
     <!-- END nav -->
+	<script>
+	</script>
