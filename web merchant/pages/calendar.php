@@ -25,7 +25,7 @@
 <?php
   include("../navbar.php");
   session_start();
-  $_SESSION['pos']="promo";
+  $_SESSION['pos']="jadwal";
   include("../sidebar.php");
 ?>
 <!-- Content Wrapper. Contains page content -->

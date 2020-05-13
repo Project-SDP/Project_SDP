@@ -5,6 +5,22 @@
     $query="SELECT * from menu where id_menu='$id'";
     $query=mysqli_query($link,$query);
     $query=mysqli_fetch_assoc($query);
+    // echo "<form action='#' method='post' enctype='multipart/form-data'>";
+    // echo"<div class='form-group2'>";
+    // echo"<label for='exampleInput' style='margin-top:10px; margin-left:0px;'>Gambar Menu</label>";
+    // echo"<div class='col-md-4'>";
+    // if($query['gambar_menu']==""){
+    //     echo"<img id='image2' src='pages/forms/placeholder.jpg' class='img-thumbnail'>";
+    // }else{
+    //     echo"<img id='image2' src='../gambar/Image/$query[gambar_menu]' class='img-thumbnail'>";
+    // }
+    // echo"</div>";
+    // echo"<input type='button' class='btn btn-default' value='Pilih Gambar' onclick='document.getElementById(`gambar`).click();' style='margin-top:10px; margin-left:0px;'>";
+    // echo"<input type='file' class='btn btn-default' name='gambar' id='gambar' style='display:none;' onchange='displayImage(this)'>";
+    // echo"</div>";
+    // echo"<input type='submit' value='Upload' class='btn btn-default' name='upGambar'>";
+    // echo "</form>";
+    echo"<br>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Nama Menu</label>";
     echo     "<input type='text' class='form-control' id='nama' placeholder='Masukkan nama' value='$query[nama_menu]'>";
@@ -13,6 +29,10 @@
     echo     "<label for='exampleInputEmail1'>Harga Menu</label>";
     echo     "<input type='number' class='form-control' id='harga' min='0' step='1000' value='$query[harga_menu]' placeholder='Masukkan harga'>";
     echo "</div>";
+    echo"<div class='form-group'>";
+    echo"    <label for='exampleInputEmail1'>Deskripsi Menu</label><br>";
+    echo"    <textarea class='form-control' rows='3' placeholder='Masukkan deskripsi menu' id='deskripsi'></textarea>";
+    echo"</div>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Kategori</label>";
     echo"<select class='form-control select2' style='width: 100%;' name='kategori' id='kategori'> ";
@@ -31,13 +51,33 @@
     echo "<div class='card-footer'>";
     echo     "<button onclick='ubah(\"$query[id_menu]\")' class='btn btn-primary'>Update</button>";
     echo "</div>";
+    $cover="";
+    // if(isset($_POST['upGambar'])){
+    //     $cover = time() . "_" . $_FILES['gambar']['name'];
+    //     $target = "../../../gambar/Image/".$cover;
+    //     if(move_uploaded_file($_FILES['gambar']['tmp_name'], $target)){
+    //     // mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,deskripsi_menu,gambar_menu) VALUES($id,'$nama','$harga','$status','$kategori','$merchant','$desk','$cover')");
+    //     }
+    // }
 ?>
 <script>
+ function displayImage(e){
+  if(e.files[0]){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      document.querySelector('#image2').setAttribute('src',e.target.result);
+    }
+    reader.readAsDataURL(e.files[0]);
+  }
+}
+    
     function ubah(id){
         var nama=$("#nama").val();
         var harga=$("#harga").val();
         var kategori=$("#kategori").val();
         var merch=$("#merch").val();
+        var desk=$("#deskripsi").val();
+        // var gambar="<?php echo $cover ?>";
         $.ajax({
             method: "post",
             url: "updateMenu2.php",
@@ -46,10 +86,11 @@
                 nama:nama,
                 harga:harga,
                 kategori:kategori,
-                merch:merch
+                idMerch:merch,
+                desk:desk
             },
             success: function (response) {
-                pangillMenu();
+                pangillMenu(idMerch);
             }
         });
     

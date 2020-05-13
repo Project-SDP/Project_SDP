@@ -1,10 +1,11 @@
 <?php
-    // session_start();
     require_once("conn.php");
-    $nama = ""; $pp="placeholder.jpg";
+    $nama = ""; 
+    $pp="placeholder.jpg";
     
     if(isset($_SESSION['status'])){
         $nama = $_SESSION['status'];
+        // echo "....................................................................".$nama;
     }else{
         $_SESSION['status'] = -1;  
     }
@@ -95,13 +96,16 @@
       <div class="image" style="padding-left:70px;">
         <?php
           if($_SESSION['pos']=="beranda"||$_SESSION['pos']=="menuEdit"){
-            echo "<img src='pages/forms/logo.png' class='img-circle elevation-2' alt='User Image' style='width:80px; height:80px;'>";
+            echo "<img src='pages/forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
           }
           else if($_SESSION['pos']=="web"){
-            echo "<img src='forms/logo.png' class='img-circle elevation-2' alt='User Image' style='width:80px; height:80px;'>";
+            echo "<img src='forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
+          }
+          else if($_SESSION['pos']=="promo"||$_SESSION['pos']=="jadwal"){
+            echo "<img src='../pages/forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
           }
           else{
-            echo "<img src='logo.png' class='img-circle elevation-2' alt='User Image' style='width:80px; height:80px;'>";
+            echo "<img src='logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
           }
         ?>
         </div>
@@ -110,11 +114,15 @@
       <div class="image" style="padding-top:25px;">
           <?php
               if($_SESSION['pos']=="beranda"||$_SESSION['pos']=="menuEdit"){
-                echo "<img src='pages/forms/images".$pp."' class='img-circle elevation-2' alt='User Image' style='width:50px; height:50px;'>";
+                echo "<img src='pages/forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
               }else if($_SESSION['pos']=="web"){
-                echo "<img src='forms/images".$pp."' class='img-circle elevation-2' alt='User Image' style='width:50px; height:50px;'>";
-              }else{
-                echo "<img src='images".$pp."' class='img-circle elevation-2' alt='User Image' style='width:50px; height:50px;'>";
+                echo "<img src='forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
+              }
+              else if($_SESSION['pos']=="promo"||$_SESSION['pos']=="jadwal"){
+                echo "<img src='../pages/forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
+              }
+              else{
+                echo "<img src='images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
               }
             ?>
           </div>
@@ -208,7 +216,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="addMenu.php" class="nav-link">
+                <a href="forms/addMenu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah</p>
                 </a>
@@ -237,29 +245,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="amel/Promo" class="nav-link">
+                <a href="amel/TampilanInsertPromo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="editMenu.php" class="nav-link">
+                <a href="TampilanDeletePromo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lihat</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon fas fa-tag"></i>
-              <p>
-                Promosi
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-          </li> -->
-
           <?php
             if($_SESSION['pos']=="jadwal"){
               echo"<li class='nav-item aktif'>";
@@ -267,7 +265,7 @@
               echo"<li class='nav-item'>";
             }
           ?>   
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="../pages/calendar.html" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Jadwal
@@ -290,21 +288,7 @@
               </p>
             </a>
           </li>
-          <?php
-            if($_SESSION['pos']=="chat"){
-              echo"<li class='nav-item aktif'>";
-            }else{
-              echo"<li class='nav-item'>";
-            }
-          ?>   
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-comment"></i>
-              <p>
-                Chat
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-          </li>       
+                
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

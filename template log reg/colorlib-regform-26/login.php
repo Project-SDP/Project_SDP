@@ -17,13 +17,13 @@
     {
         $cek = 0;
         $pass = $link->real_escape_string($_POST['pass']);  
-        $pass = substr(md5($pass),0,20); 
+        // $pass = substr(md5($pass),0,20); 
         $email = $link->real_escape_string($_POST['email']);   
         echo $pass;
         foreach ($listUser as $user) {
             $cek++;
             if($user['email']==$email && $user['pass']==$pass){
-                // echo "<script>alert('masuk')</script>";
+                echo "<script>alert('masuk')</script>";
                 $_SESSION['status'] = $user['email'];
                 header('location:../../web%20merchant/index.php');
                 break;

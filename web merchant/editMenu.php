@@ -4,6 +4,7 @@
 <?php
   include("navbar.php");
   session_start();
+  echo "......................................................................".$_SESSION['status'];
   $_SESSION['pos'] = "menuEdit";
   include("sidebar.php");
   require("conn.php");
@@ -43,12 +44,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Menu</h1>
+            <h1>Edit Menu</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Menu</li>
+              <li class="breadcrumb-item"><a href="#">Menu</a></li>
+              <li class="breadcrumb-item active">Edit Menu</li>
             </ol>
           </div>
         </div>
