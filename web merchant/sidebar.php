@@ -192,7 +192,7 @@
               echo"<li class='nav-item'>";
             }
           ?>               
-           <a href="pages/calendar.html" class="nav-link">
+           <a href="pages/pesan.php" class="nav-link">
               <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
                 Pesanan
@@ -265,7 +265,7 @@
               echo"<li class='nav-item'>";
             }
           ?>   
-            <a href="../pages/calendar.html" class="nav-link">
+            <a href="../pages/calendar.php" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Jadwal
