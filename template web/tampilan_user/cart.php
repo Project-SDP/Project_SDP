@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();\
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,41 +107,66 @@ session_start();
     				<div class="cart-total mb-3">
     					<h3>Coupon Code</h3>
     					<p>Enter your coupon code if you have one</p>
-  						<form action="#" class="info">
 	              <div class="form-group">
 	              	<label for="">Coupon code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
+	                <input type="text" id="code_promo" class="form-control text-left px-3" placeholder="">
 	              </div>
-	            </form>
     				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
+    				<p><a onclick="getPromo()" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
     			</div>
     			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
     					<h3>Estimate shipping and tax</h3>
     					<p>Enter your destination to get a shipping estimate</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Country</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
+  						
+	           
 	              <div class="form-group">
 	              	<label for="country">State/Province</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
+					  <?php
+							
+							//Get Data Provinsi
+							$curl = curl_init();
+
+							curl_setopt_array($curl, array(
+							CURLOPT_URL => "http://api.rajaongkir.com/starter/province",
+							CURLOPT_RETURNTRANSFER => true,
+							CURLOPT_ENCODING => "",
+							CURLOPT_MAXREDIRS => 10,
+							CURLOPT_TIMEOUT => 30,
+							CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+							CURLOPT_CUSTOMREQUEST => "GET",
+							CURLOPT_HTTPHEADER => array(
+								"key: c09a27e05e802cf617af2e5e6f85df87"
+							),
+							));
+
+							$response = curl_exec($curl);
+							$err = curl_error($curl);
+
+							echo "Provinsi Tujuan<br>";
+							echo "<select name='provinsi' id='provinsi'>";
+							echo "<option>Pilih Provinsi Tujuan</option>";
+							$data = json_decode($response, true);
+							for ($i=0; $i < count($data['rajaongkir']['results']); $i++) {
+								echo "<option value='".$data['rajaongkir']['results'][$i]['province_id']."'>".$data['rajaongkir']['results'][$i]['province']."</option>";
+							}
+							echo "</select><br><br>";
+							//Get Data Provinsi
+
+						?>
 	              </div>
 	              <div class="form-group">
-	              	<label for="country">Zip/Postal Code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
+	              	<label for="country">City</label>
+					  <select id="kabupaten" name="kabupaten"></select><br><br>
 	              </div>
-	            </form>
     				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
+    				<p><a id="cek" class="btn btn-primary py-3 px-4">Check Harga</a></p>
     			</div>
     			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3" id="tempatHarga">
     					
     				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+    				<p><a onclick="Pay()" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
     			</div>
     		</div>
 			</div>
@@ -244,7 +269,7 @@ session_start();
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -264,7 +289,6 @@ session_start();
 
   <script>
 		$(document).ready(function(){
-
 		var quantitiy=0;
 		   $('.quantity-right-plus').click(function(e){
 		        
@@ -302,21 +326,98 @@ session_start();
   </body>
 </html>
 <script>
-	$.ajax({
-		method: "post",
-		url: "getCart.php",
-		
-		success: function (response) {
-			$("#template").html(response);
-			$.ajax({
-				method: "post",
-				url: "getHarga.php",
-				
-				success: function (response) {
-					$("#tempatHarga").html(response);
+	function Pay(){
+		window.open("../Midtrans/trans/index.php");	
+	}
+	start();
+	function start(){
+		$.ajax({
+			method: "post",
+			url: "getCart.php",
+			
+			success: function (response) {
+				$("#template").html(response);
+				$.ajax({
+					method: "post",
+					url: "getHarga.php",
+					
+					success: function (response) {
+						$("#tempatHarga").html(response);
+					}
+				});
+			}
+		});
+	}
+	function getPromo(){
+		alert($("#code_promo").val());
+		$.ajax({
+			method: "post",
+			url: "promo.php",
+			data: {
+				nama:$("#code_promo").val()
+			},
+			success: function (response) {
+				if(response=="true"){
+					start();
+				}else{
+				alert(response);
 				}
-			});
-		}
+			}
+		});
+	}
+</script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#provinsi').change(function(){
+
+			//Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+			var prov = $('#provinsi').val();
+
+      		$.ajax({
+            	type : 'GET',
+           		url : '../RajaOngkir/cek_kabupaten.php',
+            	data :  'prov_id=' + prov,
+					success: function (data) {
+
+					//jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+					$("#kabupaten").html(data);
+				}
+          	});
+		});
+
+		$("#cek").click(function(){
+			//Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+			var asal = 444;
+			var kab = $('#kabupaten').val();
+			var kurir = "jne";
+			var berat = "500";
+            // console.log(asal);
+            //444-surabaya
+      		$.ajax({
+            	type : 'POST',
+           		url : '../RajaOngkir/cek_ongkir.php',
+            	data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+					success: function (data) {
+
+					//jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                    var json=JSON.parse(data);
+					// $("#ongkir").text();
+					var harga=json.rajaongkir.results["0"].costs["0"].cost["0"].value;
+                    // alert(json.rajaongkir.results.costs["cost"]);
+					$.ajax({
+						method: "post",
+						url: "setOngkir.php",
+						data: {
+							harga:harga
+						},
+						success: function (response) {
+							start();
+						}
+					});
+				}
+          	});
+		});
 	});
-	
 </script>
