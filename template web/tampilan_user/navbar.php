@@ -77,8 +77,8 @@
               </div>
             </li>
 	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="blog.php" id="review" class="nav-link">Review</a></li>
-	        
+	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link">Kupon</a></li>
+			  <li class="nav-item"><a href="review.php" id="review" class="nav-link">Review</a></li>
 			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
 			  	$allMenu=explode('||',$_SESSION['allfood']);
     			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>

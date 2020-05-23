@@ -37,7 +37,7 @@
 	<?php
 		include("navbar.php");
 		if($_SESSION["loggedUser"]==""){
-			header("Location: ../../admin/amel/Tampilanlogin.php");
+		//	header("location : ../../admin/amel/Tampilanlogin.php");
 		}
 		?>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">

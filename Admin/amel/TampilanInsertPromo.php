@@ -198,6 +198,10 @@
                     <label for="exampleInputEmail1">Potongan</label>
                     <input type="text" onkeypress="NumberOnly(event)" class="form-control"  placeholder="Masukkan potongan" id="potongan">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Gambar</label>
+                    <input type="text" onkeypress="NumberOnly(event)" class="form-control"  placeholder="Masukkan gambar" id="gambar">
+                  </div>
                   <div class="card-footer">
                   <input type="button" class="btn btn-info" name="insert" onclick="insert()" value="Insert">
                   <!-- <submit class="btn btn-info" name="reg">Daftar</submit> -->

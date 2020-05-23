@@ -54,12 +54,14 @@
         <div class="form-holder">
                 <span class="lnr lnr-eye" onmousedown="showpassword('idPassLog')" onmouseup="hidepassword('idPassLog')"></span>
                 <input type="password" id="inpPass" class="form-control"  placeholder="Password" name="inpNoHp">
+                <a href="User/Login/forget.php" tyle="text-align: center">Lupa Password ?</a>
         </div>
 
         <button class="btnLogin btn" type="submit" onclick="ceklogin()">Login</button>
 
         <button class="" type="submit" onclick="toRegister()">Register</button>
         <h4 style="text-align: center">Belum punya Akun???</h4>
+        
         <span class="ceklogpass"></span>
 
         <script>

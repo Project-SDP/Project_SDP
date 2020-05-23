@@ -1,7 +1,7 @@
 <?php
     include("connect.php");
     session_start();
-if($_SESSION['allfood']==""){
+if($_SESSION['allfood']!=""){
 
     $menu_now=$_POST["id"];
     $menu_check=explode('||',$_SESSION['allfood']);

@@ -32,7 +32,7 @@
             $(document).ready(function(){
                 let temp = $("#tempHalaman").val();
 
-                // if(temp=='register'){
+                if(temp=='register'){
                     $.ajax({
                         method: "post",
                         url: "registerHTML.php",
