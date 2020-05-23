@@ -3,8 +3,8 @@
     require_once("../../connect.php");
     session_start();
     $_SESSION['loggedUser']='';
-    $pass = $_POST['inp'];
-    $user = $_POST['pass'];
+    $pass = $_POST['pass'];
+    $user = $_POST['inp'];
     $idTemp = '';
     $As = $_POST['As'];
 
@@ -29,13 +29,14 @@
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok
+                echo "2";
             }else {
                  echo "Login Gagal";
             }
 
     }else{
         $res = mysqli_query($conn , "SELECT * from user");
-        while ($baris = mysqli_fetch_assoc($res)){
+        foreach ($res as $key => $baris) {
             if($baris["email"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['id_akun'];
             }
@@ -53,6 +54,7 @@
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok
+                echo "1";
             }else {
                  echo "Login Gagal";
             }

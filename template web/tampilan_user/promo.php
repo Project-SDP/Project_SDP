@@ -8,6 +8,7 @@
     $date_promo=$query["tanggal_akhir"];
     if($date_now<=$date_promo){
         $_SESSION["promo"]=$query["potongan"];
+        $_SESSION["nama_promo"]=$getNama;
         $promo="Rp " . number_format($query["potongan"],2,',','.');
         $_SESSION["tpromo"]=$promo;
         echo"true";

@@ -432,7 +432,7 @@ function toCart(id){
 			qty:qty
 		},
 		success: function (response) {
-			alert("berhasil menambah ke dalam cart");
+			alert(response);
 		}
 	});
 }

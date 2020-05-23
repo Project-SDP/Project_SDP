@@ -112,103 +112,21 @@ if(isset($_GET["kategori"])){
     					<li><a id="Tumpeng"href="kategori.php?kategori=Tumpeng">Tumpeng</a></li>
     					<li><a id="Prasmanan"href="kategori.php?kategori=Prasmanan">Prasmanan</a></li>
     				</ul>
+					
     			</div>
     		</div>
-    		<div class="row">
-				<?php
-					require_once("connect.php");
-					if($kategori=="semua"){
-						$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id");
-					}else{
-						$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id where me.kategori='$kategori'");
-					}
-					$ctr=0;
-					foreach ($query as $key => $value) {
-						$ctr++;
-						$harga="Rp " . number_format($value["harga_menu"],2,',','.');
-						$query_merchant=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from merchant where id='$value[id_merchant]'"));
-						$halal="";
-						if($query_merchant["Halal"]==1){
-							$halal="../../gambar/image/haram.png";
-						}
-						echo"<div class='col-md-6 col-lg-3 ftco-animate'>
-						";echo"	<div class='product'>
-						";echo"		<a href='product-single.php?id=$value[id_menu]' class='img-prod'><img style='background-size: cover;width:255px;height:180px'class='img-fluid' src='../../gambar/image/$value[gambar_menu]' alt='Colorlib Template'>
-						";echo"			
-						";echo"			<div class='overlay'></div>
-						";echo"		</a>
-						";echo"		<div class='text py-3 pb-4 px-3 text-center'>  
-						";echo"			<h3><a href='#'>$value[nama_menu]</a><img style='background-size:cover;width:20px;height:20px' src='$halal' onerror='this.onerror=null; this.src='Default.jpg'' alt=''></h3>
-						";echo"			<div class='d-flex'>
-						";echo"				<div class='pricing'>
-						";echo"					<p class='price'><span class='price-sale'>$harga</span></p>
-						";echo"				</div>
-						";echo"			</div>
-						";echo"			<div class='bottom-area d-flex px-3'>
-						";echo"				<div class='m-auto d-flex'>
-						";echo"					<a href='product-single.php?id=$value[id_menu]' class='add-to-cart d-flex justify-content-center align-items-center text-center'>
-						";echo"						<span><i class='ion-ios-menu'></i></span>
-						";echo"					</a>
-						";echo"					<a onclick='toCart(\"$value[id_menu]\")'class='buy-now d-flex justify-content-center align-items-center mx-1'>
-						";echo"						<span><i class='ion-ios-cart'></i></span>
-						";echo"					</a>
-						";echo"				</div>
-						";echo"			</div>
-						";echo"		</div>
-						";echo"	</div>
-						";echo"</div>";
-					}
-				?>
-    			<!-- <div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-    						<span class="status">30%</span>
-    						<div class="overlay"></div>
-    					</a> buat diskon
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Bell Pepper</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
-		    					</div>
-	    					</div>
-	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-				</div> -->
+			<div class="col-md-10 d-flex align-items-center" style="margin-left:30%">
+				<div class="form-group d-flex">
+					<input type="text"  id="search" class="form-control" placeholder="Cari Menu atau Restaurant">
+					<input type="button" onclick="search_menu()"  value="Search" class="submit px-3">
+					
+				</div>
+			</div>	
+    		<div class="row" id="tempat_menu">
+				
 
-                </div>
-    		<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-				<?php
-				$ctr=$ctr/10;
-
-				$ctr--;
-				for ($i=0; $i < $ctr; $i++) { 
-					$angka=$i+2;
-					echo"<li><a href='#'>$angka</a></li>";
-				}
-				?>
-              </ul>
-            </div>
-          </div>
-        </div>
+			</div>
+    		
     	</div>
     </section>
 
@@ -344,6 +262,27 @@ if(isset($_GET["kategori"])){
 			},
 			success: function (response) {
 				alert("berhasil menambah ke dalam cart");
+			}
+		});
+	}
+	search_menu();
+	function search_menu(){
+		var kategori="<?=$kategori?>";
+		var search=$("#search").val();
+
+		if(search=="")
+		{
+			search="semua";
+		}
+		$.ajax({
+			method: "post",
+			url: "getMenu.php",
+			data:{
+				search:search,
+				kategori:kategori
+			},
+			success: function (response) {
+				$("#tempat_menu").html(response);
 			}
 		});
 	}

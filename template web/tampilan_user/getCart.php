@@ -4,6 +4,7 @@
     $allMenu=explode('||',$_SESSION['allfood']);
     $hasilTotal=0;
     $ctr=0;
+
     foreach ($allMenu as $key => $value) {
         if($ctr<count($allMenu)-1){
             $query="SELECT * from menu where id_menu='$value'";
@@ -16,7 +17,7 @@
                 $total=$value2['harga_menu'];
                 $total="Rp " . number_format($total,2,',','.');
             echo"  <tr class='text-center'>
-            ";echo"  <td class='product-remove'><a href='#'><span class='ion-ios-close'></span></a></td>
+            ";echo"  <td class='product-remove'  onclick='ubahQTY(\"$value\",\"$qty\",3)'><a ><span class='ion-ios-close'></span></a></td>
             ";echo"  
             ";echo"  <td class='image-prod'><div class='img' style='background-image:url(../../gambar/image/$value2[gambar_menu].jpg);'></div></td>
             ";echo"  
@@ -27,11 +28,13 @@
             ";echo"  
             ";echo"  <td class='price'>$total</td>
             ";echo"  
+            ";echo"  <td class='product-remove'  onclick='ubahQTY(\"$value\",\"$qty\",1)'><a ><span>-</span></a></td>
             ";echo"  <td class='quantity'>
             ";echo"      <div class='input-group mb-3'>
             ";echo"       <input type='text' name='quantity' class='quantity form-control input-number' value='$qty' min='1' max='100'>
             ";echo"    </div>
             ";echo"</td>
+            ";echo"  <td class='product-remove' onclick='ubahQTY(\"$value\",\"$qty\",2)'><a ><span >+</span></a></td>
             ";echo"  
             ";echo"  <td class='total'>$grandtotal</td>
             ";echo"</tr>
@@ -44,7 +47,24 @@
     $_SESSION["ftotal"]=$fhasilTotal;
 
     $hasilTotal=$hasilTotal-$_SESSION["promo"];
-    $_SESSION["grandtotal"]=$hasilTotal;
+    $_SESSION["grandtotal"]=$hasilTotal+$_SESSION["ongkir"];
     $fhasilTotal="Rp " . number_format($hasilTotal+$_SESSION["ongkir"],2,',','.');
     $_SESSION["fgrandtotal"]=$fhasilTotal;
 ?>
+
+<script>
+    function ubahQTY(id,jumlah,type){
+        $.ajax({
+            method: "post",
+            url: "ubahqty.php",
+            data: {
+                id:id,
+                jumlah:jumlah,
+                type:type                
+            },
+            success: function (response) {
+                start();
+            }
+        });
+    }
+</script>

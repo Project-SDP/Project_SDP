@@ -22,4 +22,8 @@
     ";echo"		<span>$_SESSION[fgrandtotal]</span>
     ";echo" </p>
     ";	
+     echo"	<p class='d-flex total-price'>
+    ";echo"		<textarea name='' id='id_pesan' cols='30' reows='10' placeholder='pesan'></textarea>
+    ";echo" </p>
+    ";	
 ?>

@@ -11,6 +11,8 @@
 		$_SESSION["grandtotal"]=0;
 		$_SESSION["menu"]= array();
 		$_SESSION["ongkir"]=0;
+		$_SESSION["loggedUser"]="";
+		
 	}
 ?>
 <style>
@@ -26,6 +28,9 @@
 		padding: 10px;
 		margin-right:10px;
 		line-height: 1;
+	}
+	.biru{
+		color:blue;
 	}
   </style>
 <div class="py-1" style="background:#99ccff;">
@@ -59,7 +64,7 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="index.php" id="home" class="nav-link">Home</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -71,10 +76,10 @@
                 <a class="dropdown-item" href="../Midtrans/trans/index.php" target="_blank">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.php" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="blog.php" class="nav-link">Review</a></li>
+	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link">Restaurant</a></li>
+	          <li class="nav-item"><a href="blog.php" id="review" class="nav-link">Review</a></li>
 	        
-			  <li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
+			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
 			  	$allMenu=explode('||',$_SESSION['allfood']);
     			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>
 

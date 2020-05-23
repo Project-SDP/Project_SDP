@@ -65,7 +65,7 @@
             });
 
             function toHome(){
-                window.location="../../template%20web/tampilan_user/mainpage.php";
+                window.location="../../template%20web/tampilan_user/index.php";
             }
             function toMerchant(){
 

@@ -136,12 +136,13 @@
 							<div class="col-md-6">
 								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/nasikotak.jpg);">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Nasi Kotak</a></h2>
+                  
+										<h2 class="mb-0"><a href="kategori.php?kategori=NasiKotak">Nasi Kotak</a></h2>
 									</div>
 								</div>
 								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/snack.jpg);">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Snack Box</a></h2>
+										<h2 class="mb-0"><a href="kategori.php?kategori=SnacksBox">Snack Box</a></h2>
 									</div>
 								</div>
 							</div>
@@ -151,12 +152,12 @@
 					<div class="col-md-4">
 						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/prasmanan.jpg);">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Prasmanan</a></h2>
+								<h2 class="mb-0"><a href="kategori.php?kategori=Prasmanan">Prasmanan</a></h2>
 							</div>		
 						</div>
 						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/tumpeng.jpg);">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Tumpeng</a></h2>
+								<h2 class="mb-0"><a href="kategori.php?kategori=Tumpeng">Tumpeng</a></h2>
 							</div>
 						</div>
 					</div>
@@ -516,3 +517,6 @@ s0.parentNode.insertBefore(s1,s0);
     
   </body>
 </html>
+<script>
+  $("#home").css("color","blue");
+</script>

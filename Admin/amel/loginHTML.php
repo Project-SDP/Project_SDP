@@ -87,9 +87,10 @@
             },
             success: function (data) {
                 if(data=='Login Gagal'){
-                        alert(data);;
+                        alert(data);
                 }else{
-                        if(As=='Merchant'){
+                        alert(data);
+                        if(data=='2'){
                                 alert("hi Merchant");
                         }else{
                                 toHome(); //home e User
