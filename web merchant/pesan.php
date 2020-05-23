@@ -4,7 +4,7 @@
 <?php
   include("navbar.php");
   session_start();
-  echo "......................................................................".$_SESSION['status'];
+//   echo "......................................................................".$_SESSION['status'];
   $_SESSION['pos'] = "menuEdit";
   include("sidebar.php");
   require("conn.php");
@@ -20,7 +20,7 @@
 ?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Pesanan</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,13 +44,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Menu</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Menu</a></li>
-              <li class="breadcrumb-item active">Edit Menu</li>
-            </ol>
+            <h1>Pesanan Masuk</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -69,12 +63,14 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Foto</th>
-                  <th>ID</th>
-                  <th>Nama</th>
-                  <th>Harga</th>
-                  <th>Kategori</th>
-                  <th>Action</th>
+                  <th>ID Transaksi</th>
+                  <th>Nama Customer</th>
+                  <th>Tgl Waktu Transaksi</th>
+                  <th>Subtotal</th>
+                  <th>Status</th>
+                  <th>Ongkir</th>
+                  <th>Pesan</th>
+                  <th>Tgl Waktu Kirim</th>
                 </tr>
                 </thead>
                 <tbody id ='menu'>
@@ -87,20 +83,7 @@
           <form>
           <input type="hidden" id="idMerch" value="<?=$merchant?>">
           </form>
-          <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Edit Menu</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-                <div class="card-body" id="ubah">
-                 
-                </div>
-                <!-- /.card-body -->
-
-                
-            </div>
-            <!-- /.card -->
+          
 
         </div>
         </div>
@@ -143,12 +126,12 @@
 <!-- page script -->
 <script>
   var idMerch = "<?=$merchant?>";
-  // alert(idMerch);
-  pangillMenu(idMerch);
-function pangillMenu(idMerch){
+//   alert(idMerch);
+  pangillPesan(idMerch);
+function pangillPesan(idMerch){
   $.ajax({
    method: "post",
-   url: "ambilMenu.php",
+   url: "ambilPesan.php",
    data: {
       idMerch:idMerch
     },

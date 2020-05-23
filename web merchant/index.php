@@ -28,12 +28,36 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-  <?php
-    session_start();
-    $_SESSION['pos'] = "beranda";
-    include("navbar.php");
-    include("sidebar.php");
-  ?>
+<?php
+  session_start();
+  $_SESSION['pos'] = "beranda";
+  include("navbar.php");
+  include("sidebar.php");
+  $listUser=mysqli_query($link,"SELECT * FROM merchant");
+  $jumlah = 0; 
+  // echo "..........................................................................".$_SESSION['status'];
+  foreach($users as $user){
+    $jumlah++;
+    if($_SESSION['status']==$user['email']){
+      $id = $user['id'];
+      $nama = $user['nama'];
+      $kategori = $user['kategori'];
+      $rating = $user['rating'];
+      $alamat = $user['alamat'];
+      $notelp = $user['notelp'];
+      $pass = $user['pass'];
+      $email = $user['email'];
+      $prov = $user['provinsi'];
+      $kota = $user['kota'];
+      $halal = $user['Halal'];
+      $profpic = $user['profilepic'];
+      $ktp = $user['fotoktp'];
+    }
+  }
+  if($ktp==null){
+    echo "...............................................................  Profil KTP anda belum lengkap! <a href='pages/forms/profile.php'>Lengkapi Sekarang</a>";
+  }
+?>
 <div class="wrapper">
 
  

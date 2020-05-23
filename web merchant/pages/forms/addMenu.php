@@ -30,15 +30,17 @@
     $harga = $_POST['harga'];
     $kategori = $_POST['kategori'];
     $status = $_POST['my-checkbox'];
+    $desk = $_POST['deskripsi'];
     $listmenu = mysqli_query($link,"select * from menu");
-      $ctr = 0;
+    $ctr = 0;
     foreach($listmenu as $menu){
       $ctr++;
     }
-    // echo $ctr;
+    // echo ".....................................................".$ctr;
     $jumlah= sprintf("%03d", $ctr+1);
     $kat = substr($kategori,-2,2);
-    $id = "ME".$kat.$jumlah;
+    // $id = "ME".$kat.$jumlah;
+    $id = $jumlah;
     // echo $id;
     if($nama!=""&& $harga!=""){ 
       $ctr2 = 0;
@@ -52,15 +54,15 @@
         }
         if($ctr2==$ctr){
           $cover = time() . "_" . $_FILES['gambar']['name'];
-          $target = 'cover' . $cover;
+          $target = "../../../gambar/Image/".$cover;
           if(move_uploaded_file($_FILES['gambar']['tmp_name'], $target)){
-            mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,foto) VALUES('$id','$nama','$harga','$status','$kategori','$merchant','$cover')");
+            mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,deskripsi_menu,gambar_menu) VALUES($id,'$nama','$harga','$status','$kategori','$merchant','$desk','$cover')");
           }
         }
       }else{
         $cover = time() . "_" . $_FILES['gambar']['name'];
         $target = 'cover' . $cover;
-        mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,foto) VALUES('$id','$nama','$harga','$status','$kategori','$merchant','$cover')");
+        mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,deskripsi_menu,gambar_menu) VALUES($id,'$nama','$harga','$status','$kategori','$merchant','$desk','$cover')");
       }
     }
     else{
@@ -88,8 +90,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Advanced Form</li>
+              <li class="breadcrumb-item"><a href="#">Menu</a></li>
+              <li class="breadcrumb-item active">Tambah Menu</li>
             </ol>
           </div>
         </div>
@@ -131,6 +133,10 @@
                         <label for="exampleInputEmail1">Harga Menu</label><br>
                         <input type="text" class="form-control"  placeholder="Rp." name="harga">
                       </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Deskripsi Menu</label><br>
+                        <textarea class="form-control" rows="3" placeholder="Masukkan deskripsi menu" name="deskripsi"></textarea>
+                      </div>
                   <div class="form-group">
                     <label>Kategori</label>
                     <select class="form-control select2" style="width: 100%;" name="kategori" > 
@@ -158,7 +164,7 @@
                   
                     <div class="card-footer">
                     <input type="submit" class="btn btn-info" name="add" value="Tambah">
-                  </form>
+                </form>
                 </div>
                   <!-- /.input group -->
                 </div>

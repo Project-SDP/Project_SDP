@@ -1,13 +1,15 @@
 <?php
     include("conn.php");
     $query="SELECT * from menu";
-    $idMerch = $_POST['idMerch'];
+    if(isset($_POST['idMerch'])){
+        $idMerch = $_POST['idMerch'];
+    }
     $arr_query=mysqli_query($link,$query);
     foreach ($arr_query as $key => $value) {
         if($value['id_merchant']==$idMerch){
             if($value["status_menu"]=="1"){
                 echo"<tr onclick='editMenu(\"$value[id_menu]\")'>";
-                echo"<td><img id='image' src='pages/forms/cover$value[foto]' class='img-thumbnail' style='width:100px; height:100px;'></td>";
+                echo"<td><img id='image' src='../gambar/Image/$value[gambar_menu]' class='img-thumbnail' style='width:100px; height:100px;'></td>";
                 echo"<td>$value[id_menu]</td>";
                 echo"<td>$value[nama_menu]</td>";
                 $harga = strval(number_format($value['harga_menu']));
@@ -19,7 +21,7 @@
                 echo "</td>";
             }else{
                 echo"<tr onclick='editMenu(\"$value[id_menu]\")' style='background:silver;'>";
-                echo"<td><img id='image' src='pages/forms/cover$value[foto]' class='img-thumbnail' style='width:100px; height:100px;'></td>";
+                echo"<td><img id='image' src='../gambar/Image/$value[gambar_menu]' class='img-thumbnail' style='width:100px; height:100px;'></td>";
                 echo"<td>$value[id_menu]</td>";
                 echo"<td>$value[nama_menu]</td>";
                 $harga = strval(number_format($value['harga_menu']));
