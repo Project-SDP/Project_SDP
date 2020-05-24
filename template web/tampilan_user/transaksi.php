@@ -38,4 +38,13 @@
         $query_insert="INSERT into dtransaksi values ('$id','$id_menu',$qty,$harga)";
         mysqli_query($conn,$query_insert);
     }
+        $_SESSION["allfood"]="";
+		$_SESSION["tpromo"]="Rp 0,00";
+		$_SESSION["promo"]=0;
+		$_SESSION["ftotal"]="Rp 0,00";
+		$_SESSION["fgrandtotal"]="Rp 0,00";
+		$_SESSION["total"]=0;
+		$_SESSION["grandtotal"]=0;
+		$_SESSION["menu"]= array();
+		$_SESSION["ongkir"]=0;
 ?>

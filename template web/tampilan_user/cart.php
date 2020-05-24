@@ -335,6 +335,7 @@
 	function Pay(){
 		transaksi();
 		window.open("../Midtrans/trans/index.php");	
+		window.location.href="cart.php";
 	}
 	start();
 	function start(){
@@ -372,7 +373,6 @@
 				kota:kab
 				
 			},
-			
 			success: function (response) {
 				
 			}

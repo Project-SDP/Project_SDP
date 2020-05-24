@@ -100,13 +100,6 @@
 			";echo"				<div class='col-md-6'>
 			";echo"					<div class='form-group d-flex'>
 		      ";echo"        <div class='select-wrap'>
-	          ";echo"        <div class='icon'><span class='ion-ios-arrow-down'></span></div>
-	          ";echo"        <select name='' id='' class='form-control'>
-	          ";echo"        	<option value=''>Small</option>
-	          ";echo"          <option value=''>Medium</option>
-	          ";echo"          <option value=''>Large</option>
-	          ";echo"          <option value=''>Extra Large</option>
-	          ";echo"        </select>
 	          ";echo"      </div>
 		      ";echo"      </div>
 			";echo"				</div>
