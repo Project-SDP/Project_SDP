@@ -78,8 +78,8 @@
   <title>AdminLTE 3 | General Form Elements</title>
   <!-- Tell the browser to be responsive to screen width -->
 <?php
-  include("navbar.php");
-  include("sidebar.php");
+  include("../../navbar.php");
+  include("../../sidebar.php");
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -89,7 +89,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah User</h1>
+            <h1>Tambah Merchant</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

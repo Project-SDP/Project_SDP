@@ -4,12 +4,8 @@
     $pp="placeholder.jpg";
     
     if(isset($_SESSION['status'])){
-        $nama = $_SESSION['status'];
-        // echo "....................................................................".$nama;
-    }else{
-        $_SESSION['status'] = -1;  
+      $nama = $_SESSION['status'];
     }
-    
     $users =mysqli_query($link,"select * from merchant");
     foreach($users as $user){
       if ($nama == $user['email']){
@@ -94,41 +90,32 @@
     <a href="index3.html" class="brand-link" style="background:#c41a7d; border-bottom:none; margin-top:20px;">
       <span class="brand-text judul" style="padding-left:5px;">Bibik's Catering</span>
       <div class="image" style="padding-left:70px;">
-        <?php
-          if($_SESSION['pos']=="beranda"||$_SESSION['pos']=="menuEdit"){
-            echo "<img src='pages/forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
-          }
-          else if($_SESSION['pos']=="web"){
-            echo "<img src='forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
-          }
-          else if($_SESSION['pos']=="promo"||$_SESSION['pos']=="jadwal"){
-            echo "<img src='../pages/forms/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
-          }
-          else{
-            echo "<img src='logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
-          }
-        ?>
+      <?php
+       if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){  
+        echo"<img src='../../image/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";    
+       }else if($_SESSION['pos']=="editMenu"){
+          echo"<img src='image/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
+       }else{
+          echo"<img src='../image/logo.png' class='img-circle elevation-2' style='width:80px; height:80px;'>";
+       }
+      ?>
         </div>
     </a>
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex cc_cursor" style="padding:0 30px; border-bottom:none; background:silver;">
-      <div class="image" style="padding-top:25px;">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex cc_cursor" style="padding:0 8px; border-bottom:none; background:silver;">
+      <div class="image" style="padding-top:25px; ">
           <?php
-              if($_SESSION['pos']=="beranda"||$_SESSION['pos']=="menuEdit"){
-                echo "<img src='pages/forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
-              }else if($_SESSION['pos']=="web"){
-                echo "<img src='forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
-              }
-              else if($_SESSION['pos']=="promo"||$_SESSION['pos']=="jadwal"){
-                echo "<img src='../pages/forms/images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
-              }
-              else{
-                echo "<img src='images".$pp."' class='img-circle elevation-2' style='width:50px; height:50px;'>";
-              }
-            ?>
+            if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){             
+              echo "<img src='images".$pp."' class='img-circle elevation-2' style='width:45px;height:45px;'>";
+            }else if($_SESSION['pos']=="editMenu"){
+              echo "<img src='pages/forms/images".$pp."' class='img-circle elevation-2' style='width:45px;height:45px;'>";
+            }else{
+              echo "<img src='../pages/forms/images".$pp."' class='img-circle elevation-2' style='width:45px;height:45px;'>";
+            }
+          ?>
           </div>
         <div class="info cc_cursor" style="padding-top:25px;">
-         Selamat datang,
-          <a href="#" class="d-block" style="color:black; font-weight:bold" ><?=$nama?></a>
+          Selamat datang,
+          <a href="#" class="d-block" style="color:black; font-weight:bold"><?=$nama?></a>
         </div>
        
       </div>
@@ -144,13 +131,18 @@
               echo"<li class='nav-item'>";
 
             }
-
+            if($_SESSION['pos']=="profil"||$_SESSION['pos']=="menu"){
+              echo"<a href='../../home/index.php' class='nav-link'>";
+            }else if($_SESSION['pos']=="editMenu"){
+              echo"<a href='home/index.php' class='nav-link'>";
+            }else{
+              echo"<a href='../home/index.php' class='nav-link'>";
+            }
         ?>
-            <a href="../../index.php" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
+              <i class="nav-icon fas fa-home fa-2x fa-2x"></i>
               <p>
                 Beranda
-                <span class="badge badge-info right"></span>
+                <span class="badge badge-info right "></span>
               </p>
             </a>
           </li>
@@ -159,11 +151,16 @@
               echo"<li class='nav-item aktif'>";
             }else{
               echo"<li class='nav-item'>";
-
+            }
+            if($_SESSION['pos']=="menu"){
+              echo"<a href='profile.php' class='nav-link'>";
+            }else if($_SESSION['pos']=="editMenu"){
+              echo"<a href='pages/forms/profile.php' class='nav-link'>";
+            }else{
+              echo"<a href='../pages/forms/profile.php' class='nav-link'>";
             }
           ?>       
-            <a href="pages/forms/profile.php" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-user fa-2x"></i>
               <p>
                 Profil
                 <span class="badge badge-info right"></span>
@@ -176,9 +173,16 @@
             }else{
               echo"<li class='nav-item'>";
             }
+
+            if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
+              echo"<a href='../../web/website.php' class='nav-link'>";
+            }else if($_SESSION['pos']=="editMenu"){
+              echo"<a href='web/website.php' class='nav-link'>";
+            }else{
+              echo"<a href='../web/website.php' class='nav-link'>";
+            }
           ?>    
-            <a href="../website.php" class="nav-link">
-              <i class="nav-icon fas fa-globe"></i>
+              <i class="nav-icon fas fa-globe fa-2x"></i>
               <p>
                 Website
                 <span class="badge badge-info right"></span>
@@ -186,14 +190,21 @@
             </a>
           </li>
           <?php
-            if($_SESSION['pos']=="pesanan"){
+            if($_SESSION['pos']=="pesan"){
               echo"<li class='nav-item aktif'>";
             }else{
               echo"<li class='nav-item'>";
             }
+            if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
+              echo"<a href='../../pesanan/pesan.php' class='nav-link'>";
+            }else if($_SESSION['pos']=="editMenu"){
+              echo"<a href='pesanan/pesan.php' class='nav-link'>";
+            }else{
+              echo"<a href='../pesanan/pesan.php' class='nav-link'>";
+            }
           ?>               
-           <a href="pages/pesan.php" class="nav-link">
-              <i class="nav-icon fas fa-shopping-bag"></i>
+           
+              <i class="nav-icon fas fa-shopping-bag fa-2x"></i>
               <p>
                 Pesanan
                 <span class="badge badge-info right"></span>
@@ -201,14 +212,14 @@
             </a>
           </li>
           <?php
-            if($_SESSION['pos']=="menu"){
+            if($_SESSION['pos']=="menu"||$_SESSION['pos']=="editMenu"){
               echo"<li class='nav-item has-treeview aktif'>";
             }else{
               echo"<li class='nav-item has-treeview'>";
             }
           ?>    
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-book fa-2x"></i>
               <p>
                 Menu
                 <i class="fas fa-angle-left right"></i>
@@ -216,13 +227,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="forms/addMenu.php" class="nav-link">
+              <?php
+                if($_SESSION['pos']!="editMenu"){
+                  echo"<a href='../pages/forms/addMenu.php' class='nav-link'>";
+                }else{
+                  echo"<a href='pages/forms/addMenu.php' class='nav-link'>";
+                }
+              ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../editMenu.php" class="nav-link">
+              <?php
+                if($_SESSION['pos']=="menu"){
+                  echo"<a href='../../editMenu.php' class='nav-link'>";
+                }else{
+                  echo"<a href='../editMenu.php' class='nav-link'>";
+                }
+              ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lihat</p>
                 </a>
@@ -237,28 +260,46 @@
             }
           ?>    
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tag"></i>
+              <i class="nav-icon fas fa-tag fa-2x"></i>
               <p>
                 Promosi
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-left right "></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="amel/TampilanInsertPromo.php" class="nav-link">
+              <?php
+              if($_SESSION['pos']=="editMenu"){
+                echo"<a href='amel/TampilanInsertPromo.php' class='nav-link'>";
+              }else if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
+                echo"<a href='../../amel/TampilanInsertPromo.php' class='nav-link'>";
+              }else{
+                echo"<a href='../amel/TampilanInsertPromo.php' class='nav-link'>";
+              }
+                ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="TampilanDeletePromo.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+              <?php
+              if($_SESSION['pos']=="editMenu"){
+                echo"<a href='amel/TampilanDeletePromo.php' class='nav-link'>";
+              }else if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
+                echo"<a href='../../amel/TampilanDeletePromo.php' class='nav-link'>";
+              }else if($_SESSION['pos']=="promo"){
+                echo"<a href='TampilanDeletePromo.php' class='nav-link'>";
+              }else{
+                echo"<a href='../amel/TampilanDeletePromo.php' class='nav-link'>";
+              }        
+              ?>
+              <i class="far fa-circle nav-icon"></i>
                   <p>Lihat</p>
                 </a>
               </li>
             </ul>
           </li>
-          <?php
+          <!-- <?php
             if($_SESSION['pos']=="jadwal"){
               echo"<li class='nav-item aktif'>";
             }else{
@@ -272,9 +313,9 @@
                 <span class="badge badge-info right"></span>
               </p>
             </a>
-          </li>
+          </li> -->
 
-          <?php
+          <!-- <?php
             if($_SESSION['pos']=="gallery"){
               echo"<li class='nav-item aktif'>";
             }else{
@@ -287,7 +328,7 @@
                 Galeri
               </p>
             </a>
-          </li>
+          </li> -->
                 
         </ul>
       </nav>

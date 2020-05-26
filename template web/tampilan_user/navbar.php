@@ -1,6 +1,17 @@
 <?php
 	session_start();
 	// session_destroy();
+	$nama = "";
+    if(isset($_SESSION['loggedUser'])){
+        $nama = $_SESSION['loggedUser'];
+    }else{
+        header("location:../../Admin/amel/TampilanLogin.php"); 
+    }
+    // echo $_SESSION['loggedUser'];
+    if(isset($_POST['logout'])){
+        $_SESSION['loggedUser'] = -1;  
+        header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
+    }
 	if(!isset($_SESSION["allfood"])){
 		$_SESSION["allfood"]="";
 		$_SESSION["tpromo"]="Rp 0,00";
@@ -27,8 +38,12 @@
 		margin-right:10px;
 		line-height: 1;
 	}
+	.active{
+		color:#c41a7d;
+		font-weight:bold;
+	}
   </style>
-<div class="py-1" style="background:#99ccff;">
+<div class="py-1" style="background:#c41a7d;">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
 	    		<div class="col-lg-12 d-block">
@@ -59,7 +74,7 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="index.php" class="nav-link"><div class="active">Home</div></a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -81,12 +96,26 @@
 	        </ul>
 	      </div>
 		</div>
-		<div class="btn" style="margin-right:100px;">
-		
-			<a href="../../Admin/amel/TampilanRegister.php"><div class="button_right_02 new2019-05-16">Daftar</div></a>
-			<a href="../../Admin/amel/TampilanLogin.php"><div class="button_right_02 new2019-05-16">Masuk</div></a>
-		</div>
+		<?php
+			if($nama==-1){
+				echo"<div class='btn' style='margin-right:100px;'>";
+				echo"<a href='../../Admin/amel/TampilanRegister.php'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
+				echo"<a href='../../Admin/amel/TampilanLogin.php'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
+				echo"</div>";
+			}else{
+			?>
+				<div class="panel-group" style="left:1360px; position:absolute;">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse1" class="icon-menu" style="color:#c41a7d;"></a>
+							<a data-toggle="collapse" href="#collapse1" style="font-size:20px; color:#c41a7d;">Hai ,<?php echo $nama; ?></a>
+						</h4>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse">
+						<a href="../../Admin/amel/TampilanLogin.php"><div style="color:#c41a7d;">Keluar</div></a>
+					</div>
+				</div>
+				</div>
+		<?php } ?>
 	  </nav>
-    <!-- END nav -->
-	<script>
-	</script>

@@ -89,8 +89,8 @@
                 if(data=='Login Gagal'){
                         alert(data);;
                 }else{
-                        if(As=='Merchant'){
-                                alert("hi Merchant");
+                        if(logAs=='Merchant'){
+                                toMerchant();
                         }else{
                                 toHome(); //home e User
                         }

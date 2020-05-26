@@ -1,5 +1,6 @@
 <?php
     require_once("../connect.php");
+    $_SESSION['pos'] = "promo";
     $id = $_POST["id"];
     $query="SELECT * from promo where id_promo='$id'";
     $query=mysqli_query($conn,$query);

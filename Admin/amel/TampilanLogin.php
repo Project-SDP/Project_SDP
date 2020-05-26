@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    session_destroy();
     require("connect.php");
     $query="SELECT * from user";
     $arr=mysqli_query($conn,$query);
@@ -65,11 +67,10 @@
             });
 
             function toHome(){
-                window.location="../../template%20web/tampilan_user/mainpage.php";
+                window.location="../../template%20web/tampilan_user/index.php";
             }
             function toMerchant(){
-
-                window.location="../../template%20log%20reg/colorlib-regform-26/index.php";
+                window.location="../../web%20merchant/home/index.php";
             }
         </script>
 

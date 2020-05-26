@@ -4,8 +4,8 @@
 <?php
   include("navbar.php");
   session_start();
-  echo "......................................................................".$_SESSION['status'];
-  $_SESSION['pos'] = "menuEdit";
+  // echo "......................................................................".$_SESSION['status'];
+  $_SESSION['pos'] = "editMenu";
   include("sidebar.php");
   require("conn.php");
   $listUser=mysqli_query($link,"SELECT * FROM merchant");
@@ -110,14 +110,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -154,6 +146,7 @@ function pangillMenu(idMerch){
     },
    success: function (response) {
      $("#menu").html(response);
+    //  alert("mashok")
    }
  });
  }

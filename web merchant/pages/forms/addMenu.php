@@ -1,12 +1,13 @@
 <style>
   #image{
-    width:500px;;
-    height:210px;
-    margin: 10px auto;
+    width:300px;
+    height:300px;
+    margin:10px auto;
   }
 </style>
 <?php
-  require("conn.php");
+session_start();
+  require("../../conn.php");
   $listUser=mysqli_query($link,"SELECT * FROM merchant");
   $jumlah = 0; $merchant="";
   foreach($listUser as $user){
@@ -103,7 +104,7 @@
       <div class="container-fluid">
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
 
             <div class="card card-danger">
               <div class="card-header">
@@ -117,7 +118,7 @@
                         <label for="exampleInput" style="margin-top:10px; margin-left:0px;">Gambar Menu</label>
                         <div class="col-md-4">
                           <?php
-                            echo"<img id='image' src='placeholder.jpg' class='img-thumbnail'>";
+                            echo"<img id='image' src='../../image/placeholder.jpg' class='img-thumbnail'>";
                           ?>
                         </div>
                         <input type="button" class="btn btn-default" value="Pilih Gambar" onclick="document.getElementById('gambar').click();" style="margin-top:10px; margin-left:0px;">

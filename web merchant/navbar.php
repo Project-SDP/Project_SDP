@@ -1,3 +1,10 @@
+<?php
+  if(isset($_POST['logout'])){
+    alert("keluar");
+    session_destroy();
+    header("location:../../Admin/amel/TampilanLogin.php");
+  }
+?>
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Merchant</title>
@@ -29,29 +36,36 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light"S>
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: #b31e3c; "></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars fa-2x" style="color: #b31e3c;"></i></a>
       </li>
+      
       <!-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul> -->
+      </li> -->
 
-    <form class="form-inline ml-3">
+    <li class="nav-item d-none d-sm-inline-block">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"  style="width:300px;height:35px; margin-top:8px;">
+        <div class="input-group-append" style="position:absolute; left:300px; height:35px; margin-top:8px;">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block" style="margin-left:800px;">
+    
+    <form action="#" method="post" name="logout">
+      <input type="submit" value="Keluar" class="btn btn-block btn-primary btn-lg" style="background-color: #c41a7d; border:none;">
     </form>
-
-
+      <a href="../../Admin/amel/TampilanLogin.php" class="nav-link btn-lg" style="margin-top:-40px;"></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block" style="margin-left:800px; position:absolute; width:300px;margin-top:10px;">
+      <img style='background-size: cover;width:20px;height:20px' src='../../gambar/image/iconwa.png' >
+      <a class="text" href='https://wa.me/<?=$notelp?>?text=Bibiks%20Catering%20Disini'>Anda Mempunyai Pesan Baru!</a>
+    </li>
+    </ul>
   </nav>

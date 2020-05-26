@@ -97,7 +97,7 @@
 			$nama = '-1';
 		}
 
-
+		include("../../web merchant/home/counter.php");
 	?>
 
 

@@ -5,21 +5,6 @@
     $query="SELECT * from menu where id_menu='$id'";
     $query=mysqli_query($link,$query);
     $query=mysqli_fetch_assoc($query);
-    // echo "<form action='#' method='post' enctype='multipart/form-data'>";
-    // echo"<div class='form-group2'>";
-    // echo"<label for='exampleInput' style='margin-top:10px; margin-left:0px;'>Gambar Menu</label>";
-    // echo"<div class='col-md-4'>";
-    // if($query['gambar_menu']==""){
-    //     echo"<img id='image2' src='pages/forms/placeholder.jpg' class='img-thumbnail'>";
-    // }else{
-    //     echo"<img id='image2' src='../gambar/Image/$query[gambar_menu]' class='img-thumbnail'>";
-    // }
-    // echo"</div>";
-    // echo"<input type='button' class='btn btn-default' value='Pilih Gambar' onclick='document.getElementById(`gambar`).click();' style='margin-top:10px; margin-left:0px;'>";
-    // echo"<input type='file' class='btn btn-default' name='gambar' id='gambar' style='display:none;' onchange='displayImage(this)'>";
-    // echo"</div>";
-    // echo"<input type='submit' value='Upload' class='btn btn-default' name='upGambar'>";
-    // echo "</form>";
     echo"<br>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Nama Menu</label>";
@@ -31,7 +16,7 @@
     echo "</div>";
     echo"<div class='form-group'>";
     echo"    <label for='exampleInputEmail1'>Deskripsi Menu</label><br>";
-    echo"    <textarea class='form-control' rows='3' placeholder='Masukkan deskripsi menu' id='deskripsi'></textarea>";
+    echo"    <input type='text' class='form-control' rows='3' value='$query[deskripsi_menu]' placeholder='Masukkan deskripsi menu' id='deskripsi'></textarea>";
     echo"</div>";
     echo "<div class='form-group'>";
     echo     "<label for='exampleInputEmail1'>Kategori</label>";

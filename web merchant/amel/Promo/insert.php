@@ -1,4 +1,5 @@
 <?php
+    $_SESSION['pos'] = "promo";
     include("../connect.php");
     $kode_promo=$_POST["edkode_promo"];
     $deskripsi_promo=$_POST["eddeskripsi_promo"];

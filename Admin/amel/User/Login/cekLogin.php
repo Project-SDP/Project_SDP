@@ -3,8 +3,9 @@
     require_once("../../connect.php");
     session_start();
     $_SESSION['loggedUser']='';
-    $pass = $_POST['inp'];
-    $user = $_POST['pass'];
+    $_SESSION['status']='';
+    $user = $_POST['inp'];
+    $pass = $_POST['pass'];
     $idTemp = '';
     $As = $_POST['As'];
 
@@ -12,7 +13,7 @@
         $res = mysqli_query($conn , "select * from merchant");
         while ($baris = mysqli_fetch_assoc($res)){
             if($baris["email"]==$user && $baris["pass"]==$pass){
-                $idTemp= $baris['id_akun'];
+                $idTemp= $baris['email'];
             }
             
             //mmerchant  gaono username e
@@ -21,13 +22,14 @@
             // }
             
             if($baris["notelp"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['id_akun'];
+                $idTemp= $baris['email'];
             }
     
         }
             
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
+                $_SESSION['status']=$idTemp;
                 // tunggu halaman login tok
             }else {
                  echo "Login Gagal";
@@ -37,15 +39,15 @@
         $res = mysqli_query($conn , "SELECT * from user");
         while ($baris = mysqli_fetch_assoc($res)){
             if($baris["email"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['id_akun'];
+                $idTemp= $baris['username'];
             }
             
             if($baris["username"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['id_akun'];
+                $idTemp= $baris['username'];
             }
             
             if($baris["no_telp"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['id_akun'];
+                $idTemp= $baris['username'];
             }
     
         }
