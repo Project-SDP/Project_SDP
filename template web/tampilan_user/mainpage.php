@@ -1,5 +1,7 @@
 <?php
-    session_start();
+	include("connect.php");
+	include("navbar.php");
+	
     $nama = "";
     if(isset($_SESSION['login'])){
         $nama = $_SESSION['login'];
@@ -81,12 +83,11 @@
 	</script>
 
 	<?php
-		require('../../template log reg\colorlib-regform-26\conn.php');
 		if(isset($_SESSION['loggedUser'])){
 			$id = $_SESSION['loggedUser'];
 			$nama = $_SESSION['loggedUser'];
 			
-			$users =mysqli_query($link,"select * from user");
+			$users =mysqli_query($conn,"select * from user");
 			foreach($users as $user){
 				if ($id == $user['id_akun']){
 					$nama = $user['nama_depan'];
@@ -105,7 +106,7 @@
   </head>
 
   <body class="goto-here">
-		<div class="py-1" style="background:#99ccff;">
+		<!-- <div class="py-1" style="background:#99ccff;">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
 	    		<div class="col-lg-12 d-block">
@@ -126,17 +127,19 @@
 		    </div>
 		  </div>
 	</div>
-	
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" >
+	 -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" >
 		<div class="container" >
 
 					<a class="navbar-brand" href="mainpage.php" style="color:black;font-size:30px;">Bibik's Catering</a>
 				
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="oi oi-menu"></span> Menu
-					</button>
-
-					<div class="collapse navbar-collapse" id="ftco-nav">
+					</button> -->
+					
+					
+					
+					<!-- <div class="collapse navbar-collapse" id="ftco-nav">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item active"><a href="mainpage.php" class="nav-link">Home</a></li>
 							<li class="nav-item dropdown">
@@ -162,38 +165,39 @@
 								<a href="cart.html" class="nav-link"><i class="icon-shopping_cart"></i>[<?php echo "X";?>]</a>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 
 		
 			
 			
-		</div>
+		<!-- </div>
 		<div class="container" style="width: 100px">
 		</div>
-		<div class="container" style="">   <!-- Profile-->
-		   <?php
+		<div class="container" style="">   Profile-->
 
 
 			 
-			   if($nama==-1){
-				   echo"<div class='btn' style='margin-right:100px;'>";
-				   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=register'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
-				   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=login'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
-				   echo"</div>";
-			   }else{
-				   ?>
-						   <div class="panel-group">
+			<!-- //    if($nama==-1){
+			// 	   echo"<div class='btn' style='margin-right:100px;'>";
+			// 	   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=register'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
+			// 	   echo"<a href='../../Admin/amel/TampilanRegister.php?halaman=login'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
+			// 	   echo"</div>";
+			//    }else{ -->
+						   <!-- <div class="panel-group">
 							   <div class="panel panel-default">
 								   <div class="panel-heading">
 									   
 									   <h4 class="panel-title">
 										   <a data-toggle="collapse" href="#collapse1" class="icon-menu"></a>
-										   <a data-toggle="collapse" href="#collapse1">Hello ,<?php echo $nama; ?></a>
+										   <a data-toggle="collapse" href="#collapse1">Hello ,
+                                               
+                                               echo $nama; 
+                                               
+                                               </a>
 									   </h4>
 								   </div>
 								   <div id="collapse1" class="panel-collapse collapse">
 									   <form action="" method="post"></form>
-										   <!-- Buat Keluar ini di hapus ae Session e  -->
 										   <a href=""><div class="panel-footer" onclick="" >Profil</div></a>
 										   <div class="panel-footer" onclick="Exit()" >Keluar</div>
 									   </form>
@@ -201,12 +205,10 @@
 							   </div>
 						   </div>
 					   
-			   <?php
 			   }
-			   ?>
 		</div>
 		
-	</nav>
+	</nav>  -->
     <!-- END nav -->
 
     <section id="home-section" class="hero">

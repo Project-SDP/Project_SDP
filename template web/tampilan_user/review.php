@@ -1,7 +1,6 @@
 <?php
-if(isset($_GET["kategori"])){
-	$kategori=$_GET["kategori"];
-}
+// session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,122 +31,34 @@ if(isset($_GET["kategori"])){
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-	
   </head>
   <body class="goto-here">
-		<!-- <div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-		    			<div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 98</span>
-					    </div>
-					    <div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
-					    </div>
-					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
-					    </div>
-				    </div>
-			    </div>
-		    </div>
-		  </div>
-    </div> -->
+		
 	<?php
 		include("navbar.php");
-		?>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vegefoods</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+		if($_SESSION["loggedUser"]==""){
+		//	header("location : ../../admin/amel/Tampilanlogin.php");
+		}
+    ?>
+    <div class="row">
+        <div class="col-md-12 ftco-animate">
+            <div class="cart-list">
+                <table class="table">
+                    <thead class="thead-primary">
+                        <tr class="text-center">
+                        <th>&nbsp;</th>
+                        <th>Nama Merchant</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="template">
+                        
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-              	<a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-
-	        </ul>
-	      </div>
-	    </div>
-	  </nav> -->
-    <!-- END nav -->
-
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Products</span></p>
-            <h1 class="mb-0 bread">Products</h1>
-          </div>
+                    </tbody>
+                    </table>
+                </div>
         </div>
-      </div>
     </div>
-
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center">
-    			<div class="col-md-10 mb-5 text-center">
-    				<ul class="product-category">
-    					<li><a id="semua"href="kategori.php?kategori=semua">All</a></li>
-    					<li><a id="NasiKotak"href="kategori.php?kategori=NasiKotak">Nasi Kotak</a></li>
-    					<li><a id="SnacksBox"href="kategori.php?kategori=SnacksBox">Snacks Box</a></li>
-    					<li><a id="Tumpeng"href="kategori.php?kategori=Tumpeng">Tumpeng</a></li>
-    					<li><a id="Prasmanan"href="kategori.php?kategori=Prasmanan">Prasmanan</a></li>
-    				</ul>
-					
-    			</div>
-    		</div>
-			<div class="col-md-10 d-flex align-items-center" style="margin-left:30%">
-				<div class="form-group d-flex">
-					<input type="text"  id="search" class="form-control" placeholder="Cari Menu atau Restaurant">
-					<input type="button" onclick="search_menu()"  value="Search" class="submit px-3">
-					
-				</div>
-			</div>	
-    		<div class="row" id="tempat_menu">
-				
-
-			</div>
-    		
-    	</div>
-    </section>
-
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-          	<span>Get e-mail updates about our latest shops and special offers</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
@@ -227,7 +138,7 @@ if(isset($_GET["kategori"])){
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -244,45 +155,20 @@ if(isset($_GET["kategori"])){
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+
     
   </body>
 </html>
-<script >
-	var ctr="<?=$kategori?>";
-
-	$("#"+ctr).addClass("active");
-	function toCart(id){
-		var qty=1;
+<script>
+start();
+	function start(){
 		$.ajax({
 			method: "post",
-			url: "addtocart.php",
-			data: {
-				id:id,
-				qty:qty
-			},
+			url: "getHtransReview.php",
+			
 			success: function (response) {
-				alert("berhasil menambah ke dalam cart");
-			}
-		});
-	}
-	search_menu();
-	function search_menu(){
-		var kategori="<?=$kategori?>";
-		var search=$("#search").val();
-
-		if(search=="")
-		{
-			search="semua";
-		}
-		$.ajax({
-			method: "post",
-			url: "getMenu.php",
-			data:{
-				search:search,
-				kategori:kategori
-			},
-			success: function (response) {
-				$("#tempat_menu").html(response);
+				$("#template").html(response);
+				
 			}
 		});
 	}

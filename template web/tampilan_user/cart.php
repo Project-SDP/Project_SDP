@@ -1,5 +1,6 @@
 <?php
-// session_start();\
+// session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +36,9 @@
 		
 	<?php
 		include("navbar.php");
+		if($_SESSION["loggedUser"]==""){
+		//	header("location : ../../admin/amel/Tampilanlogin.php");
+		}
 		?>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -90,7 +94,9 @@
 						        <th>&nbsp;</th>
 						        <th>Product name</th>
 						        <th>Price</th>
+						        <th>&nbsp;</th>
 						        <th>Quantity</th>
+						        <th>&nbsp;</th>
 						        <th>Total</th>
 						      </tr>
 						    </thead>
@@ -148,7 +154,7 @@
 							echo "<option>Pilih Provinsi Tujuan</option>";
 							$data = json_decode($response, true);
 							for ($i=0; $i < count($data['rajaongkir']['results']); $i++) {
-								echo "<option value='".$data['rajaongkir']['results'][$i]['province_id']."'>".$data['rajaongkir']['results'][$i]['province']."</option>";
+								echo "<option value='".$data['rajaongkir']['results'][$i]['province_id']."||".$data['rajaongkir']['results'][$i]['province']."'>".$data['rajaongkir']['results'][$i]['province']."</option>";
 							}
 							echo "</select><br><br>";
 							//Get Data Provinsi
@@ -327,7 +333,9 @@
 </html>
 <script>
 	function Pay(){
+		transaksi();
 		window.open("../Midtrans/trans/index.php");	
+		window.location.href="cart.php";
 	}
 	start();
 	function start(){
@@ -348,8 +356,30 @@
 			}
 		});
 	}
+	function transaksi(){
+		var prov = $("#provinsi").val();
+		var prov = prov.split("||");
+		var prov=prov[1];
+		var kab = $("#kabupaten").val();
+		var kab = kab.split("||");
+		var kab=kab[1];
+		// alert(prov+" "+kab);
+		$.ajax({
+			method: "post",
+			url: "transaksi.php",
+			data: {
+				pesan:$("#id_pesan").val(),
+				provinsi:prov,
+				kota:kab
+				
+			},
+			success: function (response) {
+				
+			}
+		});
+	}
 	function getPromo(){
-		alert($("#code_promo").val());
+		// alert($("#code_promo").val());
 		$.ajax({
 			method: "post",
 			url: "promo.php",
@@ -374,7 +404,9 @@
 
 			//Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
 			var prov = $('#provinsi').val();
-
+			var prov = prov.split("||");
+			var prov=prov[0];
+			// alert(prov);
       		$.ajax({
             	type : 'GET',
            		url : '../RajaOngkir/cek_kabupaten.php',
@@ -391,6 +423,8 @@
 			//Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
 			var asal = 444;
 			var kab = $('#kabupaten').val();
+			var kab = kab.split("||");
+			var kab=kab[0];
 			var kurir = "jne";
 			var berat = "500";
             // console.log(asal);

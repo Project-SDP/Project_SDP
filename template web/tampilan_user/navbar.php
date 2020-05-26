@@ -22,6 +22,8 @@
 		$_SESSION["grandtotal"]=0;
 		$_SESSION["menu"]= array();
 		$_SESSION["ongkir"]=0;
+		$_SESSION["loggedUser"]="";
+		
 	}
 ?>
 <style>
@@ -86,10 +88,10 @@
                 <a class="dropdown-item" href="../Midtrans/trans/index.php" target="_blank">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.php" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="blog.php" class="nav-link">Review</a></li>
-	        
-			  <li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
+	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link">Restaurant</a></li>
+	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link">Kupon</a></li>
+			  <li class="nav-item"><a href="review.php" id="review" class="nav-link">Review</a></li>
+			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
 			  	$allMenu=explode('||',$_SESSION['allfood']);
     			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>
 

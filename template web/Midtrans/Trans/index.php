@@ -10,7 +10,7 @@
     var requestBody = 
     {
       transaction_details: {
-        gross_amount: <?=$_SESSION["total"]?>,
+        gross_amount: <?=$_SESSION["grandtotal"]?>,
         // as example we use timestamp as order ID
         order_id: 'T-'+Math.round((new Date()).getTime() / 1000) 
       }

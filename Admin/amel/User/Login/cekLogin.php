@@ -31,13 +31,14 @@
                 $_SESSION['loggedUser']=$idTemp;
                 $_SESSION['status']=$idTemp;
                 // tunggu halaman login tok
+                echo "2";
             }else {
                  echo "Login Gagal";
             }
 
     }else{
         $res = mysqli_query($conn , "SELECT * from user");
-        while ($baris = mysqli_fetch_assoc($res)){
+        foreach ($res as $key => $baris) {
             if($baris["email"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['username'];
             }
@@ -55,6 +56,7 @@
             if($idTemp!= ''){
                 $_SESSION['loggedUser']=$idTemp;
                 // tunggu halaman login tok
+                echo "1";
             }else {
                  echo "Login Gagal";
             }

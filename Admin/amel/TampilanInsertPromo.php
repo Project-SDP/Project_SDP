@@ -176,33 +176,44 @@
                 <h3 class="card-title">Kode Promo</h3>
               </div>
               <!-- form start -->
+              <form action="promo/insert.php" method='post' enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInput">Nama Promo</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Nama Promo" id="kode_promo">
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Promo" name="kode_promo">
                   </div>
                   
                   <div class="form-group">
                     <label for="exampleInputEmail1">Deskripsi</label>
-                    <input type="text" class="form-control"  placeholder="Masukkan Deskripsi" id="deskripsi_promo">
+                    <input type="text" class="form-control" id="deskrip"  placeholder="Masukkan Deskripsi" name="deskripsi_promo">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Awal</label>
-                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Awal" id="tanggal_awal">
+                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Awal" name="tanggal_awal">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Akhir</label>
-                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Akhir" id="tanggal_akhir">
+                    <input type="date" class="form-control" placeholder="Masukkan Tanggal Akhir" name="tanggal_akhir">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Potongan</label>
-                    <input type="text" onkeypress="NumberOnly(event)" class="form-control"  placeholder="Masukkan potongan" id="potongan">
+                    <input type="text" onkeypress="NumberOnly(event)" class="form-control"  placeholder="Masukkan potongan" name="potongan">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Minimum Order</label>
+                    <input type="text" onkeypress="NumberOnly(event)" class="form-control"  placeholder="Masukkan minimum order" name="minimum_order">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Gambar</label>
+                    <input type="button" value="Pilih Gambar" onclick="document.getElementById('gambar').click();">
+                    <input type="file" name="gambar" id="gambar" style="display:none;">
                   </div>
                   <div class="card-footer">
-                  <input type="button" class="btn btn-info" name="insert" onclick="insert()" value="Insert">
+                  <input type="submit" class="btn btn-info" name="insert" onclick="insert()" value="Insert">
                   <!-- <submit class="btn btn-info" name="reg">Daftar</submit> -->
                   <!-- <button type="submit" class="btn btn-default float-right">Cancel</button> -->
                 </div>
+              </form>
             </div>
           </div>
          
@@ -257,12 +268,14 @@ function insert(){
             eddeskripsi_promo:$("#deskripsi_promo").val(),
             edtanggal_awal:$("#tanggal_awal").val(),
             edtanggal_akhir:$("#tanggal_akhir").val(),
-            edpotongan:$("#potongan").val()
+            edpotongan:$("#potongan").val(),
+            edgambar:$("#gambar").val()
         },
         success: function (response) {   
           alert(response);
         }
     });
+
 }
 </script>
 </body>

@@ -423,3 +423,6 @@ s0.parentNode.insertBefore(s1,s0);
     
   </body>
 </html>
+<script>
+  $("#home").css("color","blue");
+</script>
