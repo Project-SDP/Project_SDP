@@ -1,13 +1,21 @@
 <?php
+	session_start();
+	include("connect.php");
+	// session_destroy();
 	$nama = "";
     if(isset($_SESSION['loggedUser'])){
-        $nama = $_SESSION['loggedUser'];
-	}
-	// else{
-    //     header("location:../../Admin/amel/TampilanLogin.php"); 
-	// }
-	// echo $_SESSION['loggedUser'];
-	
+		$nama = $_SESSION['loggedUser'];
+		$query="select * from user where id_akun='$nama'";;
+		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
+		$nama=$query["nama_depan"];
+    }else{
+        header("location:../../Admin/amel/TampilanLogin.php"); 
+    }
+    // echo $_SESSION['loggedUser'];
+    if(isset($_POST['logout'])){
+        $_SESSION['loggedUser'] = -1;  
+        header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
+    }
 	if(!isset($_SESSION["allfood"])){
 		$_SESSION["allfood"]="";
 		$_SESSION["tpromo"]="Rp 0,00";

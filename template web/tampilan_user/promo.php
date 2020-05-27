@@ -9,11 +9,11 @@
     if($date_now<=$date_promo){
         if($_SESSION["total"]<=$query["minumum_order"]){
             
-        $_SESSION["promo"]=$query["potongan"];
-        $_SESSION["nama_promo"]=$getNama;
-        $promo="Rp " . number_format($query["potongan"],2,',','.');
-        $_SESSION["tpromo"]=$promo;
-        echo"true";
+            $_SESSION["promo"]=$query["potongan"];
+            $_SESSION["nama_promo"]=$getNama;
+            $promo="Rp " . number_format($query["potongan"],2,',','.');
+            $_SESSION["tpromo"]=$promo;
+            echo"true";
         }else{
             echo"Minimal Order $query[minumum_order] ";
         }
