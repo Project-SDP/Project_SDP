@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  $_SESSION['pos'] = "home";
+  include("navbar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,10 +35,6 @@
   </head>
 
   <body class="goto-here">
-		<?php
-		include("navbar.php");
-		?>
-
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(images/carrousel_2.jpg);">

@@ -14,11 +14,6 @@
       }
     }
 
-
-    // if(isset($_POST['logout'])){
-    //     $_SESSION['status'] = -1;  
-    //     header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
-    // }
     
 ?>
  <!-- Main Sidebar Container -->

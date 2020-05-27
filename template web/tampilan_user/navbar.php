@@ -1,17 +1,13 @@
 <?php
-	session_start();
-	// session_destroy();
 	$nama = "";
     if(isset($_SESSION['loggedUser'])){
         $nama = $_SESSION['loggedUser'];
-    }else{
-        header("location:../../Admin/amel/TampilanLogin.php"); 
-    }
-    // echo $_SESSION['loggedUser'];
-    if(isset($_POST['logout'])){
-        $_SESSION['loggedUser'] = -1;  
-        header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
-    }
+	}
+	// else{
+    //     header("location:../../Admin/amel/TampilanLogin.php"); 
+	// }
+	// echo $_SESSION['loggedUser'];
+	
 	if(!isset($_SESSION["allfood"])){
 		$_SESSION["allfood"]="";
 		$_SESSION["tpromo"]="Rp 0,00";
@@ -22,7 +18,7 @@
 		$_SESSION["grandtotal"]=0;
 		$_SESSION["menu"]= array();
 		$_SESSION["ongkir"]=0;
-		$_SESSION["loggedUser"]="";
+		// $_SESSION["loggedUser"]="";
 		
 	}
 ?>
@@ -76,7 +72,16 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.php" class="nav-link"><div class="active">Home</div></a></li>
+			<?php
+				if($_SESSION['pos']=="home"){
+					echo"<li class='nav-item'><a href='index.php' class='nav-link'><div class='active'>Home</div></a></li>";
+					echo"<li class='nav-item'><a href='profil.php' class='nav-link'>Profil</a></li>";
+				}
+				if($_SESSION['pos']=="profil"){
+					echo"<li class='nav-item'><a href='index.php' class='nav-link'>Home</a></li>";
+					echo"<li class='nav-item'><a href='profil.php' class='nav-link'><div class='active'>Profil</div></a></li>";
+				}
+			?>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">

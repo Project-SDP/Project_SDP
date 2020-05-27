@@ -283,13 +283,12 @@
                       $select2 = -1;
                       foreach($listKota as $kota) 
                       {
-                              if($kota['nama_kota'] == $kota){
-                                  echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                                  $select2 = 0;
-                              }else{
-                                  echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                              }
-                          
+                        if($kota['nama_kota'] == $kota){
+                            echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
+                            $select2 = 0;
+                        }else{
+                            echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
+                        }
                       }    
                       ?>
                     </select>
