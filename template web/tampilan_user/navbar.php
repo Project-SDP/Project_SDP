@@ -1,9 +1,13 @@
 <?php
 	session_start();
+	include("connect.php");
 	// session_destroy();
 	$nama = "";
     if(isset($_SESSION['loggedUser'])){
-        $nama = $_SESSION['loggedUser'];
+		$nama = $_SESSION['loggedUser'];
+		$query="select * from user where id_akun='$nama'";;
+		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
+		$nama=$query["nama_depan"];
     }else{
         header("location:../../Admin/amel/TampilanLogin.php"); 
     }

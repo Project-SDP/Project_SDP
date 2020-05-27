@@ -59,9 +59,9 @@
 	            </div>
 	          </div>
 	          <div class="pb-md-5">
-	          	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p>But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-							<p><a href="#" class="btn btn-primary">Shop now</a></p>
+	          	<p>Sejak 2020 Bibik's Catering telah menyediakan kebutuhan konsumen yang meliputi Snack Box, Nasi Kotak, Prasmanan, dan Tumpeng</p>
+							<p>Silahkan memesan beberapa menu yang sudah kami sediakan untuk anda. Happy Shopping !!! </p>
+							<p><a href="kategori.php?kategori=semua" class="btn btn-primary">Shop now</a></p>
 						</div>
 					</div>
 				</div>
@@ -134,84 +134,46 @@
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Testimony</span>
-            <h2 class="mb-4">Our satisfied customer says</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+          	<span class="subheading">Merchant</span>
+            <h2 class="mb-4">Beberapa list Merchant yang sudah tersedia</h2>
+            <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p> -->
           </div>
         </div>
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel">
+             <?php
+             include("connect.php");
+             $query="SELECT * from website";
+              $query=mysqli_query($conn,$query);
+              foreach ($query as $key => $value) {
+               $query_merchant="SELECT * from merchant where id='$value[id_merchant]'";
+               $query_merchant=mysqli_fetch_assoc(mysqli_query($conn,$query_merchant));
+               $lokasi="../../web%20merchant/web/cover$value[cover]";
+
+               $query_rating="SELECT avg(r.rating) as rata from review r join htransaksi ht on ht.id_htrans=r.id_htrans where ht.id_merchant= '$value[id_merchant]'";
+               $query_rating=mysqli_fetch_assoc(mysqli_query($conn,$query_rating));
+               $format= number_format($query_rating["rata"], 1, '.', ' ');
+             ?>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(../../gambar/Image/kaptenri.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<?=$lokasi?>)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
+                      
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Marketing Manager</span>
+                  <p class="name" style="margin-bottom:40px"><img src="../../gambar/Image/rating.png" style="background-size:cover;width:50px;height:50px;margin-left:120px;float:left" > <span style="margin-right:100px;margin-top:0px"><?=$format?></span> </p>
+                    <p class="mb-5 pl-4 line"><?=$value["kebijakan"]?></p>
+                    <p class="name">Pesan <?=$value["batas_pesan"]?> Sebelumnya</p>
+                    <span class="position">Waktu Antar :<?=$value["waktu_antar"]?> WIB </span>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(../../gambar/Image/iu.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Interface Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(../../gambar/Image/chaeunwoo.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">UI Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Web Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">System Analyst</span>
-                  </div>
-                </div>
-              </div>
+              <?php
+                }
+              ?>
             </div>
           </div>
         </div>

@@ -50,7 +50,7 @@
         <div class="row">
         <?php
               include("connect.php");
-                $query="SELECT * from promo";
+                $query="SELECT * from promo where CURDATE()<tanggal_akhir";
                 $query=mysqli_query($conn,$query);
                 foreach ($query as $key => $value) {
                   $gambar=substr($value["gambar_promo"],3);

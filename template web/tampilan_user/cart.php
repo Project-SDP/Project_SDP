@@ -333,9 +333,11 @@
 </html>
 <script>
 	function Pay(){
-		transaksi();
 		window.open("../Midtrans/trans/index.php");	
-		window.location.href="cart.php";
+		setTimeout(() => {
+			transaksi();
+			window.location.href="cart.php";
+		}, 2000);
 	}
 	start();
 	function start(){
