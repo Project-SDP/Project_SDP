@@ -79,19 +79,13 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-			<?php
-				if($_SESSION['pos']=="home"){
-					echo"<li class='nav-item'><a href='index.php' class='nav-link'><div class='active'>Home</div></a></li>";
-					echo"<li class='nav-item'><a href='profil.php' class='nav-link'>Profil</a></li>";
-				}
-				if($_SESSION['pos']=="profil"){
-					echo"<li class='nav-item'><a href='index.php' class='nav-link'>Home</a></li>";
-					echo"<li class='nav-item'><a href='profil.php' class='nav-link'><div class='active'>Profil</div></a></li>";
-				}
-			?>
+
+			<li class='nav-item'><a href='index.php' class='nav-link home'><div class="home">Home</div></a></li>
+			<li class='nav-item'><a href='profil.php' class='nav-link profile'><div class="profil">Profil</div></a></li>
+
 	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="menu">Menu</div></a>
+              <div class="dropdown-menu menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="kategori.php?kategori=NasiKotak">Nasi Kotak</a>
               	<a class="dropdown-item" href="kategori.php?kategori=SnacksBox">Snacks Box</a>
                 <a class="dropdown-item" href="kategori.php?kategori=Tumpeng">Tumpeng</a>
@@ -100,10 +94,10 @@
                 <a class="dropdown-item" href="../Midtrans/trans/index.php" target="_blank">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link">Kupon</a></li>
-			  <li class="nav-item"><a href="review.php" id="review" class="nav-link">Review</a></li>
-			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
+	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link"><div class="restaurant">Restaurant</div></a></li>
+	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link"><div class="kupon">Kupon</div></a></li>
+			  <li class="nav-item"><a href="review.php" id="review" class="nav-link"><div class="review">Review</div></a></li>
+			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"> </span>[<?php 
 			  	$allMenu=explode('||',$_SESSION['allfood']);
     			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>
 

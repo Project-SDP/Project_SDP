@@ -429,4 +429,5 @@ function toCart(id){
 		}
 	});
 }
+$(".menu").addClass("active");
 </script>
