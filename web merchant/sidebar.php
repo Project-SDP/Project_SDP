@@ -13,10 +13,8 @@
         $pp = $user['profilepic'];
       }
     }
-
-    
 ?>
- <!-- Main Sidebar Container -->
+
 <style>
 
   p,i{

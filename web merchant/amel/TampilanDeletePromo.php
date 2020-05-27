@@ -2,8 +2,8 @@
 <html>
 <head>
 <?php
-  include("../navbar.php");
   session_start();
+  include("../navbar.php");
   $_SESSION['pos']="promo";
   include("../sidebar.php");
 ?>

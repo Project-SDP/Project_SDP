@@ -7,12 +7,12 @@
     $jumlah = 0; 
     foreach($listUser as $user){
       $jumlah++;
-      if($_SESSION['loggedUser']==$user['username']){
+      if($_SESSION['loggedUser']==$user['id_akun']){
         $id = $user['id_akun'];
         $namadpn = $user['nama_depan'];
         $namabel = $user['nama_belakang'];
         $email = $user['email'];
-        echo $email;
+        // echo $email;
         $alamat = $user['alamat'];
         $notelp = $user['no_telp'];
         $city = $user['kota'];
@@ -56,7 +56,7 @@
         echo "field tidak boleh kosong!";     
       }else if($cek==$jumlah){
         echo $email;
-        echo "benarrrrrrrrrrrrrrrrrrrr";
+        // echo "benarrrrrrrrrrrrrrrrrrrr";
         $query="UPDATE user set nama_depan='$namadpn', nama_belakang='$namabel', alamat='$alamat', no_telp='$notelp', email='$email', kota='$city' where id_akun='$id'";
         $insert = mysqli_query($conn,$query);
       }else{

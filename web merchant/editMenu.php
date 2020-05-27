@@ -2,8 +2,8 @@
 <html>
 <head>
 <?php
-  include("navbar.php");
   session_start();
+  include("navbar.php");
   // echo "......................................................................".$_SESSION['status'];
   $_SESSION['pos'] = "editMenu";
   include("sidebar.php");

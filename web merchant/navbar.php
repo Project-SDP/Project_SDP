@@ -64,7 +64,16 @@
       <a href="../../Admin/amel/TampilanLogin.php" class="nav-link btn-lg" style="margin-top:-40px;"></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block" style="margin-left:800px; position:absolute; width:300px;margin-top:10px;">
-      <img style='background-size: cover;width:20px;height:20px' src='../../gambar/image/iconwa.png' >
+      <?php
+        if($_SESSION['pos']=="profil"||$_SESSION['pos']=="menu"){
+          echo"<img style='background-size: cover;width:20px;height:20px;' src='../../../gambar/image/iconwa.png' >";
+        }else if($_SESSION['pos']=="editMenu"){
+          echo"<img style='background-size: cover;width:20px;height:20px;' src='../gambar/image/iconwa.png' >";
+        }else{
+          echo"<img style='background-size: cover;width:20px;height:20px;' src='../../gambar/image/iconwa.png' >";
+        }
+
+      ?>
       <a class="text" href='https://wa.me/<?=$notelp?>?text=Bibiks%20Catering%20Disini'>Anda Mempunyai Pesan Baru!</a>
     </li>
     </ul>

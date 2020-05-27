@@ -16,11 +16,6 @@
                 $idTemp= $baris['email'];
             }
             
-            //mmerchant  gaono username e
-            // if($baris["username"]==$user && $baris["password"]==$pass){
-            //     $idTemp= $baris['id_akun'];
-            // }
-            
             if($baris["notelp"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['email'];
             }
@@ -40,15 +35,15 @@
         $res = mysqli_query($conn , "SELECT * from user");
         foreach ($res as $key => $baris) {
             if($baris["email"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['username'];
+                $idTemp= $baris['id_akun'];
             }
             
             if($baris["username"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['username'];
+                $idTemp= $baris['id_akun'];
             }
             
             if($baris["no_telp"]==$user && $baris["password"]==$pass){
-                $idTemp= $baris['username'];
+                $idTemp= $baris['id_akun'];
             }
     
         }

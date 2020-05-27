@@ -9,7 +9,7 @@
     $jumlah++;
     if($_SESSION['status']==$user['email']){
       $id = $user['id'];
-      echo "......................................................................".$id;
+      // echo "......................................................................".$id;
       $nama = $user['nama'];
       $kategori = $user['kategori'];
       $rating = $user['rating'];
@@ -22,6 +22,7 @@
       $halal = $user['Halal'];
       $profpic = $user['profilepic'];
       $ktp = $user['fotoktp'];
+      echo ".........................................................................".$ktp;
       break;
     }
   }
@@ -48,7 +49,7 @@
                 echo "file ".basename($_FILES["gambarktp"]["name"])." terupload";
             }
         } 
-        echo "<pre>", print_r($_FILES["gambar"]),"</pre>";
+        // echo "<pre>", print_r($_FILES["gambar"]),"</pre>";
       
     }
     
@@ -60,8 +61,8 @@
             $query="UPDATE merchant set fotoktp='$ktp' where id='$id'";
             $insert = mysqli_query($link,$query);
         }
-
-	}
+        // header("location:profile.php");
+	  }
 
 
 
@@ -70,11 +71,11 @@
 <html>
 <style>
   p,i{
-    color:black;
+    color:white;
   }
   @font-face {
-  font-family: myFirstFont;
-  src: url('../../Redemption.ttf');
+    font-family: myFirstFont;
+    src: url('../../Redemption.ttf');
   }
   .form-group{
     margin-left:130px;
@@ -87,8 +88,9 @@
 
   .judul{
     font-family: myFirstFont;
-    font-size:50px;
-    color:black;
+    font-size:40px;
+    color:white;
+    margin-left:25px;
   }
   #image{
     border-radius : 50%;
@@ -116,15 +118,16 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <form action="#" method='post' enctype="multipart/form-data">W
+    <form action="#" method='post' enctype="multipart/form-data">
         <div class="form-group2">
         <label for="exampleInput" style="margin-top:10px; margin-left:35px;">Upload Foto KTP</label>
         <div class="col-md-3">
         <?php
             if($ktp!=null){
-            echo"<img id='image2' src='../../ktp$ktp' class='img-thumbnail' style='margin-left:-35px;'>";
+              // echo $ktp;
+              echo"<img id='image2' src='ktp$ktp' class='img-thumbnail' style='margin-left:-35px;'>";
             }else{
-            echo"<img id='image2' src='../../image/placeholder.jpg' class='img-thumbnail' style='margin-left:-35px;'>";
+              echo"<img id='image2' src='../../image/placeholder.jpg' class='img-thumbnail' style='margin-left:-35px;'>";
             }
         ?>
         </div>

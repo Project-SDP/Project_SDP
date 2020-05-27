@@ -1,11 +1,12 @@
 <?php
-	session_start();
-	include("connect.php");
-	// session_destroy();
+	if(session_id()==''){
+		session_start();
+	}
+	require_once("connect.php");
 	$nama = "";
     if(isset($_SESSION['loggedUser'])){
 		$nama = $_SESSION['loggedUser'];
-		$query="select * from user where id_akun='$nama'";;
+		$query="select * from user where id_akun='$nama'";
 		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
 		$nama=$query["nama_depan"];
     }else{

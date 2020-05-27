@@ -1,5 +1,7 @@
 <?php
   session_start();
+  require_once("connect.php");
+
   $_SESSION['pos'] = "home";
   include("navbar.php");
 ?>
@@ -178,7 +180,6 @@
     	<div class="container">
     		<div class="row">
 			<?php
-				require_once("connect.php");
 				$query=mysqli_query($conn,"SELECT m.id_menu,m.nama_menu,m.harga_menu,m.gambar_menu,m.id_merchant from menu m join merchant me on m.id_merchant=me.id");
 				$ctr=0;
 					foreach ($query as $key => $value) {
