@@ -2,7 +2,6 @@
     if(isset($_REQUEST['submit'])){
       $target_dir = "File/"; //<- ini folder tujuannya
       $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
-      // $target_file2 = $target_dir. basename($_FILES["gambarktp"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
       $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if($file_type !="jpg" && $file_type !="png"){
             echo "tipe file hanya jpg dan png saja";
@@ -15,11 +14,8 @@
             if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
                 echo "file ".basename($_FILES["gambar"]["name"])." terupload";
             }
-            // if(move_uploaded_file($_FILES["gambarktp"]["tmp_name"], $target_file2)){
-            //     echo "file ".basename($_FILES["gambarktp"]["name"])." terupload";
-            // }
         } 
-        echo "<pre>", print_r($_FILES["gambar"]),"</pre>";
+        // echo "<pre>", print_r($_FILES["gambar"]),"</pre>";
       
     }
     
@@ -31,8 +27,6 @@
         $nohp = $_POST['telp'];
         $provinsi = $_POST['prov'];
         $kota = $_POST['kota'];
-        // $pass = $_POST['pass'];  
-        // $cpass = $_POST['cpass'];  
         $mail = $_POST['email'];  
         $halal = $_POST['my-checkbox'];
         $kategori = $_POST['kategori'];
@@ -62,21 +56,16 @@
 
 
         if($nama==""||$alamat==""||$nohp==""||$email=""){
-            echo "field tidak boleh kosong!";     
+          echo "<script>alert('Field tidak boleh kosong')</script>";
         }else if($cek==$jumlah){
             $profileImage = time() . "_" . $_FILES["gambar"]["name"];
             $target = 'images' . $profileImage;
-            // $ktp = time() . "_" . $_FILES["gambarktp"]["name"];
-            // $target2 = 'ktp' . $ktp;
+            $query="UPDATE merchant set nama='$nama', kategori='$kategori', alamat='$alamat', notelp='$nohp', email='$mail', provinsi='$provinsi', kota='$kota', halal='$halal' where id='$id'";
 
             if(move_uploaded_file($_FILES['gambar']['tmp_name'], $target)){
-              $query="UPDATE merchant set nama='$nama', kategori='$kategori', alamat='$alamat', notelp='$nohp', email='$mail', provinsi='$provinsi', kota='$kota', halal='$halal', profilepic='$profileImage' where id='$id'";
-              $insert = mysqli_query($link,$query);
+              $query="UPDATE merchant set profilepic='$profileImage' where id='$id'";
             }
-            // if(move_uploaded_file($_FILES['gambarktp']['tmp_name'], $target2)){
-            //   $query="UPDATE merchant set fotoktp='$ktp' where id='$id'";
-            //   $insert = mysqli_query($link,$query);
-            // }
+            $insert = mysqli_query($link,$query);
 
         }else{
             echo "username/no hp telah terdaftar";

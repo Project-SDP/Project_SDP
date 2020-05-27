@@ -16,7 +16,6 @@
 ?>
 
 <style>
-
   p,i{
     color: white;
     font-family: 'Avenir',sans-serif;
@@ -210,6 +209,7 @@
             }else{
               echo"<li class='nav-item has-treeview'>";
             }
+            
           ?>    
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book fa-2x"></i>
@@ -221,10 +221,12 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
               <?php
-                if($_SESSION['pos']!="editMenu"){
-                  echo"<a href='../pages/forms/addMenu.php' class='nav-link'>";
-                }else{
+                if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
+                  echo"<a href='addMenu.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="editMenu"){
                   echo"<a href='pages/forms/addMenu.php' class='nav-link'>";
+                }else{
+                  echo"<a href='../pages/forms/addMenu.php' class='nav-link'>";
                 }
               ?>
                   <i class="far fa-circle nav-icon"></i>
@@ -233,8 +235,11 @@
               </li>
               <li class="nav-item">
               <?php
-                if($_SESSION['pos']=="menu"){
+
+                if($_SESSION['pos']=="menu"||$_SESSION['pos']=="profil"){
                   echo"<a href='../../editMenu.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="editMenu"){
+                  echo"<a href='editMenu.php' class='nav-link'>";
                 }else{
                   echo"<a href='../editMenu.php' class='nav-link'>";
                 }

@@ -61,16 +61,36 @@
     }
   }
   $pendapatan = 0;
+  $arrayCount= array();
   $query = "select * from htransaksi";
+  $query2 = "select * from dtransaksi";
   $listpesanan = mysqli_query($link,$query);
+  $listdtrans = mysqli_query($link,$query2);
   foreach ($listpesanan as $pesanan){
-    if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']=="LUNAS"){
-      $pesananMasuk++;
-    }
-    if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']!="DIBATALKAN"){
-      $pendapatan = $pendapatan + $pesanan['subtotal'];
+    if($id == $pesanan['id_merchant']){
+      if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']=="LUNAS"){
+        $pesananMasuk++;
+      }
+      if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']!="DIBATALKAN"){
+        $pendapatan = $pendapatan + $pesanan['subtotal'];
+      }
+      foreach($listdtrans as $dtrans){
+        if($dtrans['id_htrans'] == $pesanan['id_htrans']){
+          array_push($arrayCount,$dtrans['id_makanan']);
+          // print_r($arrayCount);
+        }
+      }
     }
   }
+  $values = array_count_values($arrayCount);
+  arsort($values);
+  $popular = array_slice(array_keys($values), 0, 1, true);
+  // print_r($popular);
+  $popular = implode($popular," ");
+  $query = "select nama_menu from menu where id_menu= $popular";
+
+  $query=mysqli_fetch_assoc(mysqli_query($link,$query));
+  $menu=$query["nama_menu"];
   if($ktp==null){
     echo "<div style='padding-left:260px; font-size:20pt;'>Profil KTP anda belum lengkap! <a href='../pages/forms/ktp.php'>Lengkapi Sekarang</a></div>";
   }
@@ -94,7 +114,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
             <a href='../pesanan/pesan.php'>
             <div class="small-box bg-info" style="height:150px;">
@@ -110,7 +130,7 @@
           </a>
 
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-success" style="height:150px;">
               <div class="inner">
@@ -124,7 +144,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-warning" style="height:150px;">
               <div class="inner">
@@ -142,8 +162,22 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-orange" style="height:150px;">
+              <div class="inner">
+                <h3 style="color:white;">
+                  <?=$menu?>
+                </h3>
+                <p>Menu Favorit</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
+          </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-6 col-6">
             <!-- small box -->
           
           </div>

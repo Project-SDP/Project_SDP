@@ -12,7 +12,6 @@
     }else{
         header("location:../../Admin/amel/TampilanLogin.php"); 
     }
-    // echo $_SESSION['loggedUser'];
     if(isset($_POST['logout'])){
         $_SESSION['loggedUser'] = -1;  
         header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
@@ -27,7 +26,6 @@
 		$_SESSION["grandtotal"]=0;
 		$_SESSION["menu"]= array();
 		$_SESSION["ongkir"]=0;
-		// $_SESSION["loggedUser"]="";
 		
 	}
 ?>
