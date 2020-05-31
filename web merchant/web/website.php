@@ -19,6 +19,7 @@
       break;
     }
   }
+  $profpic='';
   $listUser=mysqli_query($link,"SELECT * FROM website");
   foreach($listUser as $user){
     if($id==$user['id_merchant']){

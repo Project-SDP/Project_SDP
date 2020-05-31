@@ -46,7 +46,7 @@
         <a href="#" class="nav-link">Contact</a>
       </li> -->
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <!-- <li class="nav-item d-none d-sm-inline-block">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"  style="width:300px;height:35px; margin-top:8px;">
         <div class="input-group-append" style="position:absolute; left:300px; height:35px; margin-top:8px;">
@@ -55,11 +55,11 @@
           </button>
         </div>
       </div>
-    </li>
+    </li> -->
     <li class="nav-item d-none d-sm-inline-block" style="margin-left:800px;">
     
     <form action="#" method="post" name="logout">
-      <input type="submit" value="Keluar" class="btn btn-block btn-primary btn-lg" style="background-color: #c41a7d; border:none;">
+      <input type="submit" value="Keluar" class="btn btn-block btn-primary btn-lg" style="background-color: #c41a7d; border:none; width: 100px; margin-left: 300px;">
     </form>
       <a href="../../Admin/amel/TampilanLogin.php" class="nav-link btn-lg" style="margin-top:-40px;"></a>
     </li>

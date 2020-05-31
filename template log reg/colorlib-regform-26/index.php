@@ -29,18 +29,17 @@
         $kota = $_POST['kota'];
         $kec = $_POST['kec'];
         $kategori = $_POST['kategori'];
-        echo $kategori;
         $halal = $_POST['my-checkbox'];
 
         $cek = 0;
     
         foreach ($listUser as $user) {
             if($user['notelp']==$nohp){
-                echo "<script>alert('No HP telah terdaftar')</script>";
+                echo "<script type='text/javascript'>alert('No HP telah terdaftar');</script>";
                 break;
             }
-            else if($user['email']==$nohp){
-                echo "<script>alert('Email telah terdaftar')</script>";
+            else if($user['email']==$mail){
+                echo "<script type='text/javascript'>alert('Email telah terdaftar');</script>";
                 break;
             }
             else
@@ -50,13 +49,17 @@
         }
 
 
-        if($nama==""||$alamat==""||$nohp==""||
-        $pass==""||$cpass==""||$email=""){
-            echo "field tidak boleh kosong!";
+        if($nama==""||$alamat==""||$nohp==""||$pass==""||$cpass==""||$email=""){
+            echo "<script type='text/javascript'>alert('Field tidak boleh kosong!');</script>";
+
         }else if($pass!=$cpass){
-            echo "konfirmasi password tidak sesuai";            
+            echo "<scipt type='text/javascript'>alert('Konfirmasi password tidak sesuai')</script>";            
         }else if (strpos($mail,"@") == false){
-            echo "email anda tidak valid";
+            echo "<script type='text/javascript'>alert('Email anda tidak valid')</script>";
+        }else if(strlen($nohp)<10 || strlen($nohp)>13){
+            echo "<script type='text/javascript'>alert('Nomor telepon tidak valid')</script>";
+        }else if(strlen($pass)<8){
+            echo "<script type='text/javascript'>alert('Password tidak valid')</script>";
         }
         else if($cek==$jumlah)
         {   
@@ -74,59 +77,15 @@
             $kota = $link->real_escape_string($kota);
             $kec = $link->real_escape_string($kec);
             $halal = $link->real_escape_string($halal);
-            $vkey = md5(time().$nama);
+            // $vkey = md5(time().$nama);
             $pass = md5($pass);
-            echo $vkey;
-            $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,kategori,rating,alamat,notelp,pass,email,provinsi,kota,kecamatan,halal,status,vkey) VALUES('$id','$nama','$kategori',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$kec','$halal',0,'$vkey')");
+            // echo $vkey;
+            $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,kategori,rating,alamat,notelp,pass,email,provinsi,kota,kecamatan,halal,status,vkey) VALUES('$id','$nama','$kategori',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$kec','$halal',0,'')");
             if($insert){
-		
-                //-----------------EMAIL-----------------
-                
-                $mail2             = new PHPMailer();
-                $address 		  = $mail;					
-                
-                $mail2->Subject    = "Registrasi Sukses!";
-            
-                // $body			  = "<a href='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php?vkey=$vkey'>Register Account</a>";
-                $body = "<form action='http://localhost/sdp/New%20folder/Project_SDP/template%20log%20reg/colorlib-regform-26/verify.php' method='post'>";
-                $body.="<div id='header'>Bibik's Catering</div><hr><br><label> Terima kasih sudah mendaftar sebagai merchant kami!<br> Klik tombol di bawah ini untuk meneyelesaikan pendaftaran</label><br>";
-                $body.="<input type='hidden' name='vkey' value='$vkey'>";
-                $body.="<input type='submit' name='verify' value='Verifikasi Akun'>";
-                $body.="</form>";
-                
-                $mail2->IsSMTP(); // telling the class to use SMTP
-                $mail2->Host       = "mail.google.com"; // SMTP server
-                $mail2->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-                                                           // 1 = errors and messages
-                                                           // 2 = messages only
-                $mail2->SMTPAuth   = true;                  // enable SMTP authentication
-                $mail2->SMTPSecure = "tls";                 // sets the prefix to the servier
-                $mail2->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-                $mail2->Port       = 587;                   // set the SMTP port for the GMAIL server
-                $mail2->Username   = "bibikscatering@gmail.com";  // GMAIL username //nama email sendiri
-                $mail2->Password   = "projectsdp";     // GMAIL password //pass email sendiri
-            
-                $mail2->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-            
-                $mail2->MsgHTML($body);
-            
-                $mail2->AddAddress($address);
-            
-                //$mail->AddAttachment("result/".$file);      // attachment
-                
-            
-                if($mail2->Send()) {  
-                //   echo "[SEND TO:] " . $address . "<br>";
                 header("location:thankyou.php");
-                }
-
             }
-            // echo "Merchant sukses terdaftar";
-            // header('location:login.php');
-}
-        else{
-            echo "email/nomor hp telah terdaftar";
         }
+       
     
     }
 ?>
@@ -235,14 +194,14 @@
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Password" name="pass" id="pass">
 					</div>
-                    <span style="top:620px;position:absolute;font-size:10px;">Password minimal 8 karakter</span>
+                    <span style="top:710px;position:absolute;font-size:10px;">Password minimal 8 karakter</span>
 					<div class="form-holder"style="padding-top:20px;">
 						<span class="lnr lnr-lock"></span>
 						<input type="password" class="form-control" placeholder="Konfirmasi Password" name="cpass" id="cpass"><span id="pesan2" style="left:320px;"></span>
 					</div>
 					<div class="form-holder"style="padding-top:20px;">
                     <label>Apakah makanan yang anda sajikan HALAL?</label><br>
-                    <input type="checkbox" name="my-checkbox" value='1'> Ya
+                    <input type="checkbox" name="my-checkbox" value='1' checked> Ya
                     <input type="checkbox" name="my-checkbox" value='0'> Tidak
 					</div>
 
@@ -278,7 +237,7 @@
             method:"post",
             url: "kecamatan.php",
             data: {
-                kec:kec
+                kota:kota
             },
             success: function (data) {
                 $("#kec").html(data);

@@ -17,6 +17,7 @@
                 echo"<td>$harga</td>";
                 echo "<td>";
                 echo "<button type='button' onclick='banned(\"$value[id_htrans]\")' class='btn btn-block btn-outline-primary'>Terima</button>";
+                echo "<button type='button' onclick='report(\"$value[id_htrans]\")' class='btn btn-block btn-outline-danger'>Laporkan</button>";
                 echo "</td>";               
                 echo"<td>$value[ongkir]</td>";
                 echo"<td>$value[pesan]</td>";
@@ -30,6 +31,7 @@
                 echo"<td>$harga</td>";
                 echo "<td>";
                 echo "<button type='button' class='btn btn-block btn-outline-primary disabled'>Belum Lunas</button>";
+                echo "<button type='button' onclick='report(\"$value[id_htrans]\")' class='btn btn-block btn-outline-danger'>Laporkan</button>";
                 echo "</td>";               
                 echo"<td>$value[ongkir]</td>";
                 echo"<td>$value[pesan]</td>";
@@ -44,6 +46,7 @@
                 echo"<td>$harga</td>";
                 echo "<td>";
                 echo "<button type='button' onclick='banned(\"$value[id_htrans]\")' class='btn btn-block btn-outline-danger'>Batalkan</button>";
+                echo "<button type='button' onclick='report(\"$value[id_htrans]\")' class='btn btn-block btn-outline-danger'>Laporkan</button>";
                 echo "</td>";               
                 echo"<td>$value[ongkir]</td>";
                 echo"<td>$value[pesan]</td>";
@@ -57,6 +60,7 @@
                 echo"<td>$harga</td>";
                 echo "<td>";
                 echo "<button type='button' class='btn btn-block btn-outline-primary disabled'>Dibatalkan</button>";
+                echo "<button type='button' class='btn btn-block btn-outline-danger disabled'>Laporkan</button>";
                 echo "</td>";               
                 echo"<td>$value[ongkir]</td>";
                 echo"<td>$value[pesan]</td>";
@@ -77,6 +81,19 @@
             },
             success: function (response) {
                 alert(id);
+                pangillPesan(idMerch);
+            }
+        });
+    }
+    function report(id){
+        $.ajax({
+            method: "post",
+            url: "report.php",
+            data: {
+                id:id
+            },
+            success: function (response) {
+                alert(response);
                 pangillPesan(idMerch);
             }
         });

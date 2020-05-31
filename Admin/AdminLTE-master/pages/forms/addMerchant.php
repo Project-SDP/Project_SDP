@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['pos'] = "add";
     require("conn.php");
     $listUser=mysqli_query($link,"SELECT * FROM merchant");
     $jumlah = 0;
@@ -7,15 +8,11 @@
     {
         $jumlah++;
     }    
-    // var_dump($user);
     
 
     if(isset($_POST['toLog'])){
         header("location:login.php");
     }
-    // if(isset($_POST['toHome'])){
-    //     header("location:home.php");
-    // }
     if(isset($_POST['reg']))
     {
         $nama = $_POST['nama'];
@@ -23,6 +20,7 @@
         $nohp = $_POST['telp'];
         $provinsi = $_POST['prov'];
         $kota = $_POST['kota'];
+        $kec = $_POST['kec'];
         $pass = $_POST['pass'];  
         $cpass = $_POST['cpass'];  
         $mail = $_POST['email'];  
@@ -33,12 +31,12 @@
     
         foreach ($listUser as $user) {
             if($user['notelp']==$nohp){
-                echo "<script>alert('No HP telah terdaftar')</script>";
-                break;
+              echo "<script type='text/javascript'>alert('No HP telah terdaftar');</script>";
+              break;
             }
             else if($user['email']==$mail){
-                echo "<script>alert('Email telah terdaftar')</script>";
-                break;
+              echo "<script type='text/javascript'>alert('Email telah terdaftar');</script>";
+              break;
             }
             else
             {
@@ -47,35 +45,74 @@
         }
 
 
-        if($nama==""||$alamat==""||$nohp==""||
-        $pass==""||$cpass==""||$email=""){
-            echo "field tidak boleh kosong!";
-        }else if($pass!=$cpass){
-            echo "konfirmasi password tidak sesuai";            
-        }else if($cek==$jumlah)
-        {   
-            $jumlah= sprintf("%03d", $jumlah+1);
-            $kat = substr($kategori,1,3);
-            $id = "MC".strtoupper($kat.$jumlah);
-            $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,kategori,rating,alamat,notelp,pass,email,provinsi,kota,halal,status,vkey) VALUES('$id','$nama','$kategori',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$halal',1,'$vkey')");
-            // echo "sheyenk";
-            // header('location:login.php');
-        }
-        else{
-            echo "username/no hp telah terdaftar";
-        }
+
+      if($nama==""||$alamat==""||$nohp==""||$pass==""||$cpass==""||$email=""){
+          echo "<script type='text/javascript'>alert('Field tidak boleh kosong!');</script>";
+      }else if($pass!=$cpass){
+          echo "<scipt type='text/javascript'>alert('Konfirmasi password tidak sesuai')</script>";            
+      }else if (strpos($mail,"@") == false){
+          echo "<script type='text/javascript'>alert('Email anda tidak valid')</script>";
+      }else if(strlen($nohp)<10 || strlen($nohp)>13){
+          echo "<script type='text/javascript'>alert('Nomor telepon tidak valid')</script>";
+      }else if(strlen($pass)<8){
+          echo "<script type='text/javascript'>alert('Password tidak valid')</script>";
+      }
+      else if($cek==$jumlah)
+      {   
+          $jumlah= sprintf("%03d", $jumlah+1);
+          $kat = substr($kategori,0,3);
+          $id = strtoupper("MC".$kat.$jumlah);
+          $id = $link->real_escape_string($id);
+          $nama = $link->real_escape_string($nama);
+          $kategori = $link->real_escape_string($kategori);
+          $mail = $link->real_escape_string($mail);
+          $alamat = $link->real_escape_string($alamat);
+          $nohp = $link->real_escape_string($nohp);
+          $pass = $link->real_escape_string($pass);
+          $provinsi = $link->real_escape_string($provinsi);
+          $kota = $link->real_escape_string($kota);
+          $kec = $link->real_escape_string($kec);
+          $halal = $link->real_escape_string($halal);
+          // $vkey = md5(time().$nama);
+          $pass = md5($pass);
+          // echo $vkey;
+          $insert = mysqli_query($link,"INSERT INTO merchant(id,nama,kategori,rating,alamat,notelp,pass,email,provinsi,kota,kecamatan,halal,status,vkey) VALUES('$id','$nama','$kategori',0,'$alamat','$nohp','$pass','$mail','$provinsi','$kota','$kec','$halal',1,'')");
+      }
     
 	}
 
 
 
 ?>
+<style>
+  p,i{
+    color: white;
+    font-family: 'Avenir',sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  @font-face {
+    font-family: myFirstFont;
+    src: url('../../Redemption.ttf');
+  }
+
+  .judul{
+    font-family: myFirstFont;
+    font-size:40px;
+    color:white;
+    margin-left:25px;
+  }
+  .aktif{
+    background: rgba(300,300,300,.1);
+    border-left: 5px solid #fff;
+  }
+</style>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | General Form Elements</title>
+  <title>Merchant</title>
   <!-- Tell the browser to be responsive to screen width -->
 <?php
   include("../../navbar.php");
@@ -93,8 +130,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
+              <li class="breadcrumb-item"><a href="#">Tambah</a></li>
+              <li class="breadcrumb-item active">Merchant</li>
             </ol>
           </div>
         </div>
@@ -143,40 +180,6 @@
                   <div class="form-group">
                   <label>Provinsi</label>
                   <select class="form-control select2" style="width: 100%;"  onchange="refreshKota()" name="prov" id="prov"> 
-                    <!-- <option selected="selected" name="aceh">Aceh</option>
-                    <option>Bengkulu</option>
-                    <option>Jambi</option>
-                    <option>Kepulauan Bangka Belitung</option>
-                    <option>Kepulauan Riau</option>
-                    <option>Lampung</option>
-                    <option>Riau</option>
-                    <option>Sumatera Barat</option>
-                    <option>Sumatera Selatan</option>
-                    <option>Sumatera Utara</option>
-                    <option>Banten</option>
-                    <option>Gorontalo</option>
-                    <option>Jakarta</option>
-                    <option>Jawa Barat</option>
-                    <option>Jawa Tengah</option>
-                    <option>Jawa Timur</option>
-                    <option>Kalimantan Barat</option>
-                    <option>Kalimantan Selatan</option>
-                    <option>Kalimantan Tengah</option>
-                    <option>Kalimantan Timur</option>
-                    <option>Kalimantan Utara</option>
-                    <option>Maluku</option>
-                    <option>Maluku Utara</option>
-                    <option>Bali</option>
-                    <option>Nusa Tenggara Barat</option>
-                    <option>Nusa Tenggara Timur</option>
-                    <option>Papua</option>
-                    <option>Papua Barat</option>
-                    <option>Sulawesi Barat</option>
-                    <option>Sulawesi Selatan</option>
-                    <option>Sulawesi Tengah</option>
-                    <option>Sulawesi Tenggara</option>
-                    <option>Sulawesi Utara</option>
-                    <option>Yogyakarta</option> -->
                     
                     <?php 
                     $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
@@ -195,18 +198,36 @@
                   </div>
                   <div class="form-group">
                   <label>Kota</label>
-                  <select class="form-control select2" style="width: 100%;" name="kota" id="kota"> 
+                  <select class="form-control select2" style="width: 100%;" name="kota" id="kota" onchange="refreshKec()"> 
                     <?php 
                     $listKota=mysqli_query($link,"SELECT * FROM kota");
                     $select2 = -1;
                     foreach($listKota as $kota) 
                     {
-                        if($kota['id_provinsi'] == 'PR001'){
+                        if($select2 == -1){
+                            echo "<option selected='selected' name=".$kota[id_kota].">".$kota[nama_kota]."</option>";
+                            $select2 = 0;
+                        }else{
+                            echo "<option name=".$kota[id_kota].">".$kota[nama_kota]."</option>";
+                        }
+                    }    
+                    ?>
+                  </select>
+                  </div>
+                  <div class="form-group">
+                  <label> Pilih kecamatan </label>
+                    <select class="form-control select2" id="kec" name="kec" style="width: 100%;">
+                    <?php 
+                    $listKota=mysqli_query($link,"SELECT * FROM kecamatan");
+                    $select2 = -1;
+                    foreach($listKota as $kota) 
+                    {
+                        if($kota['id_kota'] == 'KO021'){
                             if($select2 == -1){
-                                echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
+                                echo "<option selected='selected' name=".$kota[id_kec].">".$kota[nama_kec]."</option>";
                                 $select2 = 0;
                             }else{
-                                echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
+                                echo "<option name=".$kota[id_kec].">".$kota[nama_kec]."</option>";
                             }
                         }
                         
@@ -237,13 +258,10 @@
                   <div class="card-body">
                     <label>Apakah makanan yang anda sajikan HALAL?</label><br>
                     <input type="checkbox" name="my-checkbox" value='1' checked data-bootstrap-switch>
-                    <!-- <input type="checkbox" name="halal" data-bootstrap-switch> -->
                   </div>
 
                 <div class="card-footer">
                   <input type="submit" class="btn btn-info" name="reg" value="Daftar">
-                  <!-- <submit class="btn btn-info" name="reg">Daftar</submit> -->
-                  <!-- <button type="submit" class="btn btn-default float-right">Cancel</button> -->
                 </div>
               </form>
             </div>
@@ -254,14 +272,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -311,18 +321,31 @@ $(document).ready(function () {
     });
 });
 function refreshKota(){
-        prov = $("#prov").val();
-        $.ajax({
-            method:"post",
-            url: "kota.php",
-            data: {
-                prov:prov
-            },
-            success: function (data) {
-                $("#kota").html(data);
-            }
-        });
-     }
+  prov = $("#prov").val();
+  $.ajax({
+      method:"post",
+      url: "kota.php",
+      data: {
+          prov:prov
+      },
+      success: function (data) {
+          $("#kota").html(data);
+      }
+  });
+}
+function refreshKec(){
+    kota = $("#kota").val();
+    $.ajax({
+        method:"post",
+        url: "kecamatan.php",
+        data: {
+            kota:kota
+        },
+        success: function (data) {
+            $("#kec").html(data);
+        }
+    });
+  }
 </script>
 </body>
 </html>

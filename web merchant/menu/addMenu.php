@@ -37,15 +37,10 @@ session_start();
     foreach($listmenu as $menu){
       $ctr++;
     }
-    // echo ".....................................................".$ctr;
     $jumlah= sprintf("%03d", $ctr+1);
-    $kat = substr($kategori,-2,2);
-    // $id = "ME".$kat.$jumlah;
     $id = $jumlah;
-    // echo $id;
     if($nama!=""&& $harga!=""){ 
       $ctr2 = 0;
-      // echo $ctr;
       if($ctr>0){
         foreach($listmenu as $menu){
           if($menu['nama_menu']==$nama && $menu['id_merchant']==$merchant){

@@ -10,7 +10,7 @@
 		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
 		$nama=$query["nama_depan"];
     }else{
-        header("location:../../Admin/amel/TampilanLogin.php"); 
+		$nama = -1;
     }
     if(isset($_POST['logout'])){
         $_SESSION['loggedUser'] = -1;  

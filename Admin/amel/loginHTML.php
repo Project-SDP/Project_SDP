@@ -77,8 +77,6 @@
         }
 
         function ceklogin(){  
-
-        
         $.ajax({
             method: "post",
             url: "User/Login/cekLogin.php",
@@ -88,9 +86,10 @@
                 pass:$("#inpPass").val()
             },
             success: function (data) {
-                if(data=='Login Gagal'){
+                if(data!='1' && data!='2'){
                         alert(data);
-                }else{
+                }
+                else{
                         if(logAs=='Merchant'){
                                 toMerchant();
                         }else{

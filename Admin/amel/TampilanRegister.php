@@ -79,7 +79,7 @@
             </button>
             <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
 
-        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
+        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;right: 10px;
             width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar sebagai Merchant  </button> 
 		<div class="wrapper">
 			<div class="inner">
