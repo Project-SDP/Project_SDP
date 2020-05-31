@@ -27,6 +27,8 @@
 
     if(isset($_POST['reg']))
     {
+
+        
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
         $nohp = $_POST['telp'];
@@ -113,23 +115,23 @@
 
 	<body>
 
-		<div class="wrapper" style="border:none;width:400px;margin-left:-30px;">
+		
 			<div class="inner" style="border:none; width:100%; margin-top:-50px; top:20px;">
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
-				<form action="" method="post" style="border:none; background:white; box-shadow:none;">
+				<div style="border:none; background:white; box-shadow:none;">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:10px;">Register Merchant</h3>
 					<div class="form-holder">
 						<span class="lnr lnr-user"></span>
-						<input type="text" class="form-control" placeholder="Nama" name="nama">
+						<input type="text" id="inpNama" class="form-control" placeholder="Nama" name="nama">
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
-						<input type="number" class="form-control" placeholder="Nomor Telepon" name="telp"><span id="pesan" style="left:320px;"></span>
+						<input type="number" id="inpTelp" class="form-control" placeholder="Nomor Telepon" name="telp"><span id="pesan" style="left:320px;"></span>
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
-						<input type="text" class="form-control" placeholder="Email" name="email"><span id="pesan3" style="left:320px;"></span>
+						<input type="text" id="inpEmail" class="form-control" placeholder="Email" name="email"><span id="pesan3" style="left:320px;"></span>
                     </div>
                     <label> Pilih provinsi </label>
                     <select class="form-control select2" style="width: 100%;" onchange="refreshKota()" name="prov" id="prov">
@@ -196,7 +198,7 @@
                   </select>
                   <div class="form-holder" style="margin-top:20px;">
 						<span class="lnr lnr-home"></span>
-						<input type="text" class="form-control" placeholder="Alamat" name="alamat">
+						<input type="text" class="form-control" placeholder="Alamat" id="inpAlamat" name="alamat">
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
@@ -209,15 +211,17 @@
 					</div>
 					<div class="form-holder"style="padding-top:20px;">
                     <label>Apakah makanan yang anda sajikan HALAL?</label><br>
-                    <input type="checkbox" name="my-checkbox" value='1' checked> Ya
-                    <input type="checkbox" name="my-checkbox" value='0'> Tidak
+                    <input id="inpHalal"  type="checkbox" name="my-checkbox" value='1' checked="checked"> Ya
+                    <!-- <input type="checkbox" name="my-checkbox" value='0'> Tidak -->
 					</div>
 
-                    <button name ="reg">Daftar</button>
+                    <button onclick="daftar()"  name ="reg">Daftar</button>
+                    <button onclick='toLogin()' class='btn btn-block bg-gradient-secondary btn-lg'>Masuk</button>
+                    <h4 class="" style="text-align: center;"> Sudah Punya Akun ?? </h4>
 
-				</form>
+				</div>
 				<img src="images/image-2.png" alt="" class="image-2">
-			</div>
+			
 			
 		
 		
@@ -226,6 +230,65 @@
 	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
 <script>
+    function cekuncek(){
+            alert($("#inpHalal").is(":checked")); 
+  
+    }
+
+
+    function daftar(){
+    
+        let nama     = $("#inpNama").val();
+        let alamat   = $("#inpAlamat").val();
+        let nohp     = $("#inpTelp").val();
+        let pass     = $("#pass").val();
+        let cpass    = $("#cpass").val();
+        let mail     = $("#inpEmail").val();
+        let provinsi = $("#prov").val();
+        let kota     = $("#kota").val();
+        let kec      = $("#kec").val();
+        let kategori = $("#kategori").val();
+        let halal    = 0;
+        if($("#inpHalal").is(":checked")== true){
+            halal =1;
+        }else{  // false
+            halal =0;
+        }
+        
+            $.ajax({
+                method: "post",
+                url: "../../template%20log%20reg/colorlib-regform-26/ajaxDaftar.php",
+                data: {
+                    nama    :nama    ,
+                    alamat  :alamat  ,
+                    nohp    :nohp    ,
+                    pass    :pass    ,
+                    cpass   :cpass   ,
+                    mail    :mail    ,
+                    provinsi:provinsi,
+                    kota    :kota    ,
+                    kec     :kec     ,
+                    kategori:kategori,
+                    halal   :halal   ,
+                },
+                success: function (response) {
+                    // alert(response);
+                    if(response.match("sukses")){
+                        // alert("masok");
+                        // header("location:thankyou.php");
+                        window.location.replace("../../template%20log%20reg/colorlib-regform-26/thankyou.php");
+                    }else{
+                        alert(response);
+                    }
+                    
+                }
+            });
+    
+    
+
+    
+    }
+
      function refreshKota(){
         prov = $("#prov").val();
         $.ajax({

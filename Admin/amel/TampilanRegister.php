@@ -30,6 +30,7 @@
 
        <script>
             $(document).ready(function(){
+                
                 let temp = $("#tempHalaman").val();
 
                 if(temp=='register'){
@@ -79,8 +80,8 @@
             </button>
             <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
 
-        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toRegMerchant()"> Daftar sebagai Merchant  </button> 
+        <button class="btn btn-primary" id="btnRegMerchantCustomer" style="position: absolute; background:#ff99b5;right: 10px;
+            width :auto ;padding:10px;border-radius: 8%" onclick="toRegMerchant()">Daftar sebagai Merchant</button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
@@ -201,20 +202,31 @@ function toLogin(){
     }); 
 }
 function toRegMerchant(){
-    $.ajax({
-        method: "post",
-        url: "../../template%20log%20reg/colorlib-regform-26/index.php",
-        success: function (data) {
-            document.title = 'Register';
-            $(".kotak").html(data);
-        }
-    }); 
+    let text = $("#btnRegMerchantCustomer").html();
+
+    if (text == "Daftar sebagai Customer"){
+
+            $("#btnRegMerchantCustomer").html("Daftar sebagai Merchant");
+            $.ajax({
+                method: "post",
+                url: "../../Admin/amel/registerHTML.php",
+                success: function (data) {
+                    document.title = 'Register Customer';
+                    $(".kotak").html(data);
+                }
+            }); 
+    }else if(text  == "Daftar sebagai Merchant"){
+            $("#btnRegMerchantCustomer").html("Daftar sebagai Customer");
+            $.ajax({
+                method: "post",
+                url: "../../template%20log%20reg/colorlib-regform-26/index.php",
+                success: function (data) {
+                    document.title = 'Register Merchant';
+                    $(".kotak").html(data);
+                }
+            }); 
+    }
 }
 
-
-
-    
-
-</script>
 
 </script>
