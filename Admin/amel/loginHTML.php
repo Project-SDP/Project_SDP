@@ -34,8 +34,6 @@
                 }
 
         </script>
-
-        </script>
         <h3> Bibik's Catering</h3>
         <h3 style="font-size:15px;">==Login sebagai==</h3>
         <div class="grid-container" style="display: grid ;grid-template-columns: 1fr 1fr ;

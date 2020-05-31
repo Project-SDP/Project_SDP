@@ -1,3 +1,11 @@
+<style>
+    .grid-item{
+            display:grid;
+            width: auto;
+            height: auto;
+            align-content: center;
+    }
+</style>
 <?php
     require("conn.php");
 	require_once('mailer2/class.phpmailer.php');
@@ -93,7 +101,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>RegistrationForm_v10 by Colorlib</title>
+		<title>Register Merchant</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- LINEARICONS -->
@@ -105,10 +113,10 @@
 
 	<body>
 
-		<div class="wrapper">
-			<div class="inner">
+		<div class="wrapper" style="border:none;width:400px;margin-left:-30px;">
+			<div class="inner" style="border:none; width:100%; margin-top:-50px; top:20px;">
 				<img src="images/image-4.png" alt="" style="left:-400px;" class="image-1">
-				<form action="" method="post">
+				<form action="" method="post" style="border:none; background:white; box-shadow:none;">
 					<h3> Bibik's Catering</h3>
 					<h3 style="font-size:10px;">Register Merchant</h3>
 					<div class="form-holder">
@@ -211,7 +219,7 @@
 				<img src="images/image-2.png" alt="" class="image-2">
 			</div>
 			
-		</div>
+		
 		
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/main.js"></script>

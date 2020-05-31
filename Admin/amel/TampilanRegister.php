@@ -80,7 +80,7 @@
             <input type="hidden" id="tempHalaman" value="<?php  if(isset($_GET['halaman'] ))echo $_GET['halaman'] ?>">
 
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> Daftar sebagai Merchant  </button> 
+            width :auto ;padding:10px;border-radius: 8%" onclick="toRegMerchant()"> Daftar sebagai Merchant  </button> 
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../../template log reg/colorlib-regform-26/images/image-4.png" alt="" style="left:-400px;" class="image-1">
@@ -196,6 +196,16 @@ function toLogin(){
         method: "post",
         url: "loginHTML.php",
         success: function (data) {
+            $(".kotak").html(data);
+        }
+    }); 
+}
+function toRegMerchant(){
+    $.ajax({
+        method: "post",
+        url: "../../template%20log%20reg/colorlib-regform-26/index.php",
+        success: function (data) {
+            document.title = 'Register';
             $(".kotak").html(data);
         }
     }); 

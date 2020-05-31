@@ -1,9 +1,9 @@
 
 <?php
-    require("conn.php");
+    require("connect.php");
     $kota = $_POST['kota'];
     echo $kota;
-    $listKec = mysqli_query($link,"SELECT * FROM kecamatan");
+    $listKec = mysqli_query($conn,"SELECT * FROM kecamatan");
     $select2 = -1;
     foreach($listKec as $kec) 
     {

@@ -72,9 +72,7 @@
             function toMerchant(){
                 window.location="../../web%20merchant/home/index.php";
             }
-            function toRegMerchant(){
-                window.location="../../template%20log%20reg/colorlib-regform-26/index.php";
-            }
+            
         </script>
 
 
@@ -229,6 +227,17 @@ function toLogin(){
         }
     }); 
 }
+function toRegMerchant(){
+    $.ajax({
+        method: "post",
+        url: "../../template%20log%20reg/colorlib-regform-26/index.php",
+        success: function (data) {
+            document.title = 'Register';
+            $(".kotak").html(data);
+        }
+    }); 
+}
+
 
 
 

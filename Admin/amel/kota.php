@@ -1,9 +1,9 @@
 
 <?php
-    require("conn.php");
+    require("connect.php");
     $prov = $_POST['prov'];
     echo $prov;
-    $listKota=mysqli_query($link,"SELECT * FROM kota");
+    $listKota=mysqli_query($conn,"SELECT * FROM kota");
     $select2 = -1;
     foreach($listKota as $kota) 
     {
