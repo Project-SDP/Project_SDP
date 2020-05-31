@@ -72,6 +72,9 @@
             function toMerchant(){
                 window.location="../../web%20merchant/home/index.php";
             }
+            function toRegMerchant(){
+                window.location="../../template%20log%20reg/colorlib-regform-26/index.php";
+            }
         </script>
 
 
@@ -84,7 +87,7 @@
                  Bibik's Home 
             </button>
         <button class="btn btn-primary" style="position: absolute; background:#ff99b5;right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toRegister()"> 
+            width :auto ;padding:10px;border-radius: 8%" onclick="toRegMerchant()"> 
             Daftar sebagai Merchant  
         </button> 
 		<div class="wrapper">

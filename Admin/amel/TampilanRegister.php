@@ -87,11 +87,7 @@
                 
                 
                 <div class="kotak card" style="Padding: 10% ; border-radius:5% ; margin-top:5%;box-shadow:10px 10px lightgray">
-                    
-                <!-- Kodingan Tampilan nde sini ,
-                Tak Bikin ajax Tak pindah nde loginHTML , register HTML   -->
-
-
+                  
 			    </div>
 
 
