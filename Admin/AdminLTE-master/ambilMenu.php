@@ -7,7 +7,7 @@
         echo"<td>$value[id_menu]</td>";
         echo"<td>$value[nama_menu]</td>";
         echo"<td>$value[harga_menu]</td>";
-        echo"<td>$value[id_kategori]</td>";
+        echo"<td>$value[id_km]</td>";
         echo"<td>$value[id_merchant]</td>";
         if($value["status_menu"]=="1"){
             echo "<td>";

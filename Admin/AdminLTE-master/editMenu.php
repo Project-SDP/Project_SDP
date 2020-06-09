@@ -2,12 +2,14 @@
 <html>
 <head>
 <?php
+  session_start();
+  $_SESSION['pos'] = "edit";
   include("navbar.php");
-  include("pages/forms/sidebar.php");
+  include("sidebar.php");
 ?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Merchant</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,7 +37,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Lihat Data</a></li>
               <li class="breadcrumb-item active">Data Menu</li>
             </ol>
           </div>

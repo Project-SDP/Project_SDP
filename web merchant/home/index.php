@@ -56,11 +56,12 @@
       $halal = $user['Halal'];
       $profpic = $user['profilepic'];
       $ktp = $user['fotoktp'];
-      $view = $user['viewer'];
+      $viewer = $user['viewer'];
       break;
     }
   }
-  $pendapatan = 0;
+  $pendapatanHari = 0;
+  $pendapatanBulan = 0;
   $arrayCount= array();
   $query = "select * from htransaksi";
   $query2 = "select * from dtransaksi";
@@ -72,7 +73,10 @@
         $pesananMasuk++;
       }
       if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']!="DIBATALKAN"){
-        $pendapatan = $pendapatan + $pesanan['subtotal'];
+        $pendapatanHari = $pendapatanHari + $pesanan['subtotal'];
+      }
+      if(substr($pesanan['tglwaktu_trans'],6,2) == date("m") && $pesanan['status_htrans']!="DIBATALKAN"){
+        $pendapatanBulan = $pendapatanBulan + $pesanan['subtotal'];
       }
       foreach($listdtrans as $dtrans){
         if($dtrans['id_htrans'] == $pesanan['id_htrans']){
@@ -85,7 +89,7 @@
   $values = array_count_values($arrayCount);
   arsort($values);
   $popular = array_slice(array_keys($values), 0, 1, true);
-  // print_r($popular);
+  print_r($popular);
   $popular = implode($popular," ");
   $query = "select nama_menu from menu where id_menu= $popular";
 
@@ -134,9 +138,9 @@
             <!-- small box -->
             <div class="small-box bg-success" style="height:150px;">
               <div class="inner">
-                <h3>Rp. <?=$pendapatan?></h3>
-
-                <p>Pendapatan Hari ini</p>
+                <h3>Rp. <?=$pendapatanBulan?></h3>
+                <p>Pendapatan Bulan ini</p>
+                <h7>Pendapatan Hari ini Rp.<?=$pendapatanHari?></h7>
               </div>
               <div class="icon">
                 <i class="ion ion-cash"></i>
@@ -149,10 +153,7 @@
             <div class="small-box bg-warning" style="height:150px;">
               <div class="inner">
                 <h3 style="color:white;">
-                  <?php
-                    include("counter.php");
-                    echo $kunjungan[0];
-                  ?>
+                  <?=$viewer?>
                 </h3>
 
                 <p>Pengunjung</p>
@@ -172,16 +173,24 @@
                 <p>Menu Favorit</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-heart"></i>
               </div>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-6 col-6">
             <!-- small box -->
-          
+            <div class="small-box bg-purple" style="height:150px;">
+              <div class="inner">
+                <h3 style="color:white;">
+                  <?=$rating?>
+                </h3>
+                <p>Rating</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-star"></i>
+              </div>
+            </div>
           </div>
-          <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->

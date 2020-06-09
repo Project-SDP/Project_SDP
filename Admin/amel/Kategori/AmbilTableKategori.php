@@ -6,15 +6,7 @@
         echo"<tr onclick='editkategori(\"$value[id_kategori]\")'>";
         echo"<td>$value[nama_kategori]</td>";
       
-        if($value["status"]=="1"){
-            echo "<td>";
-            echo "<button type='button' onclick='banned(\"$value[id_kategori]\")' class='btn btn-block btn-outline-primary'>Banned</button>";
-            echo "</td>";
-        }else{
-            echo "<td>";
-            echo "<button type='button' onclick='banned(\"$value[id_kategori]\")' class='btn btn-block btn-outline-danger'>Unbanned</button>";
-            echo "</td>";
-        }
+        
         echo"</tr>";
 
     }

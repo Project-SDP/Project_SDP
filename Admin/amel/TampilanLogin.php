@@ -72,6 +72,7 @@
             function toMerchant(){
                 window.location="../../web%20merchant/home/index.php";
             }
+            
         </script>
 
 
@@ -83,8 +84,8 @@
                 <i class="lnr lnr-home"></i> 
                  Bibik's Home 
             </button>
-        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;top:25px; right: 10px;
-            width :auto ;padding:10px;border-radius: 8%" onclick="toMerchant()"> 
+        <button class="btn btn-primary" style="position: absolute; background:#ff99b5;right: 10px;
+            width :auto ;padding:10px;border-radius: 8%" onclick="toRegMerchant()"> 
             Daftar sebagai Merchant  
         </button> 
 		<div class="wrapper">
@@ -226,6 +227,17 @@ function toLogin(){
         }
     }); 
 }
+function toRegMerchant(){
+    $.ajax({
+        method: "post",
+        url: "../../template%20log%20reg/colorlib-regform-26/index.php",
+        success: function (data) {
+            document.title = 'Register';
+            $(".kotak").html(data);
+        }
+    }); 
+}
+
 
 
 

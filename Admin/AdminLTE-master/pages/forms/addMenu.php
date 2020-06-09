@@ -1,39 +1,53 @@
 <?php
+  session_start();
+  $_SESSION['pos'] = "add";
   require("conn.php");
+
   if(isset($_POST['add'])){
-    $merchant = $_POST['merch'];
+    $id = $_POST['merch'];
+    // echo $merchant;
     $nama = $_POST['nama'];
+    $desk = $_POST['deskripsi'];
     $harga = $_POST['harga'];
     $kategori = $_POST['kategori'];
     $status = $_POST['my-checkbox'];
-    if($merchant!="" && $nama!=""&& $harga!=""){
+    if($id!="" && $nama!=""&& $harga!=""){
       $listmenu = mysqli_query($link,"select * from menu");
       $ctr = 0;
       foreach($listmenu as $menu){
         $ctr++;
       }
+      $jumlah= sprintf("%03d", $ctr+1);
+      $idMenu = $jumlah;
       $ctr2 = 0;
       // echo $ctr;
       if($ctr>0){
         foreach($listmenu as $menu){
-          if($menu['nama_menu']==$nama && $menu['id_merchant']==$merchant){
-            echo "menu sudah terdaftar pada merchant ini!";
-            break;  
+          if($menu['nama_menu']==$nama && $menu['id_merchant']==$id){
+            echo "<script type='text/javascript'>alert('Menu sudah terdaftar pada merchant ini');</script>";
+          break;  
           }else{$ctr2++;}
         }
+        echo "<script type='text/javascript'>alert('Berhasil0');</script>";
+
         if($ctr2==$ctr){
-          $jumlah= sprintf("%03d", $ctr);
-          $kat = substr($kategori,-2,2);
-          $id = "ME".$kat.$jumlah;
-          mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('$id','$nama','$harga','$status','$kategori','$merchant')");
+          $cover = time() . "_" . $_FILES['gambar']['name'];
+          $target = "../../../../gambar/Image/".$cover;
+          if(move_uploaded_file($_FILES['gambar']['tmp_name'], $target)){
+            mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,deskripsi_menu,gambar_menu) VALUES($idMenu,'$nama','$harga','$status','$kategori','$id','$desk','$cover')");
+            echo "<script type='text/javascript'>alert('Berhasil');</script>";
+
+          }
         }
       }else{
-          mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_kategori,id_merchant) VALUES('$id','$nama','$harga','$status','$kategori','$merchant')");
-    }
+        $cover = time() . "_" . $_FILES['gambar']['name'];
+        $target = 'cover' . $cover;
+        mysqli_query($link,"INSERT INTO menu(id_menu,nama_menu,harga_menu,status_menu,id_km,id_merchant,deskripsi_menu,gambar_menu) VALUES($id,'$nama','$harga','$status','$kategori','$id','$desk','$cover')");
+      }
       
 
     }else{
-      alert("semua field harus terisi!");
+      echo "<script type='text/javascript'>alert('Semua field harus terisi');</script>";
     }
   }
 ?>
@@ -41,8 +55,8 @@
 <html>
 <head>
   <?php
-    include("navbar.php");
-    include("sidebar.php");
+    include("../../navbar.php");
+    include("../../sidebar.php");
   ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -56,8 +70,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Advanced Form</li>
+              <li class="breadcrumb-item"><a href="#">Tambah</a></li>
+              <li class="breadcrumb-item active">Menu</li>
             </ol>
           </div>
         </div>
@@ -77,10 +91,20 @@
               </div>
               <div class="card-body">
                 <!-- Date dd/mm/yyyy -->
-                <form role="form" action="#" method="post"> 
+                <form role="form" action="#" method="post" enctype="multipart/form-data"> 
                 <div class="form-group">
                     <label for="exampleInput">Merchant</label>
-                    <!-- <input type="nama" class="form-control" placeholder="Masukkan ID merchant" name="merchant"> -->
+                    <div class="form-group2">
+                        <label for="exampleInput" style="margin-top:10px; margin-left:0px;">Gambar Menu</label>
+                        <div class="col-md-4">
+                          <?php
+                            echo"<img id='image' src='placeholder.jpg'>";
+                          ?>
+                        </div>
+                        <input type="button" class="btn btn-default" value="Pilih Gambar" onclick="document.getElementById('gambar').click();" style="margin-top:10px; margin-left:0px;">
+                        <input type="file" class="btn btn-default" name="gambar" id="gambar" style="display:none;" onchange="displayImage(this)">
+                    </div>
+                    <br>
                     <select class='form-control select2' style='width: 100%;'  name='merch' id='merch'> ";
                     <?php
                     $listmerch=mysqli_query($link,"SELECT * FROM merchant");
@@ -102,6 +126,10 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Harga Menu</label><br>
                     <input type="text" class="form-control"  placeholder="Rp." name="harga">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Deskripsi Menu</label><br>
+                    <textarea class="form-control" rows="3" placeholder="Masukkan deskripsi menu" name="deskripsi"></textarea>
                   </div>
                   <div class="form-group">
                     <label>Kategori</label>
@@ -149,14 +177,7 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -165,7 +186,35 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<style>
+p,i{
+    color: white;
+    font-family: 'Avenir',sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  @font-face {
+    font-family: myFirstFont;
+    src: url('../../Redemption.ttf');
+  }
 
+  .judul{
+    font-family: myFirstFont;
+    font-size:40px;
+    color:white;
+    margin-left:25px;
+  }
+  .aktif{
+    background: rgba(300,300,300,.1);
+    border-left: 5px solid #fff;
+  }
+  #image{
+    width:300px;
+    height:300px;
+    margin:10px auto;
+    border-radius: 25px;
+  }
+</style>
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -191,6 +240,15 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
 <script>
+  function displayImage(e){
+  if(e.files[0]){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      document.querySelector('#image').setAttribute('src',e.target.result);
+    }
+    reader.readAsDataURL(e.files[0]);
+  }
+}
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()

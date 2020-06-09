@@ -1,7 +1,6 @@
 <?php
   session_start();
   require_once("connect.php");
-
   $_SESSION['pos'] = "home";
   include("navbar.php");
 ?>

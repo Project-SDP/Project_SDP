@@ -57,7 +57,10 @@
 
         if($nama==""||$alamat==""||$nohp==""||$email=""){
           echo "<script>alert('Field tidak boleh kosong')</script>";
-        }else if($cek==$jumlah){
+        }else if(strlen($nohp)<10 || strlen($nohp)>13){
+          echo "<script type='text/javascript'>alert('Nomor telepon tidak valid')</script>";
+        }
+        else if($cek==$jumlah){
             $profileImage = time() . "_" . $_FILES["gambar"]["name"];
             $target = 'images' . $profileImage;
             $query="UPDATE merchant set nama='$nama', kategori='$kategori', alamat='$alamat', notelp='$nohp', email='$mail', provinsi='$provinsi', kota='$kota', halal='$halal' where id='$id'";

@@ -34,8 +34,6 @@
                 }
 
         </script>
-
-        </script>
         <h3> Bibik's Catering</h3>
         <h3 style="font-size:15px;">==Login sebagai==</h3>
         <div class="grid-container" style="display: grid ;grid-template-columns: 1fr 1fr ;
@@ -77,8 +75,6 @@
         }
 
         function ceklogin(){  
-
-        
         $.ajax({
             method: "post",
             url: "User/Login/cekLogin.php",
@@ -88,9 +84,10 @@
                 pass:$("#inpPass").val()
             },
             success: function (data) {
-                if(data=='Login Gagal'){
+                if(data!='1' && data!='2'){
                         alert(data);
-                }else{
+                }
+                else{
                         if(logAs=='Merchant'){
                                 toMerchant();
                         }else{

@@ -11,15 +11,15 @@
         echo"<td>$value[kota]</td>";
         echo"<td>$value[alamat]</td>";
         echo"<td>$value[notelp]</td>";
-        echo"<td>$value[halal]</td>";
+        echo"<td>$value[Halal]</td>";
         // echo"<td>$value[email]</td>";
         if($value["status"]=="1"){
             echo "<td>";
-            echo "<button type='button' onclick='banned(\"$value[id]\")' class='btn btn-block btn-outline-primary'>Banned</button>";
+            echo "<button type='button' onclick='banned(\"$value[id]\")' class='btn btn-block btn-outline-primary'>Aktif</button>";
             echo "</td>";
         }else{
             echo "<td>";
-            echo "<button type='button' onclick='banned(\"$value[id]\")' class='btn btn-block btn-outline-danger'>Unbanned</button>";
+            echo "<button type='button' onclick='banned(\"$value[id]\")' class='btn btn-block btn-outline-danger'>Nonaktif</button>";
             echo "</td>";
         }
         echo"</tr>";
