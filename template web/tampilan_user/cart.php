@@ -36,8 +36,9 @@
 		
 	<?php
 		include("navbar.php");
+		$check=0;
 		if($_SESSION["loggedUser"]==""){
-		//	header("location : ../../admin/amel/Tampilanlogin.php");
+			$check=-1;
 		}
 		?>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -248,11 +249,15 @@
 		window.open("../Midtrans/trans/index.php");	
 		setTimeout(() => {
 			transaksi();
-			window.location.href="cart.php";
+			// window.location.href="cart.php";
 		}, 2000);
 	}
 	start();
 	function start(){
+		var check="<?=$check?>";
+		if(check==-1){
+			window.location.href="../../Admin/amel/TampilanLogin.php";
+		}
 		$.ajax({
 			method: "post",
 			url: "getCart.php",

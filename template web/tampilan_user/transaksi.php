@@ -28,15 +28,19 @@
     mysqli_query($conn,$query_insert);
 
     $menu_check=explode('||',$_SESSION['allfood']);
-
+    $ctr=0;
+    $length=count($menu_check);
     foreach ($menu_check as $key => $value) {
-        $id_menu=$value;
-        $qty=$_SESSION["menu"][$value];
-        $query="SELECT * from menu where id_menu='$id_menu'";
-        $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
-        $harga=$query["harga_menu"]*$qty;
-        $query_insert="INSERT into dtransaksi values ('$id','$id_menu',$qty,$harga)";
-        mysqli_query($conn,$query_insert);
+        if($ctr<$length-1){
+            $ctr++;
+            $id_menu=$value;
+            $qty=$_SESSION["menu"][$value];
+            $query="SELECT * from menu where id_menu='$id_menu'";
+            $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
+            $harga=$query["harga_menu"]*$qty;
+            $query_insert="INSERT into dtransaksi values ('$id','$id_menu',$qty,$harga)";
+            mysqli_query($conn,$query_insert);
+        }
     }
         $_SESSION["allfood"]="";
 		$_SESSION["tpromo"]="Rp 0,00";

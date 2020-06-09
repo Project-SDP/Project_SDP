@@ -157,18 +157,21 @@
                $format= number_format($query_rating["rata"], 1, '.', ' ');
              ?>
               <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
+                <div   class="testimony-wrap p-4 pb-5">
                   <div class="user-img mb-5" style="background-image: url(<?=$lokasi?>)">
+                  
                     <!-- <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                       
                     </span> -->
                   </div>
                   <div class="text text-center">
+                  
                   <p class="name" style="margin-bottom:40px"><img src="../../gambar/Image/rating.png" style="background-size:cover;width:50px;height:50px;margin-left:120px;float:left" > <span style="margin-right:100px;margin-top:0px"><?=$format?></span> </p>
                     <p class="mb-5 pl-4 line"><?=$value["kebijakan"]?></p>
                     <p class="name">Pesan <?=$value["batas_pesan"]?> Sebelumnya</p>
                     <span class="position">Waktu Antar :<?=$value["waktu_antar"]?> WIB </span>
+                    <a href="tampilanMerchant.php?id=<?=$query_merchant["id"]?>">Detail Merchant</a>
                   </div>
                 </div>
               </div>
@@ -182,6 +185,7 @@
     </section>
 
 <?php
+
 	include("footer.php");
 ?>
     

@@ -37,43 +37,13 @@
 			$check=-1;
 		}
 		?>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vegefoods</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-              	<a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-
-	        </ul>
-	      </div>
-	    </div>
-	  </nav> -->
-    <!-- END nav -->
-
+    
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
-            <h1 class="mb-0 bread">Product Single</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Tampilan Merchant</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+            <h1 class="mb-0 bread">Deskripsi Merchant</h1>
           </div>
         </div>
       </div>
@@ -84,50 +54,23 @@
     			
 				<?php
 				require_once("connect.php");
-				$query="SELECT * from menu where id_menu='$_GET[id]'";
+				$query="SELECT * from merchant where id='$_GET[id]'";
 				$query=mysqli_query($conn,$query);
-				$value=mysqli_fetch_assoc($query);
+				$query=mysqli_fetch_assoc($query);
+                $website="SELECT * from website where id_merchant='$_GET[id]'";
+                $website=mysqli_fetch_assoc(mysqli_query($conn,$website));
 				
-				
-					$harga='Rp ' . number_format($value['harga_menu'],2,',','.');
 					echo"<div class='col-lg-6 mb-5 ftco-animate'>
-    				";echo"<a href='../../gambar/image/$value[gambar_menu]' class='image-popup'>
-					";echo"<img src='../../gambar/image/$value[gambar_menu]' class='img-fluid' alt=''>
+    				";echo"<a href='../../web%20merchant/web/cover$website[cover]' class='image-popup'>
+					";echo"<img src='../../web%20merchant/web/cover$website[cover]' class='img-fluid' alt=''>
 					";echo"</a>
 					";echo"</div>
 					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
-    		";echo"		<h3>$value[nama_menu] </h3>
+    		";echo"		<h3>$query[nama] </h3>
 
-    		";echo"		<p class='price'><span>$harga</span></p>
-    		";echo"		<p>$value[deskripsi_menu]</p>
-			";echo"			<div class='row mt-4'>
-			";echo"				<div class='col-md-6'>
-			";echo"					<div class='form-group d-flex'>
-		      ";echo"        <div class='select-wrap'>
-	          ";echo"      </div>
-		      ";echo"      </div>
-			";echo"				</div>
-			";echo"				<div class='w-100'></div>
-			";echo"				<div class='input-group col-md-6 d-flex mb-3'>
-	          ";echo"   	<span class='input-group-btn mr-2'>
-	          ";echo"      	<button type='button' class='quantity-left-minus btn'  data-type='minus' data-field=''>
-	          ";echo"         <i class='ion-ios-remove'></i>
-	          ";echo"      	</button>
-	          ";echo"  		</span>
-	          ";echo"   	<input type='text' id='quantity' name='quantity' class='form-control input-number' value='1' min='1' max='100'>
-	          ";echo"   	<span class='input-group-btn ml-2'>
-	          ";echo"      	<button type='button' class='quantity-right-plus btn' data-type='plus' data-field=''>
-	          ";echo"           <i class='ion-ios-add'></i>
-	          ";echo"       </button>
-	          ";echo"   	</span>
-	          ";echo"	</div>
-	          ";echo"	<div class='w-100'></div>
-			  ";
-			  //echo"	<!-- <div class='col-md-12'>
-	          //";echo"		<p style='color: #000;'>600 kg available</p>
-	          //";echo"	</div> -->
-			  echo"</div>
-			  ";echo"	<p onclick='toCart(\"$value[id_menu]\")'><p  onclick='toCart(\"$value[id_menu]\")' class='btn btn-black py-3 px-5'>Add to Cart</p></p>";
+    		";echo"		<p>No Telepon= $query[notelp]</p>
+    		";echo"		<p>Kota= $query[kota]</p>
+			";echo"	<p onclick='block(\"$query[id]\")'><p  onclick='block(\"$query[id]\")' class='btn btn-black py-3 px-5'>Block Merchant</p></p>";
 			  ?>
           
     			</div>
@@ -202,24 +145,13 @@
   </body>
 </html>
 <script >
-function toCart(id){
+function block(id){
 	
 	var check="<?=$check?>";
 	if(check==-1){
 		window.location.href="../../Admin/amel/TampilanLogin.php";
 	}else{
-		var qty=$("#quantity").val();
-		$.ajax({
-			method: "post",
-			url: "addtocart.php",
-			data: {
-				id:id,
-				qty:qty
-			},
-			success: function (response) {
-				alert(response);
-			}
-		});
+		window.location.href="pageBlock.php?id="+id+"";
 	}
 }
 $(".menu").addClass("active");

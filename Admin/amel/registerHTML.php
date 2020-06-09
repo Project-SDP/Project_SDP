@@ -28,6 +28,7 @@
     <select class="form-control select2" style="width: 100%;" id="provinsi"  onchange="ajaxKota()">
     
     <?php 
+    include("connect.php");
         $listMerch=mysqli_query($conn,"SELECT * FROM provinsi");
         $select = -1; 
         foreach($listMerch as $merch) 
@@ -82,7 +83,7 @@ function cekRegister(){
     let  alamat=$('#alamat_akun').val();
 
     let validasiEmail = ValidateEmail(email);
-    if(nohp.length==13){
+    if(nohp.length>=10){
         $.ajax({
             method: "post",
             url: "User/Register/check_Regis.php",
@@ -103,8 +104,10 @@ function cekRegister(){
 
             }
         });
+        alert("Berhasil Registrasi");
+       
     }else{
-        alert("nomor HP harus 13 digit ");
+        alert("nomor HP harus 10-13 digit");
     }
     
   

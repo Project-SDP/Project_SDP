@@ -1,5 +1,9 @@
 <?php
     session_start();
+    $check=0;
+		if($_SESSION["loggedUser"]==""){
+			$check=-1;
+		}
     include("navbar.php");
     require_once("connect.php");
     $listUser=mysqli_query($conn,"SELECT * FROM user");
@@ -165,8 +169,55 @@
             </div>   		
             </div>
         </section>
-    <hr>
-
+    <hr><section class="ftco-section testimony-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate text-center">
+          	<span class="subheading"><h1>History Pemesanan</h1></span>
+            <!-- <h2 class="mb-4">Our satisfied customer says</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p> -->
+          </div>
+        </div>
+        <div class="cart-list">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>No</th>
+						        <th>Nama Merchant</th>
+						        <th>Status</th>
+						        <th>Total</th>
+						        <th>View Detail</th>
+						      </tr>
+						    </thead>
+						    <tbody id="template">
+                <?php
+                  $ctr=1;
+                  $id_user=$_SESSION["loggedUser"];
+                  $query="SELECT * from htransaksi where id_customer='$id_user' order by 1 desc limit 10";
+                  $query=mysqli_query($conn,$query);
+                  foreach ($query as $key => $value) {
+                    $id_merchant="SELECT nama from merchant where id='$value[id_merchant]'";
+                    $id_merchant=mysqli_fetch_assoc(mysqli_query($conn,$id_merchant));
+                          echo"  <tr class='text-center'>
+                          ";echo"  <td><a><span>$ctr</span></a></td>
+                          ";
+                            $ctr++;
+                          echo"  
+                          ";echo"  <td class='product-name'>$id_merchant[nama] </td>
+                          ";echo"  <td class='price'>$value[status_htrans]</td>
+                          ";echo"  <td class='total'>$value[subtotal]</td>
+                          ";echo"  <td><button onclick='goto_detail(\"$value[id_htrans]\")'>View</button></td>
+                          ";echo"</tr>
+                          ";
+                          
+                      
+                  }
+              ?>
+						    </tbody>
+						  </table>
+					  </div>
+      </div>
+    </section>
 <?php
 	include("footer.php");
 ?>
@@ -210,4 +261,14 @@ s0.parentNode.insertBefore(s1,s0);
 <script>
   $("#home").css("color","blue");
   $(".profil").addClass("active");
+</script>
+
+<script>
+function goto_detail(id){
+  window.location.href='detail_history.php?id='+id+'';
+}
+  var check="<?=$check?>";
+		if(check==-1){
+			window.location.href="../../Admin/amel/TampilanLogin.php";
+		}
 </script>

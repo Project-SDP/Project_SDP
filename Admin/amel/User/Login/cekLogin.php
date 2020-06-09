@@ -33,25 +33,33 @@
 
     }else{
         $res = mysqli_query($conn , "SELECT * from user");
+        $ctr=-1;
         foreach ($res as $key => $baris) {
             if($baris["email"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['id_akun'];
+                $ctr=$baris["status"];
             }
             
             if($baris["username"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['id_akun'];
+                $ctr=$baris["status"];
             }
             
             if($baris["no_telp"]==$user && $baris["password"]==$pass){
                 $idTemp= $baris['id_akun'];
+                $ctr=$baris["status"];
             }
     
         }
             
             if($idTemp!= ''){
-                $_SESSION['loggedUser']=$idTemp;
-                // tunggu halaman login tok
-                echo "1";
+                if($ctr==0){
+                    echo "Akun anda telah di blokir";
+                }else{
+                    $_SESSION['loggedUser']=$idTemp;
+                    // tunggu halaman login tok
+                    echo "1";
+                }
             }else {
                  echo "Login Gagal";
             }
