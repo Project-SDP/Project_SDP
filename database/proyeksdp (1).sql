@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2020 at 10:13 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jun 10, 2020 at 01:09 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `proyeksdp`
 --
-CREATE DATABASE IF NOT EXISTS `proyeksdp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `proyeksdp`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +27,6 @@ USE `proyeksdp`;
 -- Table structure for table `chat`
 --
 
-DROP TABLE IF EXISTS `chat`;
 CREATE TABLE `chat` (
   `id_chat` varchar(255) NOT NULL,
   `pengirim` varchar(255) NOT NULL,
@@ -45,7 +41,6 @@ CREATE TABLE `chat` (
 -- Table structure for table `dtransaksi`
 --
 
-DROP TABLE IF EXISTS `dtransaksi`;
 CREATE TABLE `dtransaksi` (
   `id_htrans` varchar(10) NOT NULL,
   `id_makanan` varchar(20) NOT NULL,
@@ -91,7 +86,8 @@ INSERT INTO `dtransaksi` (`id_htrans`, `id_makanan`, `jumlah`, `subtotal`) VALUE
 ('HT0039', '14', 1, 20000),
 ('HT0040', '23', 2, 40000),
 ('HT0040', '24', 2, 40000),
-('HT0042', '24', 4, 80000);
+('HT0042', '24', 4, 80000),
+('HT0043', '23', 5, 100000);
 
 -- --------------------------------------------------------
 
@@ -99,7 +95,6 @@ INSERT INTO `dtransaksi` (`id_htrans`, `id_makanan`, `jumlah`, `subtotal`) VALUE
 -- Table structure for table `htransaksi`
 --
 
-DROP TABLE IF EXISTS `htransaksi`;
 CREATE TABLE `htransaksi` (
   `id_htrans` varchar(20) NOT NULL,
   `tglwaktu_trans` datetime NOT NULL,
@@ -147,12 +142,12 @@ INSERT INTO `htransaksi` (`id_htrans`, `tglwaktu_trans`, `subtotal`, `status_htr
 ('HT0030', '2020-05-27 09:01:10', 45000, 'SELESAI', NULL, 'C0008', 'MCNAS006', 20000, '', 'nama_promo:||promo:0||kota:Badung||provinsi:Bali'),
 ('HT0031', '2020-05-27 18:42:25', 40000, 'SELESAI', NULL, '', 'MCNAS006', 20000, '', 'nama_promo:||promo:0||kota:Badung||provinsi:Bali'),
 ('HT0032', '2020-05-28 16:29:01', 40000, 'SELESAI', NULL, 'C0008', 'MCNAS006', 20000, '', 'nama_promo:||promo:0||kota:Badung||provinsi:Bali'),
-('HT0033', '2020-05-30 17:22:36', 106000, 'SEDANG DIKIRIM', NULL, 'C0008', 'MCNAS006', 16000, '', 'nama_promo:||promo:0||kota:Cilegon||provinsi:Banten'),
+('HT0033', '2020-05-30 17:22:36', 106000, 'SELESAI', NULL, 'C0008', 'MCNAS006', 16000, '', 'nama_promo:||promo:0||kota:Cilegon||provinsi:Banten'),
 ('HT0038', '2020-05-30 17:29:14', 86000, 'LUNAS', NULL, 'C0008', 'MCNAS006', 45000, '', 'nama_promo:||promo:0||kota:Bangka||provinsi:Bangka Belitung'),
 ('HT0039', '2020-06-10 00:33:00', 32000, 'LUNAS', NULL, 'C0008', 'MCSNA008', 7000, 'ga mau pedes ya kak', 'nama_promo:makanenak||promo:5000||kota:Probolinggo||provinsi:Jawa Timur'),
 ('HT0040', '2020-06-10 14:59:19', 95000, 'LUNAS', NULL, 'C0008', 'MCNAS006', 20000, 'minta pedas', 'nama_promo:makanenak||promo:5000||kota:Badung||provinsi:Bali'),
-('HT0041', '2020-06-10 15:01:34', 0, 'LUNAS', NULL, 'C0008', '', 0, 'minta pedas', 'nama_promo:makanenak||promo:0||kota:Badung||provinsi:Bali'),
-('HT0042', '2020-06-10 15:02:31', 95000, 'LUNAS', NULL, 'C0008', 'MCNAS006', 20000, 'minta cepet', 'nama_promo:makanenak||promo:5000||kota:Badung||provinsi:Bali');
+('HT0042', '2020-06-10 15:02:31', 95000, 'LUNAS', NULL, 'C0008', 'MCNAS006', 20000, 'minta cepet', 'nama_promo:makanenak||promo:5000||kota:Badung||provinsi:Bali'),
+('HT0043', '2020-06-10 17:44:21', 115000, 'LUNAS', NULL, 'C0008', 'MCNAS006', 20000, '', 'nama_promo:makanenak||promo:5000||kota:Gianyar||provinsi:Bali');
 
 -- --------------------------------------------------------
 
@@ -160,7 +155,6 @@ INSERT INTO `htransaksi` (`id_htrans`, `tglwaktu_trans`, `subtotal`, `status_htr
 -- Table structure for table `kategori`
 --
 
-DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE `kategori` (
   `id_kategori` varchar(20) NOT NULL,
   `nama_kategori` varchar(20) NOT NULL,
@@ -174,9 +168,65 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `status`) VALUES
 ('KA001', 'Prasmanan', ''),
 ('KA002', 'Snack', '1'),
-('KA003', 'Nasi Kotak', ''),
-('KA004', 'Cepat Saji', ''),
+('KA003', 'NasiKotak', ''),
+('KA004', 'CepatSaji', ''),
 ('KA005', 'Tumpeng', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori_menu`
+--
+
+CREATE TABLE `kategori_menu` (
+  `id_km` varchar(20) NOT NULL,
+  `nama_km` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori_menu`
+--
+
+INSERT INTO `kategori_menu` (`id_km`, `nama_km`) VALUES
+('KM001', 'Indonesia'),
+('KM002', 'Barat'),
+('KM003', 'Jepang'),
+('KM004', 'Chinese'),
+('KM005', 'Vegetarian');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kecamatan`
+--
+
+CREATE TABLE `kecamatan` (
+  `id_kec` varchar(20) NOT NULL,
+  `id_kota` varchar(20) NOT NULL,
+  `nama_kec` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kecamatan`
+--
+
+INSERT INTO `kecamatan` (`id_kec`, `id_kota`, `nama_kec`) VALUES
+('KE001', 'KO021', 'Asemrowo'),
+('KE002', 'KO021', 'Benowo'),
+('KE003', 'KO021', 'Bubutan'),
+('KE004', 'KO021', 'Dukuh Pakis'),
+('KE005', 'KO021', 'Genteng'),
+('KE006', 'KO021', 'Gubeng'),
+('KE007', 'KO021', 'Gunung Anyar'),
+('KE008', 'KO021', 'Kenjeran'),
+('KE009', 'KO021', 'Mulyorejo'),
+('KE010', 'KO021', 'Pabean cantian'),
+('KE011', 'KO021', 'Kenjeran'),
+('KE012', 'KO021', 'Mulyorejo'),
+('KE013', 'KO021', 'Rungkut'),
+('KE014', 'KO021', 'Sukolilo'),
+('KE015', 'KO021', 'Tambaksari'),
+('KE016', 'KO021', 'Wiyung');
 
 -- --------------------------------------------------------
 
@@ -184,7 +234,6 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `status`) VALUES
 -- Table structure for table `kota`
 --
 
-DROP TABLE IF EXISTS `kota`;
 CREATE TABLE `kota` (
   `id_kota` varchar(10) NOT NULL,
   `nama_kota` varchar(20) NOT NULL,
@@ -224,7 +273,6 @@ INSERT INTO `kota` (`id_kota`, `nama_kota`, `id_provinsi`) VALUES
 -- Table structure for table `menu`
 --
 
-DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
   `id_menu` int(11) NOT NULL,
   `nama_menu` varchar(255) NOT NULL,
@@ -294,7 +342,6 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `status_menu`, `id_km`
 -- Table structure for table `merchant`
 --
 
-DROP TABLE IF EXISTS `merchant`;
 CREATE TABLE `merchant` (
   `id` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
@@ -320,10 +367,11 @@ CREATE TABLE `merchant` (
 --
 
 INSERT INTO `merchant` (`id`, `nama`, `kategori`, `rating`, `alamat`, `notelp`, `pass`, `email`, `provinsi`, `kota`, `kecamatan`, `Halal`, `status`, `vkey`, `verified`, `create_date`, `profilepic`) VALUES
-('MCNAS006', 'grabjes', 'NasiKotak', 3.9, 'papo', '1234', 'blabla', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '', NULL, '2020-05-30 09:34:30', ''),
-('MCPRA006', 'gojes', 'Prasmanan', 0, 'popo', '1231231', 'f5bb0c8de146c67b44ba', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '202f99690bd257803c248566bddc86cf', NULL, '2020-05-04 14:26:18', '1588239695_cover.jpg'),
-('MCSNA008', 'gojjes', 'SnacksBox', 2.5, 'popu', '1567', 'haha', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '', NULL, '2020-06-10 08:08:36', ''),
-('MCTUM009', 'grabjess', 'Tumpeng', 0, 'popi', '123489', 'hihi', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-05-04 14:26:22', '');
+('MCNAS006', 'Nasi Kantor', 'NasiKotak', 3.9, 'papo', '1234', '62c8ad0a15d9d1ca38d5', 'jessica2@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '', NULL, '2020-06-10 11:03:12', '1591783016_clay-sushi-man.jpg'),
+('MCPRA005', 'mie up', 'Prasmanan', 0, 'jl kertajaya indah no 5', '90090090012', '62c8ad0a15d9d1ca38d5', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '0e0b5c90617c64f0e59f7cc517b8105a', NULL, '2020-06-10 09:39:10', '1591779536_pegawai.png'),
+('MCPRA006', 'gojes', 'Prasmanan', 0, 'popo', '1231231', 'f5bb0c8de146c67b44ba', 'jessica3@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '202f99690bd257803c248566bddc86cf', NULL, '2020-06-10 08:56:32', '1588239695_cover.jpg'),
+('MCSNA008', 'Omah Roti', 'Prasmanan', 2.5, 'popu', '15671231231', '62c8ad0a15d9d1ca38d5', 'jessica4@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:02:05', '1591786724_roti.jpeg'),
+('MCTUM009', 'Tumpeng Sari', 'Tumpeng', 0, 'popi', '123489', '62c8ad0a15d9d1ca38d5', 'jessica5@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:03:25', '1591783379_gado2.jpg');
 
 -- --------------------------------------------------------
 
@@ -331,7 +379,6 @@ INSERT INTO `merchant` (`id`, `nama`, `kategori`, `rating`, `alamat`, `notelp`, 
 -- Table structure for table `promo`
 --
 
-DROP TABLE IF EXISTS `promo`;
 CREATE TABLE `promo` (
   `id_promo` varchar(255) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
@@ -361,7 +408,6 @@ INSERT INTO `promo` (`id_promo`, `deskripsi`, `judul_promo`, `tanggal_awal`, `st
 -- Table structure for table `provinsi`
 --
 
-DROP TABLE IF EXISTS `provinsi`;
 CREATE TABLE `provinsi` (
   `id_provinsi` varchar(10) NOT NULL,
   `nama_provinsi` varchar(20) NOT NULL
@@ -385,7 +431,6 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 -- Table structure for table `report`
 --
 
-DROP TABLE IF EXISTS `report`;
 CREATE TABLE `report` (
   `id_report` int(11) NOT NULL,
   `id_merchant` varchar(10) NOT NULL,
@@ -400,9 +445,10 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`id_report`, `id_merchant`, `id_customer`, `pelapor`, `alasan`, `status`) VALUES
-(1, 'MCNAS006', 'C0001', 'customer', 'Pesanan tidak datang.', 0),
+(1, 'MCNAS006', 'C0001', 'customer', 'Pesanan tidak datang.', 1),
 (2, 'MCSNA008', 'C0008', 'customer', 'gak uenak blasssssssssssssss', 1),
-(3, 'MCSNA008', 'C0008', 'customer', '', 1);
+(3, 'MCSNA008', 'C0008', 'customer', '', 1),
+(4, 'MCSNA008', 'C0008', 'customer', 'bababab', 1);
 
 -- --------------------------------------------------------
 
@@ -410,7 +456,6 @@ INSERT INTO `report` (`id_report`, `id_merchant`, `id_customer`, `pelapor`, `ala
 -- Table structure for table `review`
 --
 
-DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
   `id_review` varchar(20) NOT NULL,
   `isi_review` varchar(255) NOT NULL,
@@ -439,7 +484,8 @@ INSERT INTO `review` (`id_review`, `isi_review`, `id_htrans`, `rating`) VALUES
 ('RE00012', 'lol', 'HT0032', 4),
 ('RE00013', 'lol', 'HT0032', 4),
 ('RE00014', 'lol', 'HT0032', 5),
-('RE00015', 'makananen uenak', 'HT0004', 1);
+('RE00015', 'makananen uenak', 'HT0004', 1),
+('RE00016', 'mantap ', 'HT0033', 4);
 
 -- --------------------------------------------------------
 
@@ -447,7 +493,6 @@ INSERT INTO `review` (`id_review`, `isi_review`, `id_htrans`, `rating`) VALUES
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id_akun` varchar(255) NOT NULL,
   `nama_depan` varchar(255) NOT NULL,
@@ -474,7 +519,7 @@ INSERT INTO `user` (`id_akun`, `nama_depan`, `nama_belakang`, `email`, `username
 ('C0005', 'a', 'a', 'a@gmail.com', 'a', 'a', 'a', 'KO001', '0', '1212', '0'),
 ('C0006', 'b', 'b', 'b@gmail.com', 'b', 'b', 'b', 'KO001', '0', '124', '0'),
 ('C0007', 'ba', 'ba', 'ba@gmail.com', 'ba', '255RR4Dc', 'ba', 'KO001', '0', '1245', '0'),
-('C0008', 'AMELIOOO', 'MEL', 'ameliadwijayani200@gmail.com', 'mel', '123', 'jalan jalan', 'Jakarta Barat', '1200', '1239865', '1'),
+('C0008', 'AMELIOOO', 'MELAA', 'ameliadwijayani200@gmail.com', 'mel', '123', 'jalan jalan', 'Jakarta Barat', '1200', '1239865', '1'),
 ('C0009', 'mel', 'amel', 'amel218116745@gmail.com', 'mel', '1234', 'jalan wkwk', 'KO006', '0', '123451', '1'),
 ('C0010', 'amel', 'mel', 'amel218116745@gmail.com', 'meli', '5rahcmcR', 'jalan lalala', 'KO015', '0', '12300', '0'),
 ('C0011', 'amel', 'meli', 'amel218116745@gmail.com', 'melll', '5rahcmcR', 'sdd', 'KO006', '0', '1232132132136', '0'),
@@ -493,7 +538,6 @@ INSERT INTO `user` (`id_akun`, `nama_depan`, `nama_belakang`, `email`, `username
 -- Table structure for table `website`
 --
 
-DROP TABLE IF EXISTS `website`;
 CREATE TABLE `website` (
   `batas_pesan` varchar(20) NOT NULL,
   `waktu_antar` varchar(30) NOT NULL,
@@ -507,7 +551,9 @@ CREATE TABLE `website` (
 --
 
 INSERT INTO `website` (`batas_pesan`, `waktu_antar`, `id_merchant`, `kebijakan`, `cover`) VALUES
-('2 hari', '10:00 s/d 15:00', 'MCSNA008', 'pembatalan h-1 uang tidak kembali', '1589508027_cover.jpg');
+('1 hari', '12:00 s/d 15:00', 'MCNAS006', 'PEMBATALAN MAKS H-4 HARI', '1591783107_esteler.jpg'),
+('2 hari', '10:00 s/d 15:00', 'MCSNA008', 'pembatalan h-1 uang tidak kembali', '1589508027_cover.jpg'),
+('3 hari', '10:00 s/d 12:00', 'MCTUM009', 'dilarang membatalkan pada hari H', '1591784234_gado2.jpg');
 
 --
 -- Indexes for dumped tables
@@ -524,6 +570,18 @@ ALTER TABLE `htransaksi`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indexes for table `kategori_menu`
+--
+ALTER TABLE `kategori_menu`
+  ADD PRIMARY KEY (`id_km`);
+
+--
+-- Indexes for table `kecamatan`
+--
+ALTER TABLE `kecamatan`
+  ADD PRIMARY KEY (`id_kec`);
 
 --
 -- Indexes for table `kota`
@@ -582,7 +640,7 @@ ALTER TABLE `website`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

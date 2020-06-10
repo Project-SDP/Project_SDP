@@ -3,7 +3,7 @@
     $query="SELECT * from merchant";
     $arr_query=mysqli_query($link,$query);
     foreach ($arr_query as $key => $value) {
-        if($value["vkey"]==""){
+        if($value["status"]==0){
             echo"<tr onclick='editMerch(\"$value[id]\")'>";
             echo"<td>$value[id]</td>";
             echo"<td>$value[nama]</td>";
@@ -17,19 +17,19 @@
             echo "</td>";
             echo"</tr>";
         }
-        else if($value["status"]==-1){
-            echo"<tr onclick='editMerch(\"$value[id]\")' style='background:silver;'>";
-            echo"<td>$value[id]</td>";
-            echo"<td>$value[nama]</td>";
-            echo"<td>$value[kategori]</td>";
-            echo"<td>$value[alamat]</td>";
-            echo"<td>$value[notelp]</td>";
-            echo"<td>$value[email]</td>";
-            echo "<td>";
-            echo "<button type='button' onclick='acc(\"$value[id]\")' class='btn btn-block btn-outline-info'>Terima</button>";
-            echo "</td>";
-            echo"</tr>";
-        }
+        // else if($value["status"]==-1){
+        //     echo"<tr onclick='editMerch(\"$value[id]\")' style='background:silver;'>";
+        //     echo"<td>$value[id]</td>";
+        //     echo"<td>$value[nama]</td>";
+        //     echo"<td>$value[kategori]</td>";
+        //     echo"<td>$value[alamat]</td>";
+        //     echo"<td>$value[notelp]</td>";
+        //     echo"<td>$value[email]</td>";
+        //     echo "<td>";
+        //     echo "<button type='button' onclick='acc(\"$value[id]\")' class='btn btn-block btn-outline-info'>Terima</button>";
+        //     echo "</td>";
+        //     echo"</tr>";
+        // }
     }
 ?>
 <script>

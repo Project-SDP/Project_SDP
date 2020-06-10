@@ -6,10 +6,12 @@
     $arr=mysqli_query($conn,$query);
     if(isset($_POST['login'])){
         $nama = $_POST['user'];
-        echo $nama;
+        // echo $nama;
         $pass = $_POST['pass'];
         if($nama=="admin"&&$pass=="nimda"){
             header("location:../AdminLTE-master/index.php");
+        }else{
+            echo"<script>alert('login gagal')</script>";
         }
     }
 ?>
