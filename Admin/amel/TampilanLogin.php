@@ -52,18 +52,6 @@
                             $(".kotak").html(data);
                         }
                     }); 
-                // }else{
-                //     $.ajax({
-                //         method: "post",
-                //         url: "loginHTML.php",
-                //         success: function (data) {
-                //             document.title = 'Login';
-                //             $(".kotak").html(data);
-                //         }
-                //     }); 
-                // }
-
-
             });
 
             function toHome(){

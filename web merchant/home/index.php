@@ -91,10 +91,15 @@
   $popular = array_slice(array_keys($values), 0, 1, true);
   print_r($popular);
   $popular = implode($popular," ");
-  $query = "select nama_menu from menu where id_menu= $popular";
+  $query = "select * from menu where id_menu= $popular";
+  $query = mysqli_query($link,$query);
 
-  $query=mysqli_fetch_assoc(mysqli_query($link,$query));
-  $menu=$query["nama_menu"];
+  if($query){
+    $query=mysqli_fetch_assoc($query);
+    $menu=$query["nama_menu"];
+  }else{
+    
+  }
   if($ktp==null){
     echo "<div style='padding-left:260px; font-size:20pt;'>Profil KTP anda belum lengkap! <a href='../pages/forms/ktp.php'>Lengkapi Sekarang</a></div>";
   }

@@ -30,6 +30,9 @@
     }
   }
   // echo "............................................................".$id;
+  $batas_pesan = "";
+  $waktu = "";
+  $batal = "";
   if(isset($_POST['reg']))
   {
     $batas_pesan = $_POST['batas_pesan'];
@@ -39,7 +42,6 @@
     $ctr = 0;
     $ctr2 = 0;
     $jumlah = 0;
-    // require_once('../conn.php');
     $listUser=mysqli_query($link,"SELECT * FROM website");
 
     if($batas_pesan==""||$waktu==""||$batal==""){
@@ -148,7 +150,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="exampleInputEmail1" placeholder="enter">Waktu Antar</label>
+                    <label for="exampleInputEmail1" placeholder="misal: 10:00 s/d 17:00">Waktu Antar</label>
                     <input type="text" class="form-control"  value="<?=$waktu?>" name="waktu">
                   </div>
             

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Recover Password</title>
+  <title>Reset Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,14 +21,22 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../../AdminLTE-master/index2.html"><b>Admin</b>LTE</a>
+    <a><b>Reset Password</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
+      <p class="login-box-msg">Masukkan kode konfirmasi yang kami kirimkan ke email anda</p>
       <div class="input-group mb-3">
-          <input type="password" class="form-control" id="kode" placeholder="Kode Konfirmasi">
+          <input type="text" class="form-control" id="kode" placeholder="Kode Konfirmasi">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-check"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password Baru">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -36,15 +44,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" id="password" placeholder="New Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" id="cpassword" placeholder="Confirm New Password">
+          <input type="password" class="form-control" id="cpassword" placeholder="Konfirmasi Password Baru">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -58,9 +58,9 @@
           <!-- /.col -->
         </div>
 
-      <p class="mt-3 mb-1">
+      <!-- <p class="mt-3 mb-1">
         <a href="../../TampilanLogin.php">Login</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -87,6 +87,7 @@
             konfirm:$("#kode").val()
         },
         success: function (response) {
+          alert(response);
             if(response=="berhasil"){
                 window.location="../../TampilanLogin.php";
             }else{

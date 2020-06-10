@@ -79,6 +79,8 @@
           }
           else if($_SESSION['pos']=="add"){
             echo"<img src='../../dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
+          }else if($_SESSION['pos']=="merch"){
+            echo"<img src='../dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
           }else{
             echo"<img src='dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
           }
@@ -104,6 +106,8 @@
             }
             else if($_SESSION['pos']=="add"){
               echo "<a href='../../index.php' class='nav-link'>";
+            }else if($_SESSION['pos']=="merch"){
+              echo "<a href='../index.php' class='nav-link'>";
             }else{
               echo "<a href='index.php' class='nav-link'>";
             }
@@ -131,6 +135,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='addMerchant.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../pages/forms/addMerchant.php' class='nav-link'>";
                 }else{
                   echo "<a href='pages/forms/addMerchant.php' class='nav-link'>";
                 }
@@ -146,6 +152,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='addMenu.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../pages/forms/addMenu.php' class='nav-link'>";
                 }else{
                   echo "<a href='pages/forms/addMenu.php' class='nav-link'>";
                 }
@@ -161,6 +169,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='../../../amel/TampilanInsertPromo.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../../amel/TampilanInsertPromo.php' class='nav-link'>";
                 }else{
                   echo "<a href='../amel/TampilanInsertPromo.php' class='nav-link'>";
                 }
@@ -176,6 +186,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='../../../amel/TampilanInsertKategori.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../../amel/TampilanInsertKategori.php' class='nav-link'>";
                 }else{
                   echo "<a href='../amel/TampilanInsertKategori.php' class='nav-link'>";
                 }
@@ -218,6 +230,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='../../editMenu.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../editMenu.php' class='nav-link'>";
                 }else{
                   echo "<a href='editMenu.php' class='nav-link'>";
                 }
@@ -233,6 +247,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='../../../amel/TampilanDeletePromo.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../../amel/TampilanDeletePromo.php' class='nav-link'>";
                 }else{
                   echo "<a href='../amel/TampilanDeletePromo.php' class='nav-link'>";
                 }
@@ -248,6 +264,8 @@
                 }
                 else if($_SESSION['pos']=="add"){
                   echo "<a href='../../../amel/TampilanDeleteKategori.php' class='nav-link'>";
+                }else if($_SESSION['pos']=="merch"){
+                  echo "<a href='../../amel/TampilanDeleteKategori.php' class='nav-link'>";
                 }else{
                   echo "<a href='../amel/TampilanDeleteKategori.php' class='nav-link'>";
                 }

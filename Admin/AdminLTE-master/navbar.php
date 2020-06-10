@@ -1,8 +1,17 @@
 <?php
   if(isset($_POST['logout'])){
-    alert("keluar");
     session_destroy();
-    header("location:../../Admin/amel/TampilanLogin.php");
+    // if($_SESSION['pos']=="amel"){
+    //   echo"<img src='../AdminLTE-master/dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
+    // }
+    // else if($_SESSION['pos']=="add"){
+    //   echo"<img src='../../dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
+    // }else if($_SESSION['pos']=="merch"){
+    //   echo"<img src='../dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
+    // }else{
+    //   echo"<img src='dist/img/user2-160x160.jpg' class='img-circle elevation-2'>";
+    // }
+    header("location:http://localhost/project_sdp/Admin/amel/loginadmin.php#");
   }
 ?>
 <meta charset="utf-8">
@@ -57,11 +66,14 @@
       </div>
     </li> -->
     <li class="nav-item d-none d-sm-inline-block" style="margin-left:800px;">
-    
+        
+    <form action="#" method="post" >
+      <input type="submit" value="Keluar" name="logout" class="btn btn-block btn-primary btn-lg" style="background-color: #c41a7d; border:none; width: 100px; margin-left: 300px;">
+    </form>
     <!-- <form action="#" method="post" name="logout">
       <input type="submit" value="Keluar" class="btn btn-block btn-primary btn-lg" style="background-color: #c41a7d; border:none;">
     </form> -->
-      <a href="../../Admin/amel/TampilanLogin.php" class="nav-link btn-lg" style="margin-top:-40px;"></a>
+      <!-- <a href="../../Admin/amel/TampilanLogin.php" class="nav-link btn-lg" style="margin-top:-40px;"></a> -->
     </li>
     
     </ul>

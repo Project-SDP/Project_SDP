@@ -37,26 +37,6 @@
   $listMerch=mysqli_query($link,"SELECT * FROM merchant where status=0");
   $jumlah = 0; 
   $pesananMasuk = 0;
-  // foreach($listMerch as $merch){
-  //   $jumlah++;
-  //   if($_SESSION['status']==$merch['email']){
-  //     $id = $merch['id'];
-  //     $nama = $merch['nama'];
-  //     $kategori = $merch['kategori'];
-  //     $rating = $merch['rating'];
-  //     $alamat = $merch['alamat'];
-  //     $notelp = $merch['notelp'];
-  //     $pass = $merch['pass'];
-  //     $email = $merch['email'];
-  //     $prov = $merch['provinsi'];
-  //     $kota = $merch['kota'];
-  //     $halal = $merch['Halal'];
-  //     $profpic = $merch['profilepic'];
-  //     $ktp = $merch['fotoktp'];
-  //     $view = $merch['viewer'];
-  //     break;
-  //   }
-  // }
   $merchantBaru = mysqli_num_rows($listMerch);
   $listReport = mysqli_query($link,"select * from report");
   $jumreport = mysqli_num_rows($listReport);

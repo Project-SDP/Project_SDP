@@ -4,8 +4,7 @@
 <?php
   session_start();
   include("../navbar.php");
-  // echo "......................................................................".$_SESSION['status'];
-  $_SESSION['pos'] = "pesan";
+  $_SESSION['pos'] = "merch";
   include("../sidebar.php");
   require("../conn.php");
   $listUser=mysqli_query($link,"SELECT * FROM merchant");

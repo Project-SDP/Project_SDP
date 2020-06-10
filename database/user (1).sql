@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2020 at 11:37 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jun 10, 2020 at 10:30 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,7 +27,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id_akun` varchar(255) NOT NULL,
   `nama_depan` varchar(255) NOT NULL,
@@ -52,7 +50,19 @@ INSERT INTO `user` (`id_akun`, `nama_depan`, `nama_belakang`, `email`, `username
 ('C0002', 'as', 'as', 'as', 'as', 'as', 'as', '', '0', '123', '0'),
 ('C0003', 'as', 'as', 'as', 'as', 'as', 'as', '', '0', '123', '0'),
 ('C0004', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'Malang', '0', '1234', '0'),
-('C0005', 'a', 'a', 'a@gmail.com', 'a', 'a', 'a', 'KO001', '0', '1212', '0');
+('C0005', 'ab', 'a', 'a@gmail.com', 'a', 'a', 'jl kertajaya indah no 5', 'Surabaya', '0', '1212345', '1'),
+('C0006', 'Amelia', 'Dwi', 'amel@gmail.com', 'amel', 'vHATQm5s', 'ngagel madya', '', '0', '123789', '0'),
+('C0007', 'Amelia', 'Dwi', 'amel@gmail.com', 'amel', 'vHATQm5s', 'ngagel madya', '', '0', '123000', '0');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_akun`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

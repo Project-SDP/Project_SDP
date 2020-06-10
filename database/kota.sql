@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2020 at 02:06 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Generation Time: Jun 10, 2020 at 10:29 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbmerchant`
+-- Database: `proyeksdp`
 --
 
 -- --------------------------------------------------------
@@ -59,7 +58,7 @@ INSERT INTO `kota` (`id_kota`, `nama_kota`, `id_provinsi`) VALUES
 ('KO018', 'Situbondo', 'PR004'),
 ('KO019', 'Kediri', 'PR004'),
 ('KO020', 'Malang', 'PR004'),
-('KO21', 'Surabaya', 'PR004');
+('KO021', 'Surabaya', 'PR004');
 
 --
 -- Indexes for dumped tables

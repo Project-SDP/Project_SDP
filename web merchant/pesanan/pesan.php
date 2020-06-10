@@ -148,7 +148,6 @@
 <!-- page script -->
 <script>
   var idMerch = "<?=$merchant?>";
-//   alert(idMerch);
   pangillPesan(idMerch);
 function pangillPesan(idMerch){
   $.ajax({
@@ -158,7 +157,6 @@ function pangillPesan(idMerch){
       idMerch:idMerch
     },
    success: function (response) {
-    //  alert("YES")
      $("#menu").html(response);
    }
  });

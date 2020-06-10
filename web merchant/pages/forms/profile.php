@@ -173,9 +173,6 @@
                 <input type="submit" class="btn btn-info" name="reg" value="Simpan" style="float:right;">
             </div>
               <div class="card-body">
-                  <?php
-                    if($ktp==null){
-                  ?>
                 <div class="form-group2">
                     <label for="exampleInput" style="margin-top:10px; margin-left:35px;">Gambar Profil</label>
                     <div class="col-md-3">
@@ -217,42 +214,8 @@
                     <div class="form-group">
                     <label>Provinsi</label>
                     <select class="form-control select2"  style="width: 100%;"  onchange="refreshKota()" name="prov" id="prov"> 
-                      <!-- <option selected="selected" name="aceh">Aceh</option>
-                      <option>Bengkulu</option>
-                      <option>Jambi</option>
-                      <option>Kepulauan Bangka Belitung</option>
-                      <option>Kepulauan Riau</option>
-                      <option>Lampung</option>
-                      <option>Riau</option>
-                      <option>Sumatera Barat</option>
-                      <option>Sumatera Selatan</option>
-                      <option>Sumatera Utara</option>
-                      <option>Banten</option>
-                      <option>Gorontalo</option>
-                      <option>Jakarta</option>
-                      <option>Jawa Barat</option>
-                      <option>Jawa Tengah</option>
-                      <option>Jawa Timur</option>
-                      <option>Kalimantan Barat</option>
-                      <option>Kalimantan Selatan</option>
-                      <option>Kalimantan Tengah</option>
-                      <option>Kalimantan Timur</option>
-                      <option>Kalimantan Utara</option>
-                      <option>Maluku</option>
-                      <option>Maluku Utara</option>
-                      <option>Bali</option>
-                      <option>Nusa Tenggara Barat</option>
-                      <option>Nusa Tenggara Timur</option>
-                      <option>Papua</option>
-                      <option>Papua Barat</option>
-                      <option>Sulawesi Barat</option>
-                      <option>Sulawesi Selatan</option>
-                      <option>Sulawesi Tengah</option>
-                      <option>Sulawesi Tenggara</option>
-                      <option>Sulawesi Utara</option>
-                      <option>Yogyakarta</option> -->
                       
-                      <?php 
+                    <?php 
                       $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
                       $select = -1; 
                       foreach($listMerch as $merch) 
@@ -311,163 +274,6 @@
                       ?>
                   </div>
     
-                <input type="button" class="btn btn-default" value="Pilih Gambar" onclick="document.getElementById('gambarktp').click();" style="margin-top:10px; margin-left:35px;">
-                <input type="file" class="btn btn-default" name="gambarktp" id="gambarktp" style="display:none;" onchange="displayImage2(this)">
-              
-                <?php
-                    }else{
-                ?>
-                 <div class="form-group2">
-                    <label for="exampleInput" style="margin-top:10px; margin-left:35px;">Gambar Profil</label>
-                    <div class="col-md-3">
-                    <?php
-                      if($profpic!=null){
-                        echo"<img id='image' src='images$profpic' class='img-thumbnail'>";
-                      }else{
-                        echo"<img id='image' src='../../image/placeholder.jpg' class='img-thumbnail'>";
-                      }
-                    ?>
-                    <div class="caption" style="margin-top:10px;">
-                    </div>
-                  </div>
-                <input type="button" class="btn btn-default" value="Pilih Gambar" onclick="document.getElementById('gambar').click();" style="margin-top:10px; margin-left:35px;">
-                <input type="file" class="btn btn-default" name="gambar" id="gambar" style="display:none;" onchange="displayImage(this)">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInput">Nama</label>
-                    <input type="text" class="form-control" id="nama" value="<?php echo $nama;?>" name="nama" >
-                  </div>
-                  <div class="form-group">
-                    <label> Pilih kategori </label>
-                      <select class="form-control select2" id="kategori" name="kategori" style="width: 100%;">
-                      <?php 
-                      $listKat=mysqli_query($link,"SELECT * FROM kategori");
-                      $select2 = -1;
-                      foreach($listKat as $kat) 
-                      {
-                          if($kat['nama_kategori'] == $kategori){
-                              echo "<option selected='selected' name=".$kat[nama_kategori].">".$kat[nama_kategori]."</option>";
-                          }else{
-                              echo "<option name=".$kat[nama_kategori].">".$kat[nama_kategori]."</option>";
-                          }
-                      }    
-                      ?>
-                    </select>
-                    </div>
-                    <div class="form-group">
-                    <label>Provinsi</label>
-                    <select class="form-control select2" style="width: 100%;"  onchange="refreshKota()" name="prov" id="prov"> 
-                      <!-- <option selected="selected" name="aceh">Aceh</option>
-                      <option>Bengkulu</option>
-                      <option>Jambi</option>
-                      <option>Kepulauan Bangka Belitung</option>
-                      <option>Kepulauan Riau</option>
-                      <option>Lampung</option>
-                      <option>Riau</option>
-                      <option>Sumatera Barat</option>
-                      <option>Sumatera Selatan</option>
-                      <option>Sumatera Utara</option>
-                      <option>Banten</option>
-                      <option>Gorontalo</option>
-                      <option>Jakarta</option>
-                      <option>Jawa Barat</option>
-                      <option>Jawa Tengah</option>
-                      <option>Jawa Timur</option>
-                      <option>Kalimantan Barat</option>
-                      <option>Kalimantan Selatan</option>
-                      <option>Kalimantan Tengah</option>
-                      <option>Kalimantan Timur</option>
-                      <option>Kalimantan Utara</option>
-                      <option>Maluku</option>
-                      <option>Maluku Utara</option>
-                      <option>Bali</option>
-                      <option>Nusa Tenggara Barat</option>
-                      <option>Nusa Tenggara Timur</option>
-                      <option>Papua</option>
-                      <option>Papua Barat</option>
-                      <option>Sulawesi Barat</option>
-                      <option>Sulawesi Selatan</option>
-                      <option>Sulawesi Tengah</option>
-                      <option>Sulawesi Tenggara</option>
-                      <option>Sulawesi Utara</option>
-                      <option>Yogyakarta</option> -->
-                      
-                      <?php 
-                      $listMerch=mysqli_query($link,"SELECT * FROM provinsi");
-                      $select = -1; 
-                      foreach($listMerch as $merch) 
-                      {
-                          if($merch['nama_provinsi'] == $prov){
-                              echo "<option selected='selected' value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                              $select = 0;
-                          }else{
-                              echo "<option value=".$merch[id_provinsi].">".$merch[nama_provinsi]."</option>";
-                          }
-                      }
-                      ?>
-                    </select> 
-                  </div>
-                  <div class="form-group">
-                    <label>Kota</label>
-                    <select class="form-control select2" style="width: 100%;" name="kota" id="kota"> 
-                      <?php 
-                      $listKota=mysqli_query($link,"SELECT * FROM kota");
-                      $select2 = -1;
-                      foreach($listKota as $kota) 
-                      {
-                              if($kota['nama_kota'] == $kota){
-                                  echo "<option selected='selected' name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                                  $select2 = 0;
-                              }else{
-                                  echo "<option name=".$kota[nama_kota].">".$kota[nama_kota]."</option>";
-                              }
-                          
-                      }    
-                      ?>
-                    </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1" placeholder="enter">Alamat</label>
-                      <input type="text" class="form-control"  value="<?=$alamat?>" name="alamat">
-                      <input type="hidden" class="form-control"  value="<?=$id?>" name="id">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">No telp</label>
-                      <input type="tel" class="form-control" value=<?=$notelp?> name="telp">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" value="<?=$email?>" name="email">
-                    </div>
-                    <div class="form-group">
-                      <label>Apakah makanan yang anda sajikan HALAL?</label><br>
-                      <?php
-                        if($halal==1){
-                          echo "<input type='checkbox' name='my-checkbox' value='1' checked data-bootstrap-switch>";
-                          echo "<input type='hidden' name='my-checkbox' value='0'>";
-                        }else{
-                          echo "<input type='checkbox' name='my-checkbox' value='0' checked data-bootstrap-switch>";
-                          echo "<input type='hidden' name='my-checkbox' value='1'>";
-                        }
-                      ?>
-                  </div>
-                  <!-- <div class="form-group2">
-                    <label for="exampleInput" style="margin-top:10px; margin-left:35px;">Upload Foto KTP</label>
-                    <div class="col-md-3">
-                    <?php
-                      if($ktp!=null){
-                        echo"<img id='image2' src='ktp$ktp' class='img-thumbnail'>";
-                      }else{
-                        echo"<img id='image2' src='placeholder.jpg' class='img-thumbnail'>";
-                      }
-                    ?>
-                    <div class="caption" style="margin-top:10px;">
-                    </div>
-                  </div> -->
-                <!-- <input type="button" class="btn btn-default" value="Pilih Gambar"  onclick="document.getElementById('gambarktp').click();" style="margin-top:10px; margin-left:35px;">
-                <input type="file" class="btn btn-default" name="gambarktp" id="gambarktp" style="display:none;" onchange="displayImage2(this)">
-               -->
-                <?php } ?>
               </div>
               </form>
             </div>

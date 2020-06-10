@@ -18,12 +18,17 @@
                 var logAs ='Customer';
                 $(document).ready(function(){
                         chooseCust();
+                       
+
                 });
 
                 function chooseCust(){
                         $("#cust").attr("checked", "checked");
                         $("#merc").removeAttr("checked");
                         logAs ='Customer';
+                        var strLink = "User/Login/forget.php?as=" + logAs;
+                        document.getElementById("forgetPass").setAttribute("href",strLink);
+
                 }
 
                 function chooseMerc(){
@@ -31,6 +36,8 @@
                         $("#merc").attr("checked", "checked");
                         $("#cust").removeAttr("checked");
                         logAs ='Merchant';
+                        var strLink = "User/Login/forget.php?as=" + logAs;
+                        document.getElementById("forgetPass").setAttribute("href",strLink);
                 }
 
         </script>
@@ -52,7 +59,7 @@
         <div class="form-holder">
                 <span class="lnr lnr-eye" onmousedown="showpassword('idPassLog')" onmouseup="hidepassword('idPassLog')"></span>
                 <input type="password" id="inpPass" class="form-control"  placeholder="Password" name="inpNoHp">
-                <a href="User/Login/forget.php" tyle="text-align: center">Lupa Password ?</a>
+                <a id="forgetPass" style="text-align: center">Lupa Password ?</a>
         </div>
 
         <button class="btnLogin btn" type="submit" onclick="ceklogin()">Login</button>
@@ -98,6 +105,10 @@
             }
         });
     }
+        // (function() {
+        // var strLink = "User/Login/forget.php?as=logAs" + logAs;
+        // document.getElementById("forgetPass").setAttribute("href",strLink);
+        // })();
     
    
         </script>

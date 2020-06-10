@@ -9,6 +9,6 @@
     $kota=$_POST["kota"];
     $id=$_POST["id"];
     $query="UPDATE merchant set nama='$nama', alamat='$alamat', notelp='$notelp', email='$email', provinsi='$provinsi', kota='$kota' where id='$id'";
-    echo $query;
+    // echo $query;
     mysqli_query($link,$query);
 ?>

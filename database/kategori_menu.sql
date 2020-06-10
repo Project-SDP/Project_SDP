@@ -24,34 +24,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Table structure for table `kategori_menu`
 --
 
-CREATE TABLE `kategori` (
-  `id_kategori` varchar(20) NOT NULL,
-  `nama_kategori` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `kategori_menu` (
+  `id_km` varchar(20) NOT NULL,
+  `nama_km` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data for table `kategori_menu`
 --
 
-INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
-('KA001', 'Prasmanan'),
-('KA002', 'Snack'),
-('KA003', 'Nasi Kotak'),
-('KA004', 'Cepat Saji'),
-('KA005', 'Tumpeng');
+INSERT INTO `kategori_menu` (`id_km`, `nama_km`) VALUES
+('KM001', 'Indonesia'),
+('KM002', 'Barat'),
+('KM003', 'Jepang'),
+('KM004', 'Chinese'),
+('KM005', 'Vegetarian');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `kategori`
+-- Indexes for table `kategori_menu`
 --
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`);
+ALTER TABLE `kategori_menu`
+  ADD PRIMARY KEY (`id_km`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
