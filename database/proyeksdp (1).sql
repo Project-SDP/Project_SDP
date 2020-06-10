@@ -21,19 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `proyeksdp`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `chat`
---
-
-CREATE TABLE `chat` (
-  `id_chat` varchar(255) NOT NULL,
-  `pengirim` varchar(255) NOT NULL,
-  `penerima` varchar(255) NOT NULL,
-  `isi_chat` varchar(255) NOT NULL,
-  `status` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
