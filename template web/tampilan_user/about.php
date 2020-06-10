@@ -150,7 +150,11 @@
               foreach ($query as $key => $value) {
                $query_merchant="SELECT * from merchant where id='$value[id_merchant]'";
                $query_merchant=mysqli_fetch_assoc(mysqli_query($conn,$query_merchant));
-               $lokasi="../../web%20merchant/web/cover$value[cover]";
+               $nama = $query_merchant['nama'];
+               $kategori = $query_merchant['kategori'];
+               $kota = $query_merchant['kota'];
+              //  $lokasi="../../web%20merchant/web/cover$value[cover]";
+               $lokasi="../../web%20merchant/pages/forms/images$query_merchant[profilepic]";
 
                $query_rating="SELECT avg(r.rating) as rata from review r join htransaksi ht on ht.id_htrans=r.id_htrans where ht.id_merchant= '$value[id_merchant]'";
                $query_rating=mysqli_fetch_assoc(mysqli_query($conn,$query_rating));
@@ -159,18 +163,14 @@
               <div class="item">
                 <div   class="testimony-wrap p-4 pb-5">
                   <div class="user-img mb-5" style="background-image: url(<?=$lokasi?>)">
-                  
-                    <!-- <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                      
-                    </span> -->
+    
                   </div>
                   <div class="text text-center">
-                  
+                  <h1><?=$nama?></h1>
                   <p class="name" style="margin-bottom:40px"><img src="../../gambar/Image/rating.png" style="background-size:cover;width:50px;height:50px;margin-left:120px;float:left" > <span style="margin-right:100px;margin-top:0px"><?=$format?></span> </p>
-                    <p class="mb-5 pl-4 line"><?=$value["kebijakan"]?></p>
-                    <p class="name">Pesan <?=$value["batas_pesan"]?> Sebelumnya</p>
-                    <span class="position">Waktu Antar :<?=$value["waktu_antar"]?> WIB </span>
+                    <p class="mb-5 pl-4 line" style="font-size:30px;"><?=$kategori?></p>
+                    <p class="name"><?=$kota?></p>
+                    <span class="position">Waktu Antar <?=$value["waktu_antar"]?> WIB </span>
                     <a href="tampilanMerchant.php?id=<?=$query_merchant["id"]?>">Detail Merchant</a>
                   </div>
                 </div>

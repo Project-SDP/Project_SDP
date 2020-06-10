@@ -15,7 +15,6 @@
         $namadpn = $user['nama_depan'];
         $namabel = $user['nama_belakang'];
         $email = $user['email'];
-        // echo $email;
         $alamat = $user['alamat'];
         $notelp = $user['no_telp'];
         $city = $user['kota'];
@@ -55,12 +54,10 @@
             $cek++;
           }
       }
-      if($nama==""||$alamat==""||$notelp==""||$email=""){
+      if($nama==""||$alamat==""||$notelp==""||$email==""){
         echo "field tidak boleh kosong!";     
       }else if($cek==$jumlah){
-        echo $email;
-        // echo "benarrrrrrrrrrrrrrrrrrrr";
-        $query="UPDATE user set nama_depan='$namadpn', nama_belakang='$namabel', alamat='$alamat', no_telp='$notelp', email='$email', kota='$city' where id_akun='$id'";
+        $query="UPDATE user set nama_depan='$namadpn', nama_belakang='$namabel',  email='$email', alamat='$alamat', kota='$city', no_telp='$notelp' where id_akun='$id'";
         $insert = mysqli_query($conn,$query);
       }else{
         echo "username/no hp telah terdaftar";

@@ -172,17 +172,11 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `status`) VALUES
-('', 'micin', '1'),
-('K0001', 'micin', ''),
-('KA0001', 'cimin', ''),
 ('KA001', 'Prasmanan', ''),
 ('KA002', 'Snack', '1'),
 ('KA003', 'Nasi Kotak', ''),
 ('KA004', 'Cepat Saji', ''),
-('KA005', 'Tumpeng', ''),
-('KA006', 'snackmicin', ''),
-('KA007', 'amel', '1'),
-('KA008', 'ameliaaa', '1');
+('KA005', 'Tumpeng', '');
 
 -- --------------------------------------------------------
 

@@ -37,8 +37,17 @@
 			$check=-1;
 		}
 		?>
-    
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+    <?php
+				require_once("connect.php");
+				$query="SELECT * from merchant where id='$_GET[id]'";
+				$query=mysqli_query($conn,$query);
+				$query=mysqli_fetch_assoc($query);
+                $website="SELECT * from website where id_merchant='$_GET[id]'";
+                $website=mysqli_fetch_assoc(mysqli_query($conn,$website));
+				$cover = "../../web%20merchant/web/cover$website[cover]";
+				// echo $website['cover'];
+					?>
+    <div class="hero-wrap hero-bread" style="background-image:url(<?=$cover?>);">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -51,27 +60,24 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="row">
-    			
 				<?php
-				require_once("connect.php");
-				$query="SELECT * from merchant where id='$_GET[id]'";
-				$query=mysqli_query($conn,$query);
-				$query=mysqli_fetch_assoc($query);
-                $website="SELECT * from website where id_merchant='$_GET[id]'";
-                $website=mysqli_fetch_assoc(mysqli_query($conn,$website));
-				
-					echo"<div class='col-lg-6 mb-5 ftco-animate'>
-    				";echo"<a href='../../web%20merchant/web/cover$website[cover]' class='image-popup'>
-					";echo"<img src='../../web%20merchant/web/cover$website[cover]' class='img-fluid' alt=''>
+				echo"<div class='col-lg-6 mb-5 ftco-animate'>
+
+    				";echo"<a href='../../web%20merchant/pages/forms/images$query[profilepic]' class='image-popup'>
+					";echo"<img src='../../web%20merchant/pages/forms/images$query[profilepic]' class='img-fluid' alt=''>
 					";echo"</a>
 					";echo"</div>
 					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
-    		";echo"		<h3>$query[nama] </h3>
+    		";echo"		<h3><b>$query[nama] </b></h3>
+    		";echo"		<i>Kategori: $query[kategori] </i><br><br>
 
-    		";echo"		<p>No Telepon= $query[notelp]</p>
-    		";echo"		<p>Kota= $query[kota]</p>
+    		";echo"		<p>No Telepon: $query[notelp]</p>
+    		";echo"		<p>Kota: $query[kota]</p>
+    		";echo"		<p>Pesan: $website[batas_pesan] sebelumnya</p>
+			";echo"		<p>Kebijakan Pembatalan: $website[kebijakan]</p>
 			";echo"	<p onclick='block(\"$query[id]\")'><p  onclick='block(\"$query[id]\")' class='btn btn-black py-3 px-5'>Block Merchant</p></p>";
 			  ?>
+				
           
     			</div>
     		</div>

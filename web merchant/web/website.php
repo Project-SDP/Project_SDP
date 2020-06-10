@@ -30,9 +30,9 @@
     }
   }
   // echo "............................................................".$id;
-  $batas_pesan = "";
-  $waktu = "";
-  $batal = "";
+  // $batas_pesan = "";
+  // $waktu = "";
+  // $batal = "";
   if(isset($_POST['reg']))
   {
     $batas_pesan = $_POST['batas_pesan'];
@@ -50,8 +50,16 @@
         $cover = time() . "_" . $_FILES["gambar"]["name"];
         $target = 'cover' . $cover;
         if(move_uploaded_file($_FILES['gambar']['tmp_name'], $target)){
-            $query="UPDATE website set batas_pesan='$batas_pesan', waktu_antar='$waktu', kebijakan='$batal', cover='$cover' where id_merchant='$id'";
+          echo "..............................................................masok";
+            $query="insert into WEBSITE (batas_pesan, waktu_antar,id_merchant, kebijakan, cover) values ('$batas_pesan','$waktu','$id','$batal','$cover')";
             $insert = mysqli_query($link,$query);
+            if($insert){
+              echo "..................................................................1";
+            }else{
+              echo "..........................................................2";
+              $query="UPDATE website set batas_pesan='$batas_pesan', waktu_antar='$waktu', kebijakan='$batal', cover='$cover' where id_merchant='$id'";
+              $insert = mysqli_query($link,$query);
+            }
         }
     }
 	}

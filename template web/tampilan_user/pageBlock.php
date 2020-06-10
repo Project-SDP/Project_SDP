@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Forgot Password</title>
+  <title>Blokir Merchant</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,7 +27,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../Admin/AdminLTE-master/index2.html"><b>Admin</b>LTE</a>
+    <a href="../../Admin/AdminLTE-master/index2.html"><b>Blokir Merchant</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -35,7 +35,7 @@
       <p class="login-box-msg">Berikan alasan </p>
 
         <div class="input-group mb-3">
-          <textarea name="" id="text_area" cols="30" rows="10"></textarea>
+          <textarea name="" id="text_area" cols="70" rows="10"></textarea>
             
         </div>
         <!-- <P>Rating : </P>
