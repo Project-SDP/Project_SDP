@@ -1,4 +1,4 @@
 <?php
-    echo "hai";
-    // header("location:admin/amel/tampilanlogin.php");
+    // echo "hai";
+    header("location:Project_sdp/admin/amel/tampilanlogin.php");
 ?>
