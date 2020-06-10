@@ -1,3 +1,4 @@
 <?php
-    header("location:admin/amel/tampilanlogin.php");
+    echo "hai";
+    // header("location:admin/amel/tampilanlogin.php");
 ?>
