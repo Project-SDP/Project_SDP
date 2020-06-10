@@ -23,7 +23,6 @@
             ";echo"  
             ";echo"  <td class='product-name'>
             ";echo"      <h3>$value2[nama_menu]</h3>
-            ";echo"      <p>Far far away, behind the word mountains, far from the countries</p>
             ";echo"  </td>
             ";echo"  
             ";echo"  <td class='price'>$total</td>

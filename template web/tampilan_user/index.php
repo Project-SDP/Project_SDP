@@ -138,12 +138,12 @@
 							<div class="col-md-6">
 								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/nasikotak.jpg);">
 									<div class="text px-3 py-1" style="background:#c41a7d; border:#c41a7d;">
-										<h2 class="mb-0"><a href="#">Nasi Kotak</a></h2>
+										<h2 class="mb-0"><a href="kategori.php?kategori=NasiKotak">Nasi Kotak</a></h2>
 									</div>
 								</div>
 								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/snack.jpg);">
 									<div class="text px-3 py-1" style="background:#c41a7d; border:#c41a7d;">
-										<h2 class="mb-0"><a href="#">Snack Box</a></h2>
+										<h2 class="mb-0"><a href="kategori.php?kategori=SnacksBox">Snack Box</a></h2>
 									</div>
 								</div>
 							</div>
@@ -153,12 +153,12 @@
 					<div class="col-md-4">
 						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/prasmanan.jpg);">
 							<div class="text px-3 py-1" style="background:#c41a7d; border:#c41a7d;">
-								<h2 class="mb-0"><a href="#">Prasmanan</a></h2>
+								<h2 class="mb-0"><a href="kategori.php?kategori=Prasmanan">Prasmanan</a></h2>
 							</div>		
 						</div>
 						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/tumpeng.jpg);">
 							<div class="text px-3 py-1" style="background:#c41a7d; border:#c41a7d;">
-								<h2 class="mb-0"><a href="#">Tumpeng</a></h2>
+								<h2 class="mb-0"><a href="kategori.php?kategori=Tumpeng">Tumpeng</a></h2>
 							</div>
 						</div>
 					</div>
@@ -256,7 +256,7 @@
     	</div>
     </section>
 		
-		<section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
+		<!-- <section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
     	<div class="container">
 				<div class="row justify-content-end">
           <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -274,15 +274,15 @@
           </div>
         </div>   		
     	</div>
-    </section>
+    </section> -->
 
-    <section class="ftco-section testimony-section">
+    <!-- <section class="ftco-section testimony-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
           	<span class="subheading">Testimony</span>
             <h2 class="mb-4">Our satisfied customer says</h2>
-            <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p> -->
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
           </div>
         </div>
         <div class="row ftco-animate">
@@ -318,31 +318,12 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <hr>
-
-		<section class="ftco-section ftco-partner">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-1.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-2.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-3.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-4.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="images/partner-5.png" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
-    		</div>
-    	</div>
-    </section>
+<?php
+	include("footer.php");
+?>
   
 
   <!-- loader -->
@@ -382,4 +363,5 @@ s0.parentNode.insertBefore(s1,s0);
 </html>
 <script>
   $("#home").css("color","blue");
+  $(".home").addClass("active");
 </script>

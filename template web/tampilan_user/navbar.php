@@ -2,6 +2,7 @@
 	if(session_id()==''){
 		session_start();
 	}
+	// session_destroy();
 	require_once("connect.php");
 	$nama = "";
     if(isset($_SESSION['loggedUser'])){
@@ -9,24 +10,25 @@
 		$query="select * from user where id_akun='$nama'";
 		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
 		$nama=$query["nama_depan"];
-    }else{
-		$nama = -1;
-    }
+	}else{
+		$_SESSION["loggedUser"]="";
+	}
+	
     if(isset($_POST['logout'])){
-        $_SESSION['loggedUser'] = -1;  
+        $_SESSION['loggedUser'] = "";  
         header("location:../../template%20log%20reg/colorlib-regform-26/login.php");
     }
 	if(!isset($_SESSION["allfood"])){
 		$_SESSION["allfood"]="";
 		$_SESSION["tpromo"]="Rp 0,00";
 		$_SESSION["promo"]=0;
+		$_SESSION["nama_promo"]="";
 		$_SESSION["ftotal"]="Rp 0,00";
 		$_SESSION["fgrandtotal"]="Rp 0,00";
 		$_SESSION["total"]=0;
 		$_SESSION["grandtotal"]=0;
 		$_SESSION["menu"]= array();
 		$_SESSION["ongkir"]=0;
-		
 	}
 ?>
 <style>
@@ -62,9 +64,7 @@
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
 						    <span class="text">bibikscatering@gmail.com</span>
 					    </div>
-					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
-					    </div>
+					   
 				    </div>
 			    </div>
 		    </div>
@@ -79,31 +79,25 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-			<?php
-				if($_SESSION['pos']=="home"){
-					echo"<li class='nav-item'><a href='index.php' class='nav-link'><div class='active'>Home</div></a></li>";
-					echo"<li class='nav-item'><a href='profil.php' class='nav-link'>Profil</a></li>";
-				}
-				if($_SESSION['pos']=="profil"){
-					echo"<li class='nav-item'><a href='index.php' class='nav-link'>Home</a></li>";
-					echo"<li class='nav-item'><a href='profil.php' class='nav-link'><div class='active'>Profil</div></a></li>";
-				}
-			?>
+
+			<li class='nav-item'><a href='index.php' class='nav-link home'><div class="home">Home</div></a></li>
+			<li class='nav-item'><a href='profil.php' class='nav-link profile'><div class="profil">Profil</div></a></li>
+
 	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="menu">Menu</div></a>
+              <div class="dropdown-menu menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="kategori.php?kategori=NasiKotak">Nasi Kotak</a>
               	<a class="dropdown-item" href="kategori.php?kategori=SnacksBox">Snacks Box</a>
                 <a class="dropdown-item" href="kategori.php?kategori=Tumpeng">Tumpeng</a>
                 <a class="dropdown-item" href="kategori.php?kategori=Prasmanan">Prasmanan</a>
                 <a class="dropdown-item" href="cart.php">Cart</a>
-                <a class="dropdown-item" href="../Midtrans/trans/index.php" target="_blank">Checkout</a>
+               
               </div>
             </li>
-	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link">Kupon</a></li>
-			  <li class="nav-item"><a href="review.php" id="review" class="nav-link">Review</a></li>
-			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"></span>[<?php 
+	          <li class="nav-item"><a href="about.php" id="restaurant" class="nav-link"><div class="restaurant">Restaurant</div></a></li>
+	          <li class="nav-item"><a href="kupon.php" id="kupon" class="nav-link"><div class="kupon">Kupon</div></a></li>
+			  <li class="nav-item"><a href="review.php" id="review" class="nav-link"><div class="review">Review</div></a></li>
+			  <li class="nav-item cta cta-colored"><a href="cart.php" id="cart" class="nav-link"><span class="icon-shopping_cart"> </span>[<?php 
 			  	$allMenu=explode('||',$_SESSION['allfood']);
     			$allMenu=count($allMenu)-1; echo $allMenu?>]</a></li>
 
@@ -111,14 +105,15 @@
 	      </div>
 		</div>
 		<?php
-			if($nama==-1){
+			if($nama==""){
 				echo"<div class='btn' style='margin-right:100px;'>";
 				echo"<a href='../../Admin/amel/TampilanRegister.php'><div class='button_right_02 new2019-05-16'>Daftar</div></a>";
 				echo"<a href='../../Admin/amel/TampilanLogin.php'><div class='button_right_02 new2019-05-16'>Masuk</div></a>";
 				echo"</div>";
 			}else{
 			?>
-				<div class="panel-group" style="left:1360px; position:absolute;">
+				<!-- <div class="panel-group" style="left:1360px; position:absolute;"> -->
+				<div class="panel-group" style="">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">

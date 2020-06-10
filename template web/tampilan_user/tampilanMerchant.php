@@ -32,55 +32,56 @@
 		
 	<?php
 		include("navbar.php");
+		$check=0;
+		if($_SESSION["loggedUser"]==""){
+			$check=-1;
+		}
 		?>
-
+    
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Kupon</span></p>
-            <h1 class="mb-0 bread">Kupon</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Tampilan Merchant</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+            <h1 class="mb-0 bread">Deskripsi Merchant</h1>
           </div>
         </div>
       </div>
     </div>
-  
-    <section class="ftco-section ftco-degree-bg">
-      <div class="container">
-        <div class="row">
-        <?php
-              include("connect.php");
-                $query="SELECT * from promo where CURDATE()<tanggal_akhir";
-                $query=mysqli_query($conn,$query);
-                foreach ($query as $key => $value) {
-                  $gambar=substr($value["gambar_promo"],3);
-              ?>
-          <div class="col-lg-8 ftco-animate">
-						<div class="row">
-              
-							<div class="col-md-12 d-flex ftco-animate">
-		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a  class="block-20" style="background-size:cover;width:650px;height:150px;margin-top:20px;background-image: url('<?=$gambar?>');">
-		              </a>
-		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a>Admin</a></div>
-		                </div>
-		                <h3 class="heading"><?=$value["judul_promo"]?></h3>
-		                <p><?=$value["deskripsi"]." ".$value["tanggal_akhir"]?></p>
-		                <!-- <p><a href="blog-single.html" class="btn btn-primary py-2 px-3">Read more</a></p> -->
-		              </div>
-		            </div>
-                
-		          </div>
-						</div>
-          </div> <!-- .col-md-8 -->
-          <?php
-                  }
-           ?>
-   <?php
-    include("footer.php");
-   ?>
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+    			
+				<?php
+				require_once("connect.php");
+				$query="SELECT * from merchant where id='$_GET[id]'";
+				$query=mysqli_query($conn,$query);
+				$query=mysqli_fetch_assoc($query);
+                $website="SELECT * from website where id_merchant='$_GET[id]'";
+                $website=mysqli_fetch_assoc(mysqli_query($conn,$website));
+				
+					echo"<div class='col-lg-6 mb-5 ftco-animate'>
+    				";echo"<a href='../../web%20merchant/web/cover$website[cover]' class='image-popup'>
+					";echo"<img src='../../web%20merchant/web/cover$website[cover]' class='img-fluid' alt=''>
+					";echo"</a>
+					";echo"</div>
+					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
+    		";echo"		<h3>$query[nama] </h3>
+
+    		";echo"		<p>No Telepon= $query[notelp]</p>
+    		";echo"		<p>Kota= $query[kota]</p>
+			";echo"	<p onclick='block(\"$query[id]\")'><p  onclick='block(\"$query[id]\")' class='btn btn-black py-3 px-5'>Block Merchant</p></p>";
+			  ?>
+          
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <?php
+	include("footer.php");
+?>
+    
   
 
   <!-- loader -->
@@ -103,9 +104,55 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+		$(document).ready(function(){
+
+		var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+		        
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		            
+		            $('#quantity').val(quantity + 1);
+
+		          
+		            // Increment
+		        
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		      
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+		    
+		});
+	</script>
     
   </body>
 </html>
-<script>
-  $(".kupon").addClass("active");
+<script >
+function block(id){
+	
+	var check="<?=$check?>";
+	if(check==-1){
+		window.location.href="../../Admin/amel/TampilanLogin.php";
+	}else{
+		window.location.href="pageBlock.php?id="+id+"";
+	}
+}
+$(".menu").addClass("active");
 </script>
