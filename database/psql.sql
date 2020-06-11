@@ -31,9 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE dtransaksi (
   id_htrans varchar(10) NOT NULL,
   id_makanan varchar(20) NOT NULL,
-  jumlah int(10) NOT NULL,
-  subtotal int(10) NOT NULL
-) 
+  jumlah int NOT NULL,
+  subtotal int NOT NULL
+); 
 
 --
 -- Dumping data for table dtransaksi
@@ -84,16 +84,16 @@ INSERT INTO dtransaksi (id_htrans, id_makanan, jumlah, subtotal) VALUES
 
 CREATE TABLE htransaksi (
   id_htrans varchar(20) NOT NULL,
-  tglwaktu_trans datetime NOT NULL,
-  subtotal int(10) NOT NULL,
+  tglwaktu_trans timestamp NOT NULL,
+  subtotal int NOT NULL,
   status_htrans varchar(20) NOT NULL,
-  tglwaktu_kirim datetime DEFAULT NULL,
+  tglwaktu_kirim timestamp DEFAULT NULL,
   id_customer varchar(20) NOT NULL,
   id_merchant varchar(20) NOT NULL,
   ongkir int NOT NULL,
   pesan varchar(50) NOT NULL,
   keterangan varchar(255) NOT NULL
-) 
+); 
 
 --
 -- Dumping data for table htransaksi
@@ -419,7 +419,7 @@ INSERT INTO provinsi (id_provinsi, nama_provinsi) VALUES
 --
 
 CREATE TABLE report (
-  id_report int NOT NULL,
+  id_report SERIAL PRIMARY KEY,
   id_merchant varchar(10) NOT NULL,
   id_customer varchar(10) NOT NULL,
   pelapor varchar(10) NOT NULL,
@@ -480,8 +480,8 @@ INSERT INTO review (id_review, isi_review, id_htrans, rating) VALUES
 -- Table structure for table user
 --
 
-CREATE TABLE user (
-  id_akun varchar(255) NOT NULL,
+CREATE TABLE "user" (
+  id_akun varchar(255) PRIMARY KEY NOT NULL,
   nama_depan varchar(255) NOT NULL,
   nama_belakang varchar(255) NOT NULL,
   email varchar(50) NOT NULL,
@@ -498,7 +498,7 @@ CREATE TABLE user (
 -- Dumping data for table user
 --
 
-INSERT INTO user (id_akun, nama_depan, nama_belakang, email, username, password, alamat, kota, poin, no_telp, status) VALUES
+INSERT INTO "user" (id_akun, nama_depan, nama_belakang, email, username, password, alamat, kota, poin, no_telp, status) VALUES
 ('C0001', 'as', 'as', 'as', 'as', 'as', 'as', '', '0', '123', '0'),
 ('C0002', 'as', 'as', 'as', 'as', 'as', 'as', '', '0', '123', '0'),
 ('C0003', 'as', 'as', 'as', 'as', 'as', 'as', '', '0', '123', '0'),
@@ -531,7 +531,7 @@ CREATE TABLE website (
   id_merchant varchar(10) NOT NULL,
   kebijakan varchar(100) NOT NULL,
   cover varchar(30) NOT NULL
-) 
+); 
 
 --
 -- Dumping data for table website
@@ -609,15 +609,14 @@ ALTER TABLE review
 --
 -- Indexes for table user
 --
-ALTER TABLE user
+ALTER TABLE "user"
   ADD PRIMARY KEY (id_akun);
 
 --
 -- Indexes for table website
 --
 ALTER TABLE website
-  ADD PRIMARY KEY (id_merchant),
-  ADD KEY id_merchant (id_merchant);
+  ADD PRIMARY KEY (id_merchant);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -627,7 +626,7 @@ ALTER TABLE website
 -- AUTO_INCREMENT for table report
 --
 ALTER TABLE report
-  MODIFY id_report int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  ALTER id_report int NOT NULL AUTO_INCREMENT;, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
