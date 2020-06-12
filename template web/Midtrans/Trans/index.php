@@ -34,7 +34,7 @@
         callback(xmlHttp.responseText);
       }
     }
-    xmlHttp.open("post", "http://localhost/Project_SDP/template web/Midtrans/Trans/checkout.php");
+    xmlHttp.open("post", "checkout.php");
     xmlHttp.send(JSON.stringify(requestBody));
   }
 </script>

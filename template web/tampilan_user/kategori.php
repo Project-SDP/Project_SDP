@@ -6,7 +6,9 @@ if(isset($_GET["kategori"])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+  <link rel="icon" type="image/gif" href="images/image-4.png" />
+
+    <title>Menu - Bibiks' Catering</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -94,8 +96,8 @@ if(isset($_GET["kategori"])){
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Products</span></p>
-            <h1 class="mb-0 bread">Products</h1>
+          	<!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Products</span></p> -->
+            <h1 class="mb-0 bread">MENU</h1>
           </div>
         </div>
       </div>

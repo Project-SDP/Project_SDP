@@ -5,7 +5,7 @@
 	// session_destroy();
 	require_once("connect.php");
 	$nama = "";
-    if(isset($_SESSION['loggedUser'])){
+    if(isset($_SESSION['loggedUser'])&& strpos($_SESSION['loggedUser'], '@') == false && $_SESSION['loggedUser']!=""){
 		$nama = $_SESSION['loggedUser'];
 		$query="select * from user where id_akun='$nama'";
 		$query=mysqli_fetch_assoc(mysqli_query($conn,$query));
@@ -118,7 +118,7 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" href="#collapse1" class="icon-menu" style="color:#c41a7d;"></a>
-							<a data-toggle="collapse" href="#collapse1" style="font-size:20px; color:#c41a7d;">Hai ,<?php echo $nama; ?></a>
+							<a data-toggle="collapse" href="#collapse1" style="font-size:20px; color:#c41a7d;padding-right:30px;">Hai, <b><?php echo $nama; ?></b></a>
 						</h4>
 					</div>
 					<div id="collapse1" class="panel-collapse collapse">

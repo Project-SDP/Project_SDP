@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+  <link rel="icon" type="image/gif" href="images/image-4.png" />
+    <title>Restaurant - Bibik's Catering</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -40,8 +41,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>About us</span></p>
-            <h1 class="mb-0 bread">About us</h1>
+          	<!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>About us</span></p> -->
+            <h1 class="mb-0 bread">RESTAURANT</h1>
           </div>
         </div>
       </div>
@@ -135,7 +136,7 @@
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Merchant</span>
+          	<!-- <span class="subheading">Merchant</span> -->
             <h2 class="mb-4">Beberapa list Merchant yang sudah tersedia</h2>
             <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p> -->
           </div>

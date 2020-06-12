@@ -69,7 +69,7 @@
   $listdtrans = mysqli_query($link,$query2);
   foreach ($listpesanan as $pesanan){
     if($id == $pesanan['id_merchant']){
-      if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']=="LUNAS"){
+      if($pesanan['status_htrans']=="LUNAS"){
         $pesananMasuk++;
       }
       if(substr($pesanan['tglwaktu_trans'],0,10) == date("Y-m-d") && $pesanan['status_htrans']!="DIBATALKAN"){

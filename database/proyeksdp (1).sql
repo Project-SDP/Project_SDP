@@ -328,37 +328,39 @@ INSERT INTO menu (id_menu, nama_menu, harga_menu, status_menu, id_km, id_merchan
 --
 -- Table structure for table merchant
 --
+CREATE TABLE `merchant` (
+  `id` varchar(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `kategori` varchar(20) NOT NULL,
+  `rating` float NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `notelp` varchar(12) NOT NULL,
+  `pass` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `provinsi` varchar(20) NOT NULL,
+  `kota` varchar(20) NOT NULL,
+  `kecamatan` varchar(20) NOT NULL,
+  `Halal` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `vkey` varchar(50) DEFAULT NULL,
+  `verified` int(1) DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `profilepic` varchar(50) NOT NULL,
+  `fotoktp` varchar(30) NOT NULL,
+  `viewer` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE merchant (
-  id varchar(10) NOT NULL,
-  nama varchar(50) NOT NULL,
-  kategori varchar(20) NOT NULL,
-  rating float NOT NULL,
-  alamat varchar(100) NOT NULL,
-  notelp varchar(12) NOT NULL,
-  pass varchar(20) NOT NULL,
-  email varchar(50) NOT NULL,
-  provinsi varchar(20) NOT NULL,
-  kota varchar(20) NOT NULL,
-  kecamatan varchar(20) NOT NULL,
-  Halal int NOT NULL,
-  status int NOT NULL,
-  vkey varchar(50) NOT NULL,
-  verified int DEFAULT NULL,
-  create_date timestamp NOT NULL DEFAULT current_timestamp,
-  profilepic varchar(50) NOT NULL
-)
 
 --
 -- Dumping data for table merchant
 --
 
-INSERT INTO merchant (id, nama, kategori, rating, alamat, notelp, pass, email, provinsi, kota, kecamatan, Halal, status, vkey, verified, create_date, profilepic) VALUES
-('MCNAS006', 'Nasi Kantor', 'NasiKotak', 3.9, 'papo', '1234', '62c8ad0a15d9d1ca38d5', 'jessica2@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '', NULL, '2020-06-10 11:03:12', '1591783016_clay-sushi-man.jpg'),
-('MCPRA005', 'mie up', 'Prasmanan', 0, 'jl kertajaya indah no 5', '90090090012', '62c8ad0a15d9d1ca38d5', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '0e0b5c90617c64f0e59f7cc517b8105a', NULL, '2020-06-10 09:39:10', '1591779536_pegawai.png'),
-('MCPRA006', 'gojes', 'Prasmanan', 0, 'popo', '1231231', 'f5bb0c8de146c67b44ba', 'jessica3@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '202f99690bd257803c248566bddc86cf', NULL, '2020-06-10 08:56:32', '1588239695_cover.jpg'),
-('MCSNA008', 'Omah Roti', 'Prasmanan', 2.5, 'popu', '15671231231', '62c8ad0a15d9d1ca38d5', 'jessica4@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:02:05', '1591786724_roti.jpeg'),
-('MCTUM009', 'Tumpeng Sari', 'Tumpeng', 0, 'popi', '123489', '62c8ad0a15d9d1ca38d5', 'jessica5@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:03:25', '1591783379_gado2.jpg');
+INSERT INTO `merchant` (`id`, `nama`, `kategori`, `rating`, `alamat`, `notelp`, `pass`, `email`, `provinsi`, `kota`, `kecamatan`, `Halal`, `status`, `vkey`, `verified`, `create_date`, `profilepic`, `fotoktp`, `viewer`) VALUES
+('MCNAS006', 'Nasi Kantor', 'NasiKotak', 3.9, 'papo', '1234', '62c8ad0a15d9d1ca38d5', 'jessica2@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '', NULL, '2020-06-10 11:03:12', '1591783016_clay-sushi-man.jpg','',0),
+('MCPRA005', 'mie up', 'Prasmanan', 0, 'jl kertajaya indah no 5', '90090090012', '62c8ad0a15d9d1ca38d5', 'jessica1@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 0, 1, '0e0b5c90617c64f0e59f7cc517b8105a', NULL, '2020-06-10 09:39:10', '1591779536_pegawai.png','',0),
+('MCPRA006', 'gojes', 'Prasmanan', 0, 'popo', '1231231', 'f5bb0c8de146c67b44ba', 'jessica3@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '202f99690bd257803c248566bddc86cf', NULL, '2020-06-10 08:56:32', '1588239695_cover.jpg','',0),
+('MCSNA008', 'Omah Roti', 'Prasmanan', 2.5, 'popu', '15671231231', '62c8ad0a15d9d1ca38d5', 'jessica4@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:02:05', '1591786724_roti.jpeg','',0),
+('MCTUM009', 'Tumpeng Sari', 'Tumpeng', 0, 'popi', '123489', '62c8ad0a15d9d1ca38d5', 'jessica5@mhs.stts.edu', 'PR001', 'Jakarta Barat', 'Asemrowo', 1, 1, '', NULL, '2020-06-10 11:03:25', '1591783379_gado2.jpg','',0);
 
 -- --------------------------------------------------------
 

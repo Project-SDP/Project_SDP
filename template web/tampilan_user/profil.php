@@ -68,6 +68,7 @@
 <html lang="en">
   <head>
     <title>Profil - Bibik's Catering</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -93,6 +94,8 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/gif" href="images/image-4.png" />
+
   </head>
 
   <body class="goto-here">

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+  <link rel="icon" type="image/gif" href="images/image-4.png" />
+
+    <title>Profil Merchant - Bibik's Catering</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -42,9 +44,12 @@
 				$query="SELECT * from merchant where id='$_GET[id]'";
 				$query=mysqli_query($conn,$query);
 				$query=mysqli_fetch_assoc($query);
+				$viewer= $query['viewer']+1;
+				mysqli_query($conn,"update merchant set viewer=$viewer where id='$_GET[id]'");
                 $website="SELECT * from website where id_merchant='$_GET[id]'";
                 $website=mysqli_fetch_assoc(mysqli_query($conn,$website));
 				$cover = "../../web%20merchant/web/cover$website[cover]";
+				
 				// echo $website['cover'];
 					?>
     <div class="hero-wrap hero-bread" style="background-image:url(<?=$cover?>);">

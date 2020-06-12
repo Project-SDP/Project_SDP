@@ -87,6 +87,10 @@
 				$query="SELECT * from menu where id_menu='$_GET[id]'";
 				$query=mysqli_query($conn,$query);
 				$value=mysqli_fetch_assoc($query);
+
+				$query2="SELECT * from merchant where id='$value[id_merchant]'";
+				$query2=mysqli_query($conn,$query2);
+				$value2=mysqli_fetch_assoc($query2);
 				
 				
 					$harga='Rp ' . number_format($value['harga_menu'],2,',','.');
@@ -97,6 +101,7 @@
 					";echo"</div>
 					";echo"<div class='col-lg-6 product-details pl-md-5 ftco-animate'>
     		";echo"		<h3>$value[nama_menu] </h3>
+    		";echo"		<h5>by <a href='tampilanMerchant.php?id=$value[id_merchant]'>$value2[nama]</a></h5>
 
     		";echo"		<p class='price'><span>$harga</span></p>
     		";echo"		<p>$value[deskripsi_menu]</p>
